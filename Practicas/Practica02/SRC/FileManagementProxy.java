@@ -1,3 +1,5 @@
+package SRC;
+
 public interface FileManagementProxy {
 
     public boolean agregar();
