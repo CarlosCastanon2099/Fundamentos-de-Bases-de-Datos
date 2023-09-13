@@ -1,8 +1,8 @@
 package bioma;
-
 import java.util.ArrayList;
 
 public class Bioma {
+    private int idBioma;
     private String tipoBioma;
     private int numeroJaulas;
     private int numeroCuidadores;
@@ -11,9 +11,10 @@ public class Bioma {
     private ServiciosVisitantes serviciosVisitantes;
 
     // Constructor de la clase Bioma
-    public Bioma(String tipoBioma, int numeroJaulas, int numeroCuidadores,
+    public Bioma(int idBioma, String tipoBioma, int numeroJaulas, int numeroCuidadores,
                  int numeroVeterinarios, int numeroAnimales,
                  ServiciosVisitantes serviciosVisitantes) {
+        this.idBioma = idBioma;
         this.tipoBioma = tipoBioma;
         this.numeroJaulas = numeroJaulas;
         this.numeroCuidadores = numeroCuidadores;
@@ -22,32 +23,147 @@ public class Bioma {
         this.serviciosVisitantes = serviciosVisitantes;
     }
     
-    // Métodos getters y setters para los atributos de Bioma
+    // Métodos setters para los atributos de Bioma
+    /** 
+     * Método setter para el atributo idBioma
+     * 
+     * @param idBioma el id del bioma
+     */
+    public void setIdBioma (int idBioma){
+        if (idBioma > 0) {
+            this.idBioma = idBioma;
+        }
+    }
     
+    /**  
+     * Método setter para el atributo tipoBioma
+     * 
+     * @param tipoBioma
+     */
     public void setTipoBioma (String tipoBioma){
         if (tipoBioma != null && !tipoBioma.isEmpty()) {
             this.tipoBioma = tipoBioma;
         }
     }
 
+    /**  
+     * Método setter para el atributo numeroVeterinarios
+     * 
+     * @param numeroVeterinarios el número de veterinarios
+    */
+    public void setNumeroVeterinarios (int numeroVeterinarios){
+        if (numeroVeterinarios > 0) {
+            this.numeroVeterinarios = numeroVeterinarios;
+        }
+    }
+
+    /**  
+     * Método setter para el atributo numeroJaulas
+     * 
+     * @param numeroJaulas el número de jaulas
+    */
     public void setNumeroJaulas (int numeroJaulas){
         if (numeroJaulas > 0) {
             this.numeroJaulas = numeroJaulas;
         }
     }
 
+
+    /**  
+     * Método setter para el atributo numeroCuidadores
+     * 
+     * @param numeroCuidadores el número de cuidadores
+    */
     public void setNumeroCuidadores (int numeroCuidadores){
         if (numeroCuidadores > 0) {
             this.numeroCuidadores = numeroCuidadores;
         }
     }
 
+    /**  
+     * Método setter para el atributo numeroAnimales
+     * 
+     * @param numeroAnimales el número de animales
+    */
     public void setNumeroAnimales (int numeroAnimales){
         if (numeroAnimales > 0) {
             this.numeroAnimales = numeroAnimales;
         }
     }
 
+    // Metodos Getters para los atributos de Bioma
+
+    /**  
+     * Método getter para el atributo idBioma
+     * 
+     * @return idBioma
+     */
+    public int getIdBioma() {
+        return idBioma;
+    }
+
+    /**  
+     * Método getter para el atributo tipoBioma
+     * 
+     * @return tipoBioma
+     */
+    public String getTipoBioma() {
+        return tipoBioma;
+    }
+
+    /**  
+     * Método getter para el atributo numeroVeterinarios
+     * 
+     * @return numeroVeterinarios
+    */
+    public int getNumeroVeterinarios() {
+        return numeroVeterinarios;
+    }
+
+    /**  
+     * Método getter para el atributo numeroJaulas
+     * 
+     * @return numeroJaulas
+    */
+    public int getNumeroJaulas() {
+        return numeroJaulas;
+    }
+
+    /**  
+     * Método getter para el atributo numeroCuidadores
+     * 
+     * @return numeroCuidadores
+    */
+    public int getNumeroCuidadores() {
+        return numeroCuidadores;
+    }
+
+    /**  
+     * Método getter para el atributo numeroAnimales
+     * 
+     * @return numeroAnimales
+    */
+    public int getNumeroAnimales() {
+        return numeroAnimales;
+    }
+
+    /**  
+     * Método getter para el atributo serviciosVisitantes
+     * 
+     * @return serviciosVisitantes
+    */
+    public ServiciosVisitantes getServiciosVisitantes() {
+        return serviciosVisitantes;
+    }
+
+    // Método toString para la clase Bioma
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s, %s, %s, %s", idBioma,
+                tipoBioma, numeroJaulas, numeroCuidadores, 
+                numeroVeterinarios, numeroAnimales, serviciosVisitantes);
+    }
+    
     // Clase interna para representar los servicios a visitantes
     public static class ServiciosVisitantes {
         private int numeroBanios;
@@ -61,8 +177,79 @@ public class Bioma {
             this.numeroComida = numeroComida;
         }
 
-        // Métodos getters y setters para los atributos de servicios a visitantes
+        // Métodos setters para los atributos de servicios a visitantes
 
-        // POR IMPLEMENTAR
+        /** 
+         * Método setter para el atributo numeroBanios
+         * 
+         * @param numeroBanios el número de baños
+         */
+        public void setNumeroBanios (int numeroBanios){
+            if (numeroBanios > 0) {
+                this.numeroBanios = numeroBanios;
+            }
+        }
+
+        /**
+         * Método setter para el atributo numeroTiendas
+         * 
+         * @param numeroTiendas el número de tiendas 
+         */ 
+        public void setNumeroTiendas (int numeroTiendas){
+            if (numeroTiendas > 0) {
+                this.numeroTiendas = numeroTiendas;
+            }
+        }
+
+        /**
+         * Método setter para el atributo numeroComida
+         * 
+         * @param numeroComida el número de comida
+         */
+        public void setNumeroComida (int numeroComida){
+            if (numeroComida > 0) {
+                this.numeroComida = numeroComida;
+            }
+        }
+
+        // Métodos getters para los atributos de servicios a visitantes
+
+        /**  
+         * Método getter para el atributo numeroBanios
+         * 
+         * @return numeroBanios
+         */
+        public int getNumeroBanios() {
+            return numeroBanios;
+        }
+
+        /**  
+         * Método getter para el atributo numeroTiendas
+         * 
+         * @return numeroTiendas
+         */
+        public int getNumeroTiendas() {
+            return numeroTiendas;
+        }
+
+        /**  
+         * Método getter para el atributo numeroComida
+         * 
+         * @return numeroComida
+         */
+        public int getNumeroComida() {
+            return numeroComida;
+        }
+
+        // Método toString para la clase ServiciosVisitantes
+        @Override
+        public String toString() {
+            return "ServiciosVisitantes" +
+                    "numeroBanios=" + numeroBanios +
+                    " numeroTiendas=" + numeroTiendas +
+                    " numeroComida=" + numeroComida;
+        }
+
+
     }
 }

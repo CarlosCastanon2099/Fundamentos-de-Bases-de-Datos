@@ -7,6 +7,7 @@ public class ZooApp {
     public static void main(String[] args){
         app();
     }
+    static RemoteFileManagement rfm = new RemoteFileManagement();
 
     /**
      * Método que nos regresa un String, el cual es el menu de opciones principales
@@ -139,6 +140,7 @@ public class ZooApp {
                 int option = Integer.parseInt(input);
                 switch (option) {
                     case 1:
+                        rfm.agregar("veterinario", "jijiji");
                         System.out.println("AQUI AGREGAR VETERINARIO");    
                         break;
                     case 2:

@@ -33,6 +33,18 @@ public class Empleado {
         this.genero = genero;
     }
 
+
+    // Cada empleado debe tener un ID unico, usaremos el RFC como ID
+    // Metodo getID para obtener el ID del empleado
+    public String getID() {
+        return rfc;
+    }
+
+    // Metodo setID para asignar el ID del empleado
+    public void setID(String rfc) {
+        this.rfc = rfc;
+    }
+
     // Metodos getters y setters para los atributos de la clase Empleado
 
     /**      

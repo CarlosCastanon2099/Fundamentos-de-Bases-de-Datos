@@ -13,8 +13,8 @@ public class RemoteFileManagement implements FileManagementProxy {
     }
 
     @Override
-    public boolean agregar() {
-        return original.agregar();
+    public boolean agregar(String entidad, String tipo) {
+        return original.agregar(entidad, tipo);
     }
 
     @Override

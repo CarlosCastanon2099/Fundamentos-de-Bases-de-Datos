@@ -1,8 +1,15 @@
 package SRC;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
 public class FileManagement implements FileManagementProxy {
 
     private static FileManagement instance; // Instancia unica de la clase.
+    Path ruta;
 
     /**
      * Metodo contructor privado para poder usar el patron de disenno de software
@@ -25,6 +32,32 @@ public class FileManagement implements FileManagementProxy {
     }
 
     /**
+     * Metodo privado para cambiar la ruta del archivo al que se quiere modificar
+     * 
+     * @param tipo El tipo de entidad que pertenece el archivo en cuestion
+     * @return  True si fue posible cambiarlo, false de lo contrario
+     */
+    private boolean entidadRuta(String tipo){
+        switch (tipo) {
+            case "veterinario":
+                this.ruta = Paths.get("veterinario.csv");
+                return true;
+                
+            case "Bioma":
+                this.ruta = Paths.get("Bioma.csv");
+                return true;
+                
+                case "Animal":
+                this.ruta = Paths.get("Animal.csv");
+                return true;
+                
+            default:
+                System.out.println("Ruta erronea: " + tipo);
+                return false;
+        }
+    }
+
+    /**
      * LOS SIGUIENTES METODOS SOLO VAN A SER DE CONSULTA, ES DECIR, AQUI NO DEBEMOS
      * A HACER LOGICA DE VERIFICACIONES DE QUE SI EL USUARIO INGRESO COSAS COMO "" (CADENA VACIA)
      * O INGRESO LETRAS EN LUGAR DE NUMEROS, ETC.
@@ -33,8 +66,16 @@ public class FileManagement implements FileManagementProxy {
      */
 
     @Override
-    public boolean agregar() {
-        System.out.println("\nAQUI DEBEMOS A HACER LA AGREGACION.\n");
+    public boolean agregar(String entidad, String tipo) {
+        
+        if ( !entidadRuta(entidad)) return false;
+        try {
+            Files.write(this.ruta, entidad.getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e) {
+            System.out.println("Error en el I/O: " + e.getMessage());
+            return false;
+        }
+
         return true;
     }
 

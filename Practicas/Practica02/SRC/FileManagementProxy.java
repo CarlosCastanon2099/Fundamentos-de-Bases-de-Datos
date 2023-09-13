@@ -2,7 +2,7 @@ package SRC;
 
 public interface FileManagementProxy {
 
-    public boolean agregar();
+    public boolean agregar(String entidad, String tipo);
 
     public void consultar();
 
