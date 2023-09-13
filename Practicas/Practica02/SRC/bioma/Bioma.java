@@ -21,10 +21,32 @@ public class Bioma {
         this.numeroAnimales = numeroAnimales;
         this.serviciosVisitantes = serviciosVisitantes;
     }
-
+    
     // Métodos getters y setters para los atributos de Bioma
+    
+    public void setTipoBioma (String tipoBioma){
+        if (tipoBioma != null && !tipoBioma.isEmpty()) {
+            this.tipoBioma = tipoBioma;
+        }
+    }
 
-    // POR IMPLEMENTAR
+    public void setNumeroJaulas (int numeroJaulas){
+        if (numeroJaulas > 0) {
+            this.numeroJaulas = numeroJaulas;
+        }
+    }
+
+    public void setNumeroCuidadores (int numeroCuidadores){
+        if (numeroCuidadores > 0) {
+            this.numeroCuidadores = numeroCuidadores;
+        }
+    }
+
+    public void setNumeroAnimales (int numeroAnimales){
+        if (numeroAnimales > 0) {
+            this.numeroAnimales = numeroAnimales;
+        }
+    }
 
     // Clase interna para representar los servicios a visitantes
     public static class ServiciosVisitantes {

@@ -5,7 +5,7 @@ public class FileManagement implements FileManagementProxy {
     private static FileManagement instance; // Instancia unica de la clase.
 
     /**
-     * Metodo contructor privado para poder usar el patron de disenno de sofware
+     * Metodo contructor privado para poder usar el patron de disenno de software
      * Singleton.
      */
     private FileManagement() {}
