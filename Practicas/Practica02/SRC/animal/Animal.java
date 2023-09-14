@@ -177,15 +177,8 @@ public class Animal {
      */
     @Override
     public String toString() {
-        return "Animal" +
-                "idAnimal=" + idAnimal +
-                "nombre='" + nombre + '\'' +
-                " especie='" + especie + '\'' +
-                " peso=" + peso +
-                " altura=" + altura +
-                " sexo='" + sexo + '\'' +
-                " numeroJaula=" + numeroJaula +
-                " alimentacion='" + alimentacion + '\'' +
-                " indicacionesMedicas='" + indicacionesMedicas + '\'';
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s",
+                idAnimal, nombre, especie, peso, altura, sexo, numeroJaula, alimentacion, indicacionesMedicas);
     }
 }
+

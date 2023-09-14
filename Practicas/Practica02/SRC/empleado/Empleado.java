@@ -268,6 +268,17 @@ public class Empleado {
         }
     }
 
+    /**
+     * Metodo que regresa la informacion del empleado.
+     * 
+     * @return la informacion del empleado.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,"  , rfc, nombre, apellidoPaterno, apellidoMaterno, direccion, telefono,
+                fechaInicioContrato, fechaFinContrato, fechaNacimiento, correoElectronico, genero);
+    }
+
 
 
 }

@@ -67,7 +67,7 @@ public class Veterinario extends Empleado {
      */
     @Override
     public String toString() {
-        return "Veterinario" + "especialidad=" + especialidad + " salario=" + salario;
+        return String.format("%s, %s, %s", especialidad, salario, super.toString());
     }
 
 

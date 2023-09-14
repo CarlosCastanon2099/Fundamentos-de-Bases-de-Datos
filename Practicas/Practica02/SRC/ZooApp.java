@@ -140,7 +140,7 @@ public class ZooApp {
                 int option = Integer.parseInt(input);
                 switch (option) {
                     case 1:
-                        rfm.agregar("veterinario", "jijiji");
+                        rfm.agregar("Jijijiji", "Veterinarios");
                         System.out.println("AQUI AGREGAR VETERINARIO");    
                         break;
                     case 2:

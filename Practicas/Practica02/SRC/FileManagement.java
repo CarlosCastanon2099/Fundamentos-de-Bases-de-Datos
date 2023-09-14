@@ -1,6 +1,9 @@
 package SRC;
 
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter
+;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,7 +12,7 @@ import java.nio.file.StandardOpenOption;
 public class FileManagement implements FileManagementProxy {
 
     private static FileManagement instance; // Instancia unica de la clase.
-    Path ruta;
+    private  String ruta; // Instancia de la ruta
 
     /**
      * Metodo contructor privado para poder usar el patron de disenno de software
@@ -39,16 +42,16 @@ public class FileManagement implements FileManagementProxy {
      */
     private boolean entidadRuta(String tipo){
         switch (tipo) {
-            case "veterinario":
-                this.ruta = Paths.get("veterinario.csv");
+            case "Veterinarios":
+                this.ruta = "Veterinarios.csv";
                 return true;
                 
             case "Bioma":
-                this.ruta = Paths.get("Bioma.csv");
+                this.ruta = "Bioma.csv";
                 return true;
                 
                 case "Animal":
-                this.ruta = Paths.get("Animal.csv");
+                this.ruta = "Animal.csv";
                 return true;
                 
             default:
@@ -68,14 +71,16 @@ public class FileManagement implements FileManagementProxy {
     @Override
     public boolean agregar(String entidad, String tipo) {
         
-        if ( !entidadRuta(entidad)) return false;
+        if ( !entidadRuta(tipo)) return false;
         try {
-            Files.write(this.ruta, entidad.getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e) {
-            System.out.println("Error en el I/O: " + e.getMessage());
-            return false;
+            BufferedWriter out = new BufferedWriter(new FileWriter(ruta, true));
+ 
+            out.write("Jijijijiji\n");
+ 
+            out.close();
+        } catch(IOException e) {
+            System.out.println("Error en el I/O: " + e);
         }
-
         return true;
     }
 
@@ -96,3 +101,4 @@ public class FileManagement implements FileManagementProxy {
         return true;
     }
 }
+
