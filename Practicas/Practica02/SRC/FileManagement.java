@@ -53,7 +53,7 @@ public class FileManagement implements FileManagementProxy {
                 return true;
                 
                 case "Animales":
-                this.ruta = "SRC/Animals.csv";
+                this.ruta = "SRC/Animales.csv";
                 return true;
                 
             default:
@@ -65,7 +65,7 @@ public class FileManagement implements FileManagementProxy {
         boolean encontrar = false;
         String[] lineas = FileManagement.getInstance().leerArchivo(ruta);
         for (String linea : lineas) {
-            if (linea.contains(llave)) {
+            if (linea.startsWith(llave)) {
                 encontrar = true;
                 this.registro = linea;
             }
@@ -118,7 +118,7 @@ public class FileManagement implements FileManagementProxy {
             String[] lineas = FileManagement.getInstance().leerArchivo(ruta);
             BufferedWriter bw = new BufferedWriter(new FileWriter(ruta));
             for (String linea : lineas) {
-                if (!linea.contains(llave)) {
+                if (!linea.startsWith(llave)) {
                     bw.write(linea + "\n");
                 }
             }
