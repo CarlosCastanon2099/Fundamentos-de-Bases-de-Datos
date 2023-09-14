@@ -162,6 +162,13 @@ public class Bioma {
                 tipoBioma, numeroJaulas, numeroCuidadores, 
                 numeroVeterinarios, numeroAnimales, serviciosVisitantes);
     }
+
+    // Método que imprime la clase bioma embellecida para la consola
+    public String toStringConsola() {
+        return String.format("IdBioma: %d \n Tipo-Bioma: %s \n Numero-de-Jalulas: %d \n Numero-de-Cuidadores: %d \n Numero-de-Veterinarios: %d \n Numero-de-Aniamles: %d \n Servicios-Visitantes: %s", idBioma,
+                tipoBioma, numeroJaulas, numeroCuidadores, 
+                numeroVeterinarios, numeroAnimales, serviciosVisitantes);
+    }
     
     // Clase interna para representar los servicios a visitantes
     public static class ServiciosVisitantes {
@@ -246,5 +253,7 @@ public class Bioma {
             return String.format("%d,%d,%d",numeroBanios,
                     numeroTiendas, numeroComida);
         }
+
+        
     }
 }

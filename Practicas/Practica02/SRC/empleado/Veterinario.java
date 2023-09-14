@@ -67,6 +67,16 @@ public class Veterinario extends Empleado {
      */
     @Override
     public String toString() {
-        return String.format("%s, %s, %s", especialidad, salario, super.toString());
+        return String.format(", %s, %s, %s", super.toString(), especialidad, salario );
+    }
+
+    /**
+     * Metodo que regresa la informacion del veterinario.
+     * 
+     * @return la informacion del veterinario.
+     */
+    @Override
+    public String toStringConsola() {
+        return String.format("Especialidad: %s \n Salario: %s \n %s", especialidad, salario, super.toString());
     }
 }

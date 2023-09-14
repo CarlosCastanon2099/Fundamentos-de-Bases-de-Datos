@@ -275,7 +275,16 @@ public class Empleado {
      */
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,"  , rfc, nombre, apellidoPaterno, apellidoMaterno, direccion, telefono,
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s"  , rfc, nombre, apellidoPaterno, apellidoMaterno, direccion, telefono,
+                fechaInicioContrato, fechaFinContrato, fechaNacimiento, correoElectronico, genero);
+    }
+
+    /**
+     * Metodo que regresa la informacion del empleado embellecidda para la consola.
+     * @return la informacion del empleado.
+     */
+    public String toStringConsola() {
+        return String.format("RFC(Clave única): %s \n Nombre: %s \n Apellido-Paterno: %s \n Apellido-Materno: %s \n Dirección: %s \n Teléfono: %s \n Fecha-Inicio-Contrato: %s \n Fecha-Finalización-Contrato: %s \n Fecha-Nacimiento: %s \n Correo-electrónico: %s \n Género: %s \n"  , rfc, nombre, apellidoPaterno, apellidoMaterno, direccion, telefono,
                 fechaInicioContrato, fechaFinContrato, fechaNacimiento, correoElectronico, genero);
     }
 

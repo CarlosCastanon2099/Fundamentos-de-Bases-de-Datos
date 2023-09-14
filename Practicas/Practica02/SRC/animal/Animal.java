@@ -180,5 +180,14 @@ public class Animal {
         return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s",
                 idAnimal, nombre, especie, peso, altura, sexo, numeroJaula, alimentacion, indicacionesMedicas);
     }
+
+    /*
+     * Método que devuelve la información del animal pero embellecido para
+     * facilidad del usuario, en terminal.
+     */
+    public String toStringConsola() {
+        return String.format("IdAnimal: %s  \n Nombre: %s  \n Altura: %s  \n Peso: %s  \n Altura: %s \n Sexo: %s  \n Numero-de-Jaula: %s \n Alimentación: %s \n Indicaciones-Médicas: %s",
+                idAnimal, nombre, especie, peso, altura, sexo, numeroJaula, alimentacion, indicacionesMedicas);
+    }
 }
 
