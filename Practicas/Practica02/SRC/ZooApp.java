@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import animal.*;
 import bioma.*;
+import bioma.Bioma.ServiciosVisitantes;
 import empleado.*;
 
 import java.io.File;
@@ -165,7 +166,7 @@ public class ZooApp {
                     case 4: // Salir del menu
                         return "Salir";
                     default: // Opción incorrecta
-                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 5].\n");
+                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 4].\n");
                         break;
                 }          
             } catch (java.lang.NumberFormatException e) {
@@ -185,7 +186,22 @@ public class ZooApp {
         String tipo = elegirTipo(sc, "Agregar");
         
         if (tipo.equals("Salir")) return;
-        
+
+        do {
+            String idBiomaP = pedirDatosAgregar(sc, "Ingrese el ID del bioma:");
+            try {
+                
+                if (idBiomaP == null) {return;}
+            } catch (Exception e) {
+                
+            }
+            
+            
+            break;
+        } while (true);
+
+        // String resultado
+        String resultado = "";
         // Datos Veterinario
         String rfc, nombre, apellidoPaterno, apellidoMaterno, 
         direccion, telefono, correoElectronico, genero, especialidad,
@@ -200,6 +216,7 @@ public class ZooApp {
         int idBioma, numeroJaulas, numeroCuidadores, 
         numeroVeterinarios, numeroAnimales;
         String tipoBioma;
+        int numeroBanios, numeroTiendas, numeroComida;
         
         // Datos Animal
         int idAnimal, numeroJaula;
@@ -209,61 +226,68 @@ public class ZooApp {
 
 
         
-        System.out.println("Ingrese lo siguiente por comas:\n" +
-            "nombre(s), apellidoMaterno, ");
         switch(tipo){
-            case ("Veterinario"):
-                System.out.println("Ingrese su RFC:");
-                rfc = sc.nextLine().replaceAll("\\s", "");
-                
-                System.out.println("Ingrese su nombre:");
-                nombre = sc.nextLine().replaceAll("\\s", "");
+            case ("Veterinarios"):
+                try{
+                    pedirDatosAgregar(sc, "Ingrese su RFC:");
+                    System.out.println("Ingrese su RFC:");
+                    rfc = sc.nextLine().replaceAll("\\s", "");
+                    
+                    System.out.println("Ingrese su nombre:");
+                    nombre = sc.nextLine().replaceAll("\\s", "");
 
-                System.out.println("Ingrese su apellido paterno:");
-                apellidoPaterno = sc.nextLine().replaceAll("\\s", "");
+                    System.out.println("Ingrese su apellido paterno:");
+                    apellidoPaterno = sc.nextLine().replaceAll("\\s", "");
 
-                System.out.println("Ingrese su apellido materno:");
-                apellidoMaterno = sc.nextLine().replaceAll("\\s", "");
+                    System.out.println("Ingrese su apellido materno:");
+                    apellidoMaterno = sc.nextLine().replaceAll("\\s", "");
 
-                System.out.println("Ingrese su dirección:");
-                direccion = sc.nextLine().replaceAll("\\s", "");
-                
-                System.out.println("Ingrese su teléfono:");
-                telefono = sc.nextLine().replaceAll("\\s", "");
-                
-                System.out.println("Ingrese su fecha de inicio de contrato (dd/MM/yyyy):");
-                fechaInicioContratoS = sc.nextLine().replaceAll("\\s", "");
-                fechaInicioContrato = dateFormat.parse(fechaInicioContratoS);
-                
-                System.out.println("Ingrese su fecha de fin de contrato (dd/MM/yyyy):");
-                fechaFinContratoS = sc.nextLine().replaceAll("\\s", "");
-                fechaFinContrato = dateFormat.parse(fechaFinContratoS);
-                
-                System.out.println("Ingrese su fecha de nacimiento (dd/MM/yyyy):");
-                fechaNacimientoS = sc.nextLine().replaceAll("\\s", "");
-                fechaNacimiento = dateFormat.parse(fechaNacimientoS);
+                    System.out.println("Ingrese su dirección:");
+                    direccion = sc.nextLine().replaceAll("\\s", "");
+                    
+                    System.out.println("Ingrese su teléfono:");
+                    telefono = sc.nextLine().replaceAll("\\s", "");
+                    
+                    System.out.println("Ingrese su fecha de inicio de contrato (dd/MM/yyyy):");
+                    fechaInicioContratoS = sc.nextLine().replaceAll("\\s", "");
+                    fechaInicioContrato = dateFormat.parse(fechaInicioContratoS);
+                    
+                    System.out.println("Ingrese su fecha de fin de contrato (dd/MM/yyyy):");
+                    fechaFinContratoS = sc.nextLine().replaceAll("\\s", "");
+                    fechaFinContrato = dateFormat.parse(fechaFinContratoS);
+                    
+                    System.out.println("Ingrese su fecha de nacimiento (dd/MM/yyyy):");
+                    fechaNacimientoS = sc.nextLine().replaceAll("\\s", "");
+                    fechaNacimiento = dateFormat.parse(fechaNacimientoS);
 
-                System.out.println("Ingrese su correo electrónico:");
-                correoElectronico = sc.nextLine().replaceAll("\\s", "");
+                    System.out.println("Ingrese su correo electrónico:");
+                    correoElectronico = sc.nextLine().replaceAll("\\s", "");
+                    
+                    System.out.println("Ingrese su género:");
+                    genero = sc.nextLine().replaceAll("\\s", "");
+
+                    System.out.println("Ingrese su especialidad:");
+                    especialidad = sc.nextLine().replaceAll("\\s", "");
+
+                    System.out.println("Ingrese su salario:");
+                    salario = sc.nextDouble();
+
+                    Veterinario veterinario = new Veterinario(rfc, nombre, apellidoPaterno, 
+                    apellidoMaterno, direccion, telefono, fechaInicioContrato, fechaFinContrato,
+                    fechaNacimiento, correoElectronico, genero, especialidad, salario); 
+                    resultado = veterinario.toString();
+                } catch (java.text.ParseException e) {
+                    System.out.println("Error al crear veterinario");
+                    e.printStackTrace();
+                }
                 
-                System.out.println("Ingrese su género:");
-                genero = sc.nextLine().replaceAll("\\s", "");
+            case("Biomas"):
+                String idBiomaP = pedirDatosAgregar(sc, "Ingrese el ID del bioma:");
+                if (idBiomaP == null) {return;}
 
-                System.out.println("Ingrese su especialidad:");
-                especialidad = sc.nextLine().replaceAll("\\s", "");
-
-                System.out.println("Ingrese su salario:");
-                salario = sc.nextDouble();
-
-                //CREAR OBJETO
-                Veterinario veterinario = new Veterinario(rfc, nombre, apellidoPaterno, 
-                apellidoMaterno, direccion, telefono, fechaInicioContrato, fechaFinContrato,
-                fechaNacimiento, correoElectronico, genero, especialidad, salario);  
-                
-            case("Bioma"):
                 System.out.println("Ingrese el ID del bioma:");
                 idBioma = sc.nextInt();
-
+                
                 System.out.println("Ingrese el tipo del bioma:");
                 tipoBioma = sc.nextLine().replaceAll("\\s", "");
                 
@@ -278,26 +302,76 @@ public class ZooApp {
                 
                 System.out.println("Ingrese el número de animales del bioma:");
                 numeroAnimales = sc.nextInt();
+
+                System.out.println("Ingrese el número de baños del bioma:");
+                numeroBanios = sc.nextInt();
+
+                System.out.println("Ingrese el número de tiendas del bioma:");
+                numeroTiendas = sc.nextInt();
+
+                System.out.println("Ingrese el número de comida del bioma:");
+                numeroComida = sc.nextInt();
                 
                 // CREAR OBJETO
+                ServiciosVisitantes serviciosVisitantes = new ServiciosVisitantes(numeroBanios, numeroTiendas, numeroComida);
+                
                 Bioma bioma = new Bioma(idBioma, tipoBioma, numeroJaulas, numeroCuidadores,
-                numeroVeterinarios, numeroAnimales);
+                numeroVeterinarios, numeroAnimales, 
+                serviciosVisitantes);
+                
+                resultado = bioma.toString();
+
+            case("Animales"):
+                System.out.println("Ingrese el ID del animal:");
+                idAnimal = sc.nextInt();
                 
 
-            case("Animal"):
-            
+                System.out.println("Ingrese el nombre del animal:");
+                nombreAnimal = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese la especie del animal:");
+                especie = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese el número de jaula del animal:");
+                numeroJaula = sc.nextInt();
+
+                System.out.println("Ingrese el peso del animal:");
+                peso = sc.nextDouble();
+
+                System.out.println("Ingrese la altura del animal:");
+                altura = sc.nextDouble();
+
+                System.out.println("Ingrese el sexo del animal:");
+                sexo = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese la alimentación del animal:");
+                alimentacion = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese las indicaciones médicas del animal:");
+                indicacionesMedicas = sc.nextLine().replaceAll("\\s", "");
+
+                // CREAR OBJETO
+                //Animal animal = new Animal(idAnimal, nombreAnimal, especie, 
+                //peso, numeroJaula, altura, sexo, alimentacion, indicacionesMedicas);
+                
             default:
                 System.out.println("Error al elegir el tipo (Caso casí imposible?)");
-                break
+                break;
                 
         }
         // Poner metodo para construir un objeto dependiendo del tipo
-        rfm.agregar(anadir, tipo);
+        //rfm.agregar(anadir, tipo);
         
     }
 
     /**
-     * Metodo para mostrar un mensaje 
+     * Metodo para mostrar un mensaje de agregacion de atributos de entidades
+     * 
+     * @param sc es el Scannner con el cual vamos a realizar la entrada al usuario.
+     * @param mensaje es el mensaje del atributo en forma de pregunta que vamos a realizar al usuario.4EVER
+     * 
+     * @return un String en caso de que el usuario este de acuerdo en ingresar a guardar ese dato. Regresa 
+     * Null en caso de regresar.
      */
     public static String pedirDatosAgregar(Scanner sc, String mensaje) {
         boolean haveIAResponse = false;
@@ -311,11 +385,11 @@ public class ZooApp {
                     "2.- NO.\n" +
                     "3.- REGRESAR.");
                 String newInput = sc.nextLine().toLowerCase().replaceAll("\\s", "");
-                if (newInput == "1" || newInput =="si") {
+                if (newInput.equals("1") || newInput.equals("si")) {
                     return input;
-                } else if (newInput == "2" || newInput == "no") {
+                } else if (newInput.equals("2") || newInput.equals("no")) {
                     amISure = true;
-                } else if (newInput == "3" || newInput == "regresar") {
+                } else if (newInput.equals("3") || newInput.equals("regresar")) {
                     return null;
                 } else {
                     System.out.println("\nIngrese el número de la opción a realizar o escriba \"SI\" O \"NO\".\n");
@@ -335,9 +409,22 @@ public class ZooApp {
         String tipo = elegirTipo(sc, "Consultar");
         String clave = pedirClave(sc);
         String entidad = rfm.consultar(clave, tipo);
-        if (entidad.equals("")) return;
+        if (entidad.equals(null)) return;
+        String[] parametros = entidad.split(",");
         switch (tipo) {
-            case "Veterinario":
+            case "Veterinarios":
+                try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                
+                Veterinario veterinario = new Veterinario(parametros[0], parametros[1], parametros[2], 
+                parametros[3], parametros[4], parametros[5], dateFormat.parse(parametros[6]),
+                dateFormat.parse(parametros[7]), dateFormat.parse(parametros[8]), parametros[9],
+                parametros[10], parametros[11], Double.parseDouble(parametros[12]));  
+                System.out.println(veterinario);
+                } catch (java.text.ParseException e) {
+                    System.out.println("Error al crear veterinario");
+                    e.printStackTrace();
+                }
                 break;
             case "Biomas":
                 break;
@@ -345,6 +432,7 @@ public class ZooApp {
             default:
                 break;
         }
+
     }
 
     /**
@@ -385,15 +473,18 @@ public class ZooApp {
     private static void menuEliminar(Scanner sc) {
         String tipo = elegirTipo(sc, "Eliminar");
         String clave = pedirClave(sc);
+        String entidad = rfm.consultar(clave, tipo);
+        if (entidad == null) return;
         boolean isItAnExit = false;
         do {
             System.out.println("¿Esta seguro que desea eliminarlo?\n" +
                 "1.- SI.\n" +
                 "2.- NO.\n");
             String input = sc.nextLine().toLowerCase().replaceAll("\\s", "");
-            if (input == "1" || input =="si") {
+            if (input.equals("1") || input.equals("si")) {
                 rfm.eliminar(clave, tipo);
-            } else if (input == "2" || input == "no") {
+                isItAnExit = true;
+            } else if (input.equals("2") || input.equals("no")) {
                 isItAnExit = true;
             } else {
                 System.out.println("\nIngrese el número de la opción a realizar o escriba \"SI\" O \"NO\".\n");

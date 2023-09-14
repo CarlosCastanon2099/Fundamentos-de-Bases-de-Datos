@@ -18,7 +18,7 @@ public class RemoteFileManagement implements FileManagementProxy {
 
     @Override
     public String consultar(String llave, String tipo) {
-        original.consultar(llave, tipo);
+        return original.consultar(llave, tipo);
     }
 
     @Override

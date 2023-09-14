@@ -104,12 +104,12 @@ public class FileManagement implements FileManagementProxy {
     public String consultar(String llave, String tipo) {
         if ( !entidadRuta(tipo)){
             System.out.println("Ruta equivocada");
-            return "";
+            return null;
         }
         if (buscarString(llave)) return (this.registro);
         else {
             System.out.println("No se encontró la llave");
-            return "";
+            return null;
         }
     }
 
