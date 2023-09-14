@@ -470,9 +470,11 @@ public class ZooApp {
                 System.out.println(bioma);
                 break;
             case "Animales":
+                System.out.println("Llegu;é aca1");
                 Animal animal = new Animal(Integer.parseInt(atr[0]) , atr[1], atr[2],
                             Double.parseDouble(atr[3]), Double.parseDouble(atr[4]), atr[5],
                             Integer.parseInt(atr[6]), atr[7], atr[8]);
+                System.out.println("Llegu;é aca2");
                 System.out.println(animal);
                 break;
             default:
@@ -508,6 +510,7 @@ public class ZooApp {
             System.out.println("Opción invalida, ¿Cómo llegaste aquí?");
             return;
         }
+        // SYOUT QUE QUIERES EDITAR DE (ENTIDAD)
         for ( int i = 0 ; i < opcion_Menu.length; i++) {
             System.out.println(String.format("%d.- %s", i+1, opcion_Menu[i]));            
         }
@@ -527,6 +530,7 @@ public class ZooApp {
         String entidad = rfm.consultar(clave, tipo);
         if (entidad.equals(null)) return;
         String nueva_entidad = "";
+        //PONER CONSULTA STRING VER PARA CONFIRMAR
         boolean salir = false;
         int option;
         do {
