@@ -159,7 +159,7 @@ public class Bioma {
     // Método toString para la clase Bioma
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s, %s, %s, %s", idBioma,
+        return String.format("%d,%s,%d,%d,%d,%d,%s", idBioma,
                 tipoBioma, numeroJaulas, numeroCuidadores, 
                 numeroVeterinarios, numeroAnimales, serviciosVisitantes);
     }
@@ -244,12 +244,8 @@ public class Bioma {
         // Método toString para la clase ServiciosVisitantes
         @Override
         public String toString() {
-            return "ServiciosVisitantes" +
-                    "numeroBanios=" + numeroBanios +
-                    " numeroTiendas=" + numeroTiendas +
-                    " numeroComida=" + numeroComida;
+            return String.format("%d,%d,%d",numeroBanios,
+                    numeroTiendas, numeroComida);
         }
-
-
     }
 }

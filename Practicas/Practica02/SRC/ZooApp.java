@@ -1,6 +1,5 @@
 
 import java.util.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -8,11 +7,6 @@ import animal.*;
 import bioma.*;
 import bioma.Bioma.ServiciosVisitantes;
 import empleado.*;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 
 
 
@@ -138,12 +132,17 @@ public class ZooApp {
             "3.- " + option + " Animal.\n" +
             "4.- Regresar/Atras.\n";
     }
-
+    
+    /**
+     * Metodo para que el usuario ingrese la clave, ya sea para consulta, editar o eliminar.
+     * @param sc es un objeto Scanner para obtener la entrada del usuario.
+     * @return  La clave que el usuario ingreso
+     */
     private static String pedirClave(Scanner sc) {
         System.out.println("Ingrese la el ID para poder encontrarlo:");
         return sc.nextLine().replaceAll("\\s", "");
     }
-    // EMPRESAURIOS 4EVER XD
+
     /**
      * Metodo para desplegar el menu para elegir que tipo de entidad estamos manejando
      * @param sc es un objeto Scanner para obtener la entrada del usuario.
@@ -175,6 +174,27 @@ public class ZooApp {
         }while (!isItAnExit);
         return "Salir";
     }
+    
+    /**
+     * Verifica si el usuario ingreso un entero
+     * @param sc es un objeto Scanner para obtener la entrada del usuario.
+     * @param mensaje el mensaje que va a tener el dato que requiere.
+     * @return Regresa un string que es el dato que se pide en el scanner, null si el usuario quiere terminar la ejecución.
+     */
+    private static String verificarEsUnEntero(String mensaje) {
+        while (true) {
+            String input = pedirDatosAgregar(mensaje);
+            if (input == null) {return null;}
+            try {
+                input = input.replaceAll("\\s", "");
+                int entero = Integer.parseInt(input);
+                return String.valueOf(entero);
+            } catch (Exception e) {
+                System.err.println("\nNo se permite ingresar otros caracteres mas que numeros.\n");
+            }
+        }
+    }
+
 
     /**
      * Metodo que realiza todo el ciclo o bucle del submenu Agregar, es decir, es el menu con
@@ -184,21 +204,7 @@ public class ZooApp {
      */
     private static void menuAgregar(Scanner sc) {
         String tipo = elegirTipo(sc, "Agregar");
-        
-        if (tipo.equals("Salir")) return;
-
-        do {
-            String idBiomaP = pedirDatosAgregar(sc, "Ingrese el ID del bioma:");
-            try {
-                
-                if (idBiomaP == null) {return;}
-            } catch (Exception e) {
-                
-            }
-            
-            
-            break;
-        } while (true);
+        if (tipo.equals("Salir")) return;    
 
         // String resultado
         String resultado = "";
@@ -213,10 +219,6 @@ public class ZooApp {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         //Datos Bioma
-        int idBioma, numeroJaulas, numeroCuidadores, 
-        numeroVeterinarios, numeroAnimales;
-        String tipoBioma;
-        int numeroBanios, numeroTiendas, numeroComida;
         
         // Datos Animal
         int idAnimal, numeroJaula;
@@ -229,9 +231,10 @@ public class ZooApp {
         switch(tipo){
             case ("Veterinarios"):
                 try{
-                    pedirDatosAgregar(sc, "Ingrese su RFC:");
+                    pedirDatosAgregar("Ingrese su RFC:");
                     System.out.println("Ingrese su RFC:");
                     rfc = sc.nextLine().replaceAll("\\s", "");
+                    //AÑADIR VEFIFICACI;ÓN LLAVE UNICA
                     
                     System.out.println("Ingrese su nombre:");
                     nombre = sc.nextLine().replaceAll("\\s", "");
@@ -280,39 +283,50 @@ public class ZooApp {
                     System.out.println("Error al crear veterinario");
                     e.printStackTrace();
                 }
-                
+                break;
             case("Biomas"):
-                String idBiomaP = pedirDatosAgregar(sc, "Ingrese el ID del bioma:");
-                if (idBiomaP == null) {return;}
+                String idBiomaString = verificarEsUnEntero("Ingrese el ID del bioma:");
+                if (idBiomaString == null) return;
+                int idBioma = Integer.parseInt(idBiomaString);
+                if ( !(rfm.consultar(idBiomaString, tipo) == null)){
+                    System.out.println(idBioma);
+                    System.out.println(rfm.consultar(idBiomaString, tipo));
+                    System.out.println("El ID del bioma ya esta ocupado. Intenta con agregar un Id diferente.");
+                    return;
+                }
+                System.out.println ("Por lo tanto la llave es única");
 
-                System.out.println("Ingrese el ID del bioma:");
-                idBioma = sc.nextInt();
+                String tipoBioma = pedirDatosAgregar("Ingrese el tipo del bioma:");
+                if (tipoBioma == null) {return;}
                 
-                System.out.println("Ingrese el tipo del bioma:");
-                tipoBioma = sc.nextLine().replaceAll("\\s", "");
+                String numeroJaulasString = verificarEsUnEntero("Ingrese el número de jaulas de animales:");
+                if (numeroJaulasString == null) {return;}
+                int numeroJaulas = Integer.parseInt(numeroJaulasString);
+
+                String numeroCuidadoresString = verificarEsUnEntero("Ingrese el número de cuidadores del bioma:");
+                if (numeroCuidadoresString == null) {return;}
+                int numeroCuidadores = Integer.parseInt(numeroCuidadoresString);
+
+                String numeroVeterinariosString = verificarEsUnEntero("Ingrese el número de veterinarios del bioma:");
+                if (numeroVeterinariosString == null) {return;}
+                int numeroVeterinarios = Integer.parseInt(numeroVeterinariosString);
+
+                String numeroAnimalesString = verificarEsUnEntero("Ingrese el número de animales del bioma:");
+                if (numeroAnimalesString == null) {return;}
+                int numeroAnimales = Integer.parseInt(numeroAnimalesString);
+
+                String numeroBanosString = verificarEsUnEntero("Ingrese el número de baños del bioma:");
+                if (numeroBanosString == null) {return;}
+                int numeroBanios = Integer.parseInt(numeroBanosString);
+
+                String numeroTiendasString = verificarEsUnEntero("Ingrese el número de tiendas del bioma:");
+                if (numeroTiendasString  == null) {return;}
+                int numeroTiendas = Integer.parseInt(numeroTiendasString );
+
+                String numeroComidaString = verificarEsUnEntero("Ingrese el número de Comidas del bioma:");
+                if (numeroComidaString  == null) {return;}
+                int numeroComida = Integer.parseInt(numeroComidaString);
                 
-                System.out.println("Ingrese el número de jaulas del bioma:");
-                numeroJaulas = sc.nextInt();
-
-                System.out.println("Ingrese el número de cuidadores del bioma:");
-                numeroCuidadores = sc.nextInt();
-
-                System.out.println("Ingrese el número de veterinarios del bioma:");
-                numeroVeterinarios = sc.nextInt();
-                
-                System.out.println("Ingrese el número de animales del bioma:");
-                numeroAnimales = sc.nextInt();
-
-                System.out.println("Ingrese el número de baños del bioma:");
-                numeroBanios = sc.nextInt();
-
-                System.out.println("Ingrese el número de tiendas del bioma:");
-                numeroTiendas = sc.nextInt();
-
-                System.out.println("Ingrese el número de comida del bioma:");
-                numeroComida = sc.nextInt();
-                
-                // CREAR OBJETO
                 ServiciosVisitantes serviciosVisitantes = new ServiciosVisitantes(numeroBanios, numeroTiendas, numeroComida);
                 
                 Bioma bioma = new Bioma(idBioma, tipoBioma, numeroJaulas, numeroCuidadores,
@@ -320,12 +334,14 @@ public class ZooApp {
                 serviciosVisitantes);
                 
                 resultado = bioma.toString();
+                System.out.println(resultado);
+                break;
 
             case("Animales"):
                 System.out.println("Ingrese el ID del animal:");
                 idAnimal = sc.nextInt();
+                //VERIFICAR LLAVE UNICA
                 
-
                 System.out.println("Ingrese el nombre del animal:");
                 nombreAnimal = sc.nextLine().replaceAll("\\s", "");
 
@@ -350,18 +366,17 @@ public class ZooApp {
                 System.out.println("Ingrese las indicaciones médicas del animal:");
                 indicacionesMedicas = sc.nextLine().replaceAll("\\s", "");
 
-                // CREAR OBJETO
-                //Animal animal = new Animal(idAnimal, nombreAnimal, especie, 
-                //peso, numeroJaula, altura, sexo, alimentacion, indicacionesMedicas);
                 
+                Animal animal = new Animal(idAnimal, nombreAnimal, especie, 
+                peso, altura, sexo, numeroJaula, alimentacion, indicacionesMedicas);
+                resultado = animal.toString();
+                System.out.println(resultado);
+                break;
             default:
                 System.out.println("Error al elegir el tipo (Caso casí imposible?)");
                 break;
-                
         }
-        // Poner metodo para construir un objeto dependiendo del tipo
-        //rfm.agregar(anadir, tipo);
-        
+        rfm.agregar(resultado, tipo);        
     }
 
     /**
@@ -373,18 +388,19 @@ public class ZooApp {
      * @return un String en caso de que el usuario este de acuerdo en ingresar a guardar ese dato. Regresa 
      * Null en caso de regresar.
      */
-    public static String pedirDatosAgregar(Scanner sc, String mensaje) {
+    public static String pedirDatosAgregar(String mensaje) {
+        Scanner scNuevo = new Scanner(System.in);
         boolean haveIAResponse = false;
         do {
             System.out.println(mensaje);
-            String input = sc.nextLine();
+            String input = scNuevo.nextLine();
             boolean amISure = false;
             while (!amISure) {
                 System.out.println("¿Esta seguro que desea guardar este dato?\n" +
                     "1.- SI.\n" +
                     "2.- NO.\n" +
                     "3.- REGRESAR.");
-                String newInput = sc.nextLine().toLowerCase().replaceAll("\\s", "");
+                String newInput = scNuevo.nextLine().toLowerCase().replaceAll("\\s", "");
                 if (newInput.equals("1") || newInput.equals("si")) {
                     return input;
                 } else if (newInput.equals("2") || newInput.equals("no")) {
@@ -396,6 +412,7 @@ public class ZooApp {
                 }
             } 
         } while (!haveIAResponse);
+        scNuevo.close();
         return null;
     }
 
@@ -410,16 +427,16 @@ public class ZooApp {
         String clave = pedirClave(sc);
         String entidad = rfm.consultar(clave, tipo);
         if (entidad.equals(null)) return;
-        String[] parametros = entidad.split(",");
+        String[] atr = entidad.split(",");
         switch (tipo) {
             case "Veterinarios":
                 try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 
-                Veterinario veterinario = new Veterinario(parametros[0], parametros[1], parametros[2], 
-                parametros[3], parametros[4], parametros[5], dateFormat.parse(parametros[6]),
-                dateFormat.parse(parametros[7]), dateFormat.parse(parametros[8]), parametros[9],
-                parametros[10], parametros[11], Double.parseDouble(parametros[12]));  
+                Veterinario veterinario = new Veterinario(atr[0], atr[1], 
+                atr[2],atr[3], atr[4], atr[5], dateFormat.parse(atr[6]),
+                dateFormat.parse(atr[7]), dateFormat.parse(atr[8]), atr[9],
+                atr[10], atr[11], Double.parseDouble(atr[12]));  
                 System.out.println(veterinario);
                 } catch (java.text.ParseException e) {
                     System.out.println("Error al crear veterinario");
@@ -427,12 +444,75 @@ public class ZooApp {
                 }
                 break;
             case "Biomas":
+                Bioma bioma = new Bioma( Integer.parseInt(atr[0]), atr[1],
+                            Integer.parseInt(atr[2]), Integer.parseInt(atr[3]),
+                            Integer.parseInt(atr[4]), Integer.parseInt(atr[5]),
+                            new ServiciosVisitantes(Integer.parseInt(atr[6]), Integer.parseInt(atr[7]), Integer.parseInt(atr[8])));
+                System.out.println(bioma);
                 break;
             case "Animales":
+                Animal animal = new Animal(Integer.parseInt(atr[0]) , atr[1], atr[2],
+                            Double.parseDouble(atr[3]), Double.parseDouble(atr[4]), atr[5],
+                            Integer.parseInt(atr[6]), atr[7], atr[8]);
+                System.out.println(animal);
+                break;
             default:
+                System.out.println("Ocurrió un error en la selección del tipo");
                 break;
         }
+    }
 
+    /**
+     * Metodo que nos regresa los diferentes tipos de atributos que se pueden editar según el tipo 
+     * de dato queremos editar
+     * 
+     * @param option es el numero de menu que se desea obtener.
+     *      - Option 1: Veterinario.
+     *      - Option 2: Bioma
+     *      - Option 3: Animal
+     *      - Option C.O.C: Regresar
+     * @return un String el cual representa la cabecera del menu correspondiente
+     * a la opcion especificada.
+     */
+    private static String menuEdit(String option) {
+        switch (option) {
+            case "Veterinarios":
+                return  "¿Qué atributo del veterinario quieres editar?\n" +
+                        "1.- Nombre\n" +
+                        "2.- Apellido Paterno\n" +
+                        "3.- Apellido Materno\n" +
+                        "4.- Dirección\n" +
+                        "5.- Telefono\n" +
+                        "6.- Fecha de Inicio del Contrato\n" +
+                        "7.- Fecha de Fin del Contrato\n" +
+                        "8.- Fecha de Nacimiento\n" +
+                        "9.- Correo Electronico\n" +
+                        "10.- Genero\n" +
+                        "11.- Especialidad\n" +
+                        "12.- Salario\n";
+            case "Biomas":
+                return  "¿Qué atributo del bioma quieres editar?\n" +
+                        "1.- Tipo de Bioma\n" +
+                        "2.- Numero de Jaulas\n" +
+                        "3.- Numero de Cuidadores\n" +
+                        "4.- Numero de Veterinarios\n" +
+                        "5.- Numero de Animales\n" +
+                        "6.- Numero de Baños\n" +
+                        "7.- Numero de Tiendas\n" +
+                        "8.- Numero de Comida\n";
+            case "Animales":
+                return  "¿Qué atributo del animal quieres editar?\n" +
+                        "1.- Nombre del Animal\n" +
+                        "2.- Especie\n" +
+                        "3.- Peso\n" +
+                        "4.- Altura\n" +
+                        "5.- Sexo\n" +
+                        "6.- Numero de Jaula\n" +
+                        "7.- Alimentación\n" +
+                        "8.- Indicaciones Medicas\n";
+            default:
+            return "Opción invalida, ¿Cómo llegaste aquí?";
+        }
     }
 
     /**
@@ -445,19 +525,26 @@ public class ZooApp {
         String tipo = elegirTipo(sc, "Consultar");
         String clave = pedirClave(sc);
         String entidad = rfm.consultar(clave, tipo);
-        if (entidad.equals("")) return;
+        if (entidad.equals(null)) return;
         String nueva_entidad = "";
-        switch (tipo) {
-            case "Veterinario":
-                break;
-            case "Biomas":
-                break;
-            case "Animales":
-                break;
-            default:
-                System.out.println("Error al elegir el tipo (Caso casí imposible?)");
-                break;
-        }
+        boolean salir = false;
+        do {
+            menuEdit(tipo);
+            String input = sc.nextLine().replaceAll("\\s", "");
+            int option = Integer.parseInt(input);
+            try {
+                switch (tipo) {
+                    case "Veterinarios":
+                    case "Biomas": 
+                    case "Animales":
+                    default: // Opción incorrecta
+                        System.out.println("\nIngrese un número del menu, en el rango especificado.\n");
+                        break;
+                }          
+            } catch (java.lang.NumberFormatException e) {
+                System.err.println("\nSolo ingrese un número de nuestro menu de opciones sin ningún otro caracter.\n");
+            }
+        }while (!salir);
         rfm.eliminar(clave, tipo);
         rfm.agregar(nueva_entidad, tipo);
         rfm.consultar(clave, tipo);
