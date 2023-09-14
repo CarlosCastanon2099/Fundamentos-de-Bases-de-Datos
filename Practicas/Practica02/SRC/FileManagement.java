@@ -9,9 +9,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import animal.*;
-import bioma.*;
-import empleado.*;
 
 public class FileManagement implements FileManagementProxy {
 

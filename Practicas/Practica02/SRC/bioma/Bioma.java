@@ -1,5 +1,4 @@
 package bioma;
-import java.util.ArrayList;
 
 public class Bioma {
     private int idBioma;

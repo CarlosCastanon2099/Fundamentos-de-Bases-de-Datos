@@ -402,10 +402,12 @@ public class ZooApp {
                     "3.- REGRESAR.");
                 String newInput = scNuevo.nextLine().toLowerCase().replaceAll("\\s", "");
                 if (newInput.equals("1") || newInput.equals("si")) {
+                    scNuevo.close();
                     return input;
                 } else if (newInput.equals("2") || newInput.equals("no")) {
                     amISure = true;
                 } else if (newInput.equals("3") || newInput.equals("regresar")) {
+                    scNuevo.close();
                     return null;
                 } else {
                     System.out.println("\nIngrese el número de la opción a realizar o escriba \"SI\" O \"NO\".\n");
