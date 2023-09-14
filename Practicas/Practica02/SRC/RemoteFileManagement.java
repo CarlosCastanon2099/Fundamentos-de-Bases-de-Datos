@@ -1,4 +1,3 @@
-package SRC;
 
 public class RemoteFileManagement implements FileManagementProxy {
 
@@ -18,17 +17,12 @@ public class RemoteFileManagement implements FileManagementProxy {
     }
 
     @Override
-    public void consultar() {
-        original.consultar();
+    public String consultar(String llave, String tipo) {
+        original.consultar(llave, tipo);
     }
 
     @Override
-    public boolean editar() {
-        return original.editar();
-    }
-
-    @Override
-    public boolean eliminar() {
-        return original.eliminar();
+    public boolean eliminar(String llave, String tipo) {
+        return original.eliminar(llave, tipo);
     }     
 }

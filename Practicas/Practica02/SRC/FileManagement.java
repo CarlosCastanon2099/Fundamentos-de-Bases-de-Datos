@@ -1,18 +1,23 @@
-package SRC;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileWriter
-;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import animal.*;
+import bioma.*;
+import empleado.*;
 
 public class FileManagement implements FileManagementProxy {
 
     private static FileManagement instance; // Instancia unica de la clase.
-    private  String ruta; // Instancia de la ruta
+    private String ruta; // Instancia de la ruta
+    private String registro; // registro de la instancia en cuestión
 
     /**
      * Metodo contructor privado para poder usar el patron de disenno de software
@@ -43,21 +48,32 @@ public class FileManagement implements FileManagementProxy {
     private boolean entidadRuta(String tipo){
         switch (tipo) {
             case "Veterinarios":
-                this.ruta = "Veterinarios.csv";
+                this.ruta = "SRC/Veterinarios.csv";
                 return true;
                 
-            case "Bioma":
-                this.ruta = "Bioma.csv";
+            case "Biomas":
+                this.ruta = "SRC/Biomas.csv";
                 return true;
                 
-                case "Animal":
-                this.ruta = "Animal.csv";
+                case "Animales":
+                this.ruta = "SRC/Animals.csv";
                 return true;
                 
             default:
                 System.out.println("Ruta erronea: " + tipo);
                 return false;
         }
+    }
+    private boolean buscarString(String llave) {
+        boolean encontrar = false;
+        String[] lineas = FileManagement.getInstance().leerArchivo(ruta);
+        for (String linea : lineas) {
+            if (linea.contains(llave)) {
+                encontrar = true;
+                this.registro = linea;
+            }
+        }
+        return encontrar;
     }
 
     /**
@@ -73,9 +89,9 @@ public class FileManagement implements FileManagementProxy {
         
         if ( !entidadRuta(tipo)) return false;
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(ruta, true));
- 
-            out.write("Jijijijiji\n");
+            Writer out = new OutputStreamWriter(new FileOutputStream(ruta, true), StandardCharsets.UTF_8);
+
+            out.write(entidad + '\n');
  
             out.close();
         } catch(IOException e) {
@@ -85,20 +101,59 @@ public class FileManagement implements FileManagementProxy {
     }
 
     @Override
-    public void consultar() {
-        System.out.println("\nAQUI DEBEMOS A HACER LA CONSULTA.\n");
+    public String consultar(String llave, String tipo) {
+        if ( !entidadRuta(tipo)){
+            System.out.println("Ruta equivocada");
+            return "";
+        }
+        if (buscarString(llave)) return (this.registro);
+        else {
+            System.out.println("No se encontró la llave");
+            return "";
+        }
     }
 
+
     @Override
-    public boolean editar() {
-        System.out.println("\nAQUI DEBEMOS A HACER LA EDICION.\n");
+    public boolean eliminar(String llave, String tipo) {
+        if ( !entidadRuta(tipo)) return false;
+        try {
+            String[] lineas = FileManagement.getInstance().leerArchivo(ruta);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(ruta));
+            for (String linea : lineas) {
+                if (!linea.contains(llave)) {
+                    bw.write(linea + "\n");
+                }
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("Error en el I/O: " + e);
+        }
         return true;
     }
 
-    @Override
-    public boolean eliminar() {
-        System.out.println("\nAQUI DEBEMOS A HACER LA ELIMINACION\n");
-        return true;
+    // Funcion leerArchivo
+    private String[] leerArchivo(String ruta) {
+        String[] lineas = null;
+        try {
+            lineas = ManejoArchivosGenerico.leerArchivo(ruta);
+        } catch (IOException e) {
+            System.out.println("Error en el I/O: " + e);
+        }
+        return lineas;
     }
+
+    // Manejo de archivos genericos
+    private static class ManejoArchivosGenerico {
+        public static String[] leerArchivo(String ruta) throws IOException {
+            BufferedReader br = new BufferedReader(new FileReader(ruta));
+            String[] lineas = br.lines().toArray(String[]::new);
+            br.close();
+            return lineas;
+        }
+    }
+
+    
+
 }
 

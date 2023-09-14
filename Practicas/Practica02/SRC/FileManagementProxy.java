@@ -1,12 +1,9 @@
-package SRC;
 
 public interface FileManagementProxy {
 
-    public boolean agregar(String entidad, String tipo);
+    public boolean agregar(String llave, String tipo);
 
-    public void consultar();
+    public void consultar(String llave, String tipo);
 
-    public boolean editar();
-
-    public boolean eliminar();    
+    public boolean eliminar(String llave, String tipo);    
 }

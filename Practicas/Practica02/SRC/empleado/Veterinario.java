@@ -69,11 +69,4 @@ public class Veterinario extends Empleado {
     public String toString() {
         return String.format("%s, %s, %s", especialidad, salario, super.toString());
     }
-
-
-
-
-
-
-
 }

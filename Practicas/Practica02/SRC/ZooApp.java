@@ -1,6 +1,19 @@
-package SRC;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+
+import animal.*;
+import bioma.*;
+import empleado.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
 
 public class ZooApp {
 
@@ -125,6 +138,43 @@ public class ZooApp {
             "4.- Regresar/Atras.\n";
     }
 
+    private static String pedirClave(Scanner sc) {
+        System.out.println("Ingrese la el ID para poder encontrarlo:");
+        return sc.nextLine().replaceAll("\\s", "");
+    }
+    // EMPRESAURIOS 4EVER XD
+    /**
+     * Metodo para desplegar el menu para elegir que tipo de entidad estamos manejando
+     * @param sc es un objeto Scanner para obtener la entrada del usuario.
+     * @return  Regresa el tipo de entidad, o una opci;ón para salir del menú
+     */
+    private static String elegirTipo(Scanner sc, String tipo_Menu){
+        boolean isItAnExit = false;
+        do {
+            System.out.println(setMenu(menuSigns(1), tipo_Menu));
+            String input = sc.nextLine().replaceAll("\\s", "");
+            try {
+                int option = Integer.parseInt(input);
+                switch (option) {
+                    case 1:
+                        return "Veterinarios";
+                    case 2: 
+                        return "Biomas";
+                    case 3:
+                        return "Animales";
+                    case 4: // Salir del menu
+                        return "Salir";
+                    default: // Opción incorrecta
+                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 5].\n");
+                        break;
+                }          
+            } catch (java.lang.NumberFormatException e) {
+                System.err.println("\nSolo ingrese un número de nuestro menu de opciones sin ningún otro caracter.\n");
+            }
+        }while (!isItAnExit);
+        return "Salir";
+    }
+
     /**
      * Metodo que realiza todo el ciclo o bucle del submenu Agregar, es decir, es el menu con
      * el puedes realizar todas las operaciones que soporta la operacion Agregar.
@@ -132,34 +182,147 @@ public class ZooApp {
      * @param sc es un objeto Scanner para obtener la entrada del usuario.
      */
     private static void menuAgregar(Scanner sc) {
-        boolean isItAnExit = false;
+        String tipo = elegirTipo(sc, "Agregar");
+        
+        if (tipo.equals("Salir")) return;
+        
+        // Datos Veterinario
+        String rfc, nombre, apellidoPaterno, apellidoMaterno, 
+        direccion, telefono, correoElectronico, genero, especialidad,
+        fechaInicioContratoS, fechaFinContratoS, fechaNacimientoS;
+        double salario;
+        Date fechaNacimiento, fechaInicioContrato, fechaFinContrato;
+
+        // Formato para la fecha 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        //Datos Bioma
+        int idBioma, numeroJaulas, numeroCuidadores, 
+        numeroVeterinarios, numeroAnimales;
+        String tipoBioma;
+        
+        // Datos Animal
+        int idAnimal, numeroJaula;
+        double peso, altura;
+        String sexo, alimentacion, 
+        indicacionesMedicas, nombreAnimal, especie;
+
+
+        
+        System.out.println("Ingrese lo siguiente por comas:\n" +
+            "nombre(s), apellidoMaterno, ");
+        switch(tipo){
+            case ("Veterinario"):
+                System.out.println("Ingrese su RFC:");
+                rfc = sc.nextLine().replaceAll("\\s", "");
+                
+                System.out.println("Ingrese su nombre:");
+                nombre = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese su apellido paterno:");
+                apellidoPaterno = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese su apellido materno:");
+                apellidoMaterno = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese su dirección:");
+                direccion = sc.nextLine().replaceAll("\\s", "");
+                
+                System.out.println("Ingrese su teléfono:");
+                telefono = sc.nextLine().replaceAll("\\s", "");
+                
+                System.out.println("Ingrese su fecha de inicio de contrato (dd/MM/yyyy):");
+                fechaInicioContratoS = sc.nextLine().replaceAll("\\s", "");
+                fechaInicioContrato = dateFormat.parse(fechaInicioContratoS);
+                
+                System.out.println("Ingrese su fecha de fin de contrato (dd/MM/yyyy):");
+                fechaFinContratoS = sc.nextLine().replaceAll("\\s", "");
+                fechaFinContrato = dateFormat.parse(fechaFinContratoS);
+                
+                System.out.println("Ingrese su fecha de nacimiento (dd/MM/yyyy):");
+                fechaNacimientoS = sc.nextLine().replaceAll("\\s", "");
+                fechaNacimiento = dateFormat.parse(fechaNacimientoS);
+
+                System.out.println("Ingrese su correo electrónico:");
+                correoElectronico = sc.nextLine().replaceAll("\\s", "");
+                
+                System.out.println("Ingrese su género:");
+                genero = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese su especialidad:");
+                especialidad = sc.nextLine().replaceAll("\\s", "");
+
+                System.out.println("Ingrese su salario:");
+                salario = sc.nextDouble();
+
+                //CREAR OBJETO
+                Veterinario veterinario = new Veterinario(rfc, nombre, apellidoPaterno, 
+                apellidoMaterno, direccion, telefono, fechaInicioContrato, fechaFinContrato,
+                fechaNacimiento, correoElectronico, genero, especialidad, salario);  
+                
+            case("Bioma"):
+                System.out.println("Ingrese el ID del bioma:");
+                idBioma = sc.nextInt();
+
+                System.out.println("Ingrese el tipo del bioma:");
+                tipoBioma = sc.nextLine().replaceAll("\\s", "");
+                
+                System.out.println("Ingrese el número de jaulas del bioma:");
+                numeroJaulas = sc.nextInt();
+
+                System.out.println("Ingrese el número de cuidadores del bioma:");
+                numeroCuidadores = sc.nextInt();
+
+                System.out.println("Ingrese el número de veterinarios del bioma:");
+                numeroVeterinarios = sc.nextInt();
+                
+                System.out.println("Ingrese el número de animales del bioma:");
+                numeroAnimales = sc.nextInt();
+                
+                // CREAR OBJETO
+                Bioma bioma = new Bioma(idBioma, tipoBioma, numeroJaulas, numeroCuidadores,
+                numeroVeterinarios, numeroAnimales);
+                
+
+            case("Animal"):
+            
+            default:
+                System.out.println("Error al elegir el tipo (Caso casí imposible?)");
+                break
+                
+        }
+        // Poner metodo para construir un objeto dependiendo del tipo
+        rfm.agregar(anadir, tipo);
+        
+    }
+
+    /**
+     * Metodo para mostrar un mensaje 
+     */
+    public static String pedirDatosAgregar(Scanner sc, String mensaje) {
+        boolean haveIAResponse = false;
         do {
-            System.out.println(setMenu(menuSigns(1), "Agregar"));
-            String input = sc.nextLine().replaceAll("\\s", "");
-            try {
-                int option = Integer.parseInt(input);
-                switch (option) {
-                    case 1:
-                        rfm.agregar("Jijijiji", "Veterinarios");
-                        System.out.println("AQUI AGREGAR VETERINARIO");    
-                        break;
-                    case 2:
-                        System.out.println("AQUI AGREGAR BIOMA"); 
-                        break;
-                    case 3:
-                        System.out.println("AQUI AGREGAR ANIMAL"); 
-                        break;
-                    case 4:
-                        isItAnExit = true;
-                        break;
-                    default:
-                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 5].\n");
-                        break;
-                }          
-            } catch (java.lang.NumberFormatException e) {
-                System.err.println("\nSolo ingrese un número de nuestro menu de opciones sin ningún otro caracter.\n");
-            }
-        } while (!isItAnExit);
+            System.out.println(mensaje);
+            String input = sc.nextLine();
+            boolean amISure = false;
+            while (!amISure) {
+                System.out.println("¿Esta seguro que desea guardar este dato?\n" +
+                    "1.- SI.\n" +
+                    "2.- NO.\n" +
+                    "3.- REGRESAR.");
+                String newInput = sc.nextLine().toLowerCase().replaceAll("\\s", "");
+                if (newInput == "1" || newInput =="si") {
+                    return input;
+                } else if (newInput == "2" || newInput == "no") {
+                    amISure = true;
+                } else if (newInput == "3" || newInput == "regresar") {
+                    return null;
+                } else {
+                    System.out.println("\nIngrese el número de la opción a realizar o escriba \"SI\" O \"NO\".\n");
+                }
+            } 
+        } while (!haveIAResponse);
+        return null;
     }
 
     /**
@@ -169,33 +332,19 @@ public class ZooApp {
      * @param sc es un objeto Scanner para obtener la entrada del usuario.
      */
     private static void menuConsultar(Scanner sc) {
-        boolean isItAnExit = false;
-        do {
-            System.out.println(setMenu(menuSigns(2), "Consultar"));
-            String input = sc.nextLine().replaceAll("\\s", "");
-            try {
-                int option = Integer.parseInt(input);
-                switch (option) {
-                    case 1:
-                        System.out.println("AQUI CONSULTAR VETERINARIO");    
-                        break;
-                    case 2:
-                        System.out.println("AQUI CONSULTAR BIOMA"); 
-                        break;
-                    case 3:
-                        System.out.println("AQUI CONSULTAR ANIMAL"); 
-                        break;
-                    case 4:
-                        isItAnExit = true;
-                        break;
-                    default:
-                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 5].\n");
-                        break;
-                }          
-            } catch (java.lang.NumberFormatException e) {
-                System.err.println("\nSolo ingrese un número de nuestro menu de opciones sin ningún otro caracter.\n");
-            }
-        } while (!isItAnExit);
+        String tipo = elegirTipo(sc, "Consultar");
+        String clave = pedirClave(sc);
+        String entidad = rfm.consultar(clave, tipo);
+        if (entidad.equals("")) return;
+        switch (tipo) {
+            case "Veterinario":
+                break;
+            case "Biomas":
+                break;
+            case "Animales":
+            default:
+                break;
+        }
     }
 
     /**
@@ -205,33 +354,26 @@ public class ZooApp {
      * @param sc es un objeto Scanner para obtener la entrada del usuario.
      */
     private static void menuEditar(Scanner sc) {
-        boolean isItAnExit = false;
-        do {
-            System.out.println(setMenu(menuSigns(3), "Editar"));
-            String input = sc.nextLine().replaceAll("\\s", "");
-            try {
-                int option = Integer.parseInt(input);
-                switch (option) {
-                    case 1:
-                        System.out.println("AQUI Editar VETERINARIO");    
-                        break;
-                    case 2:
-                        System.out.println("AQUI Editar BIOMA"); 
-                        break;
-                    case 3:
-                        System.out.println("AQUI Editar ANIMAL"); 
-                        break;
-                    case 4:
-                        isItAnExit = true;
-                        break;
-                    default:
-                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 5].\n");
-                        break;
-                }          
-            } catch (java.lang.NumberFormatException e) {
-                System.err.println("\nSolo ingrese un número de nuestro menu de opciones sin ningún otro caracter.\n");
-            }
-        } while (!isItAnExit);
+        String tipo = elegirTipo(sc, "Consultar");
+        String clave = pedirClave(sc);
+        String entidad = rfm.consultar(clave, tipo);
+        if (entidad.equals("")) return;
+        String nueva_entidad = "";
+        switch (tipo) {
+            case "Veterinario":
+                break;
+            case "Biomas":
+                break;
+            case "Animales":
+                break;
+            default:
+                System.out.println("Error al elegir el tipo (Caso casí imposible?)");
+                break;
+        }
+        rfm.eliminar(clave, tipo);
+        rfm.agregar(nueva_entidad, tipo);
+        rfm.consultar(clave, tipo);
+        
     }
 
     /**
@@ -241,32 +383,21 @@ public class ZooApp {
      * @param sc es un objeto Scanner para obtener la entrada del usuario.
      */
     private static void menuEliminar(Scanner sc) {
+        String tipo = elegirTipo(sc, "Eliminar");
+        String clave = pedirClave(sc);
         boolean isItAnExit = false;
         do {
-            System.out.println(setMenu(menuSigns(4), "Eliminar"));
-            String input = sc.nextLine().replaceAll("\\s", "");
-            try {
-                int option = Integer.parseInt(input);
-                switch (option) {
-                    case 1:
-                        System.out.println("AQUI Eliminar VETERINARIO");    
-                        break;
-                    case 2:
-                        System.out.println("AQUI ELIMINAR BIOMA"); 
-                        break;
-                    case 3:
-                        System.out.println("AQUI ELIMINAR ANIMAL"); 
-                        break;
-                    case 4:
-                        isItAnExit = true;
-                        break;
-                    default:
-                        System.out.println("\nIngrese un número de nuestro menu, en un rango de [1, 5].\n");
-                        break;
-                }          
-            } catch (java.lang.NumberFormatException e) {
-                System.err.println("\nSolo ingrese un número de nuestro menu de opciones sin ningún otro caracter.\n");
+            System.out.println("¿Esta seguro que desea eliminarlo?\n" +
+                "1.- SI.\n" +
+                "2.- NO.\n");
+            String input = sc.nextLine().toLowerCase().replaceAll("\\s", "");
+            if (input == "1" || input =="si") {
+                rfm.eliminar(clave, tipo);
+            } else if (input == "2" || input == "no") {
+                isItAnExit = true;
+            } else {
+                System.out.println("\nIngrese el número de la opción a realizar o escriba \"SI\" O \"NO\".\n");
             }
-        } while (!isItAnExit);
+        } while(!isItAnExit);
     }
 }
