@@ -45,15 +45,15 @@ public class FileManagement implements FileManagementProxy {
     private boolean entidadRuta(String tipo){
         switch (tipo) {
             case "Veterinarios":
-                this.ruta = "SRC/Veterinarios.csv";
+                this.ruta = "Veterinarios.csv";
                 return true;
                 
             case "Biomas":
-                this.ruta = "SRC/Biomas.csv";
+                this.ruta = "Biomas.csv";
                 return true;
                 
                 case "Animales":
-                this.ruta = "SRC/Animales.csv";
+                this.ruta = "Animales.csv";
                 return true;
                 
             default:
