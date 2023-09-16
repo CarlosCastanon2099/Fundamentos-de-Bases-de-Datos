@@ -10,20 +10,51 @@ import bioma.Bioma.ServiciosVisitantes;
 import empleado.*;
 
 
-
+/** 
+ * Clase encargada de la ejecucion del programa, es decir, de la interaccion con el usuario.
+ * 
+ * @version 1.0, 15/09/2023
+ */
 public class ZooApp {
-
+    /**
+     * Metodo main de la clase, es el que se encarga de la ejecucion del programa.
+     * @param args Argumentos que se le pasan al programa.
+     * 
+     */
     public static void main(String[] args){
         app();
     }
+
+    /** 
+     * Instancia de la clase RemoteFileManagement, la cual se encarga de la conexion
+     * con la escritura, consulta y borrado en los archivos.
+     * 
+     * @see RemoteFileManagement
+     */
     static RemoteFileManagement rfm = new RemoteFileManagement();
+
+    /** 
+     * Arreglo de String que contiene los atributos de cada entidad veterinario
+     * que se puede manejar en el Zoologico de Huitziltepec.
+     * 
+     */
     public static String[] veterinario_atributos = new String[]{"Nombre","Apellido Paterno",
                                 "Apellido Materno", "Direccion", "Telefono", "Fecha de Inicio del Contrato",
                                 "Fecha de Fin del Contrato", "Fecha de Nacimiento", "Correo Electronico",
                                 "Genero", "Especialidad", "Salario"};
+
+    /** 
+     * Arreglo de String que contiene los atributos de cada entidad bioma
+     * que se puede manejar en el Zoologico de Huitziltepec.
+     */
     public static String[] bioma_atributos = new String[]{"Tipo de Bioma", "Numero de Jaulas", "Numero de Cuidadores",
                                 "Numero de Veterinarios", "Numero de Animales", "Numero de Banos",
                                 "Numero de Tiendas", "Numero de Comida"};
+
+    /** 
+     * Arreglo de String que contiene los atributos de cada entidad animal
+     * que se puede manejar en el Zoologico de Huitziltepec.
+     */
     public static String[] animal_atributos = new String[]{"Nombre del Animal", "Especie", "Peso", "Altura", "Sexo", 
                                 "Numero de Jaula", "Alimentacion", "Indicaciones Medicas"};
 

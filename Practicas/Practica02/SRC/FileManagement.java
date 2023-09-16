@@ -9,7 +9,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-
+/** 
+ * Clase que se encarga de la gestion de archivos, es decir, de agregar, eliminar y consultar
+ * 
+ * @version 1.0, 15/09/2023
+ */
 public class FileManagement implements FileManagementProxy {
 
     private static FileManagement instance; // Instancia unica de la clase.

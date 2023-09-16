@@ -1,4 +1,8 @@
-
+/** 
+ * Clase que implementa el patron de diseno Proxy, se encarga de crear un puente
+ * 
+ * @version 1.0, 15/09/2023
+ */
 public class RemoteFileManagement implements FileManagementProxy {
 
     private FileManagement original; // Puente para la conexion con la escritura, consulta y borrado en los archivos.
