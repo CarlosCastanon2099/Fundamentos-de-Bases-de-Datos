@@ -67,7 +67,7 @@ public class Veterinario extends Empleado {
      */
     @Override
     public String toString() {
-        return String.format(", %s, %s, %s", super.toString(), especialidad, salario );
+        return String.format("%s, %s, %s", super.toString(), especialidad, salario );
     }
 
     /**
@@ -77,6 +77,6 @@ public class Veterinario extends Empleado {
      */
     @Override
     public String toStringConsola() {
-        return String.format("Especialidad: %s \n Salario: %s \n %s", especialidad, salario, super.toString());
+        return String.format("%s \n Especialidad: %s \n Salario: %s \n ", super.toStringConsola(), especialidad, salario );
     }
 }

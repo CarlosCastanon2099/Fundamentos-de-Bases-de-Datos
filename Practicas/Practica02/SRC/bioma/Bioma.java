@@ -22,9 +22,9 @@ public class Bioma {
         this.serviciosVisitantes = serviciosVisitantes;
     }
     
-    // Métodos setters para los atributos de Bioma
+    // Metodos setters para los atributos de Bioma
     /** 
-     * Método setter para el atributo idBioma
+     * Metodo setter para el atributo idBioma
      * 
      * @param idBioma el id del bioma
      */
@@ -35,7 +35,7 @@ public class Bioma {
     }
     
     /**  
-     * Método setter para el atributo tipoBioma
+     * Metodo setter para el atributo tipoBioma
      * 
      * @param tipoBioma
      */
@@ -46,9 +46,9 @@ public class Bioma {
     }
 
     /**  
-     * Método setter para el atributo numeroVeterinarios
+     * Metodo setter para el atributo numeroVeterinarios
      * 
-     * @param numeroVeterinarios el número de veterinarios
+     * @param numeroVeterinarios el numero de veterinarios
     */
     public void setNumeroVeterinarios (int numeroVeterinarios){
         if (numeroVeterinarios > 0) {
@@ -57,9 +57,9 @@ public class Bioma {
     }
 
     /**  
-     * Método setter para el atributo numeroJaulas
+     * Metodo setter para el atributo numeroJaulas
      * 
-     * @param numeroJaulas el número de jaulas
+     * @param numeroJaulas el numero de jaulas
     */
     public void setNumeroJaulas (int numeroJaulas){
         if (numeroJaulas > 0) {
@@ -69,9 +69,9 @@ public class Bioma {
 
 
     /**  
-     * Método setter para el atributo numeroCuidadores
+     * Metodo setter para el atributo numeroCuidadores
      * 
-     * @param numeroCuidadores el número de cuidadores
+     * @param numeroCuidadores el numero de cuidadores
     */
     public void setNumeroCuidadores (int numeroCuidadores){
         if (numeroCuidadores > 0) {
@@ -80,9 +80,9 @@ public class Bioma {
     }
 
     /**  
-     * Método setter para el atributo numeroAnimales
+     * Metodo setter para el atributo numeroAnimales
      * 
-     * @param numeroAnimales el número de animales
+     * @param numeroAnimales el numero de animales
     */
     public void setNumeroAnimales (int numeroAnimales){
         if (numeroAnimales > 0) {
@@ -93,7 +93,7 @@ public class Bioma {
     // Metodos Getters para los atributos de Bioma
 
     /**  
-     * Método getter para el atributo idBioma
+     * Metodo getter para el atributo idBioma
      * 
      * @return idBioma
      */
@@ -102,7 +102,7 @@ public class Bioma {
     }
 
     /**  
-     * Método getter para el atributo tipoBioma
+     * Metodo getter para el atributo tipoBioma
      * 
      * @return tipoBioma
      */
@@ -111,7 +111,7 @@ public class Bioma {
     }
 
     /**  
-     * Método getter para el atributo numeroVeterinarios
+     * Metodo getter para el atributo numeroVeterinarios
      * 
      * @return numeroVeterinarios
     */
@@ -120,7 +120,7 @@ public class Bioma {
     }
 
     /**  
-     * Método getter para el atributo numeroJaulas
+     * Metodo getter para el atributo numeroJaulas
      * 
      * @return numeroJaulas
     */
@@ -129,7 +129,7 @@ public class Bioma {
     }
 
     /**  
-     * Método getter para el atributo numeroCuidadores
+     * Metodo getter para el atributo numeroCuidadores
      * 
      * @return numeroCuidadores
     */
@@ -138,7 +138,7 @@ public class Bioma {
     }
 
     /**  
-     * Método getter para el atributo numeroAnimales
+     * Metodo getter para el atributo numeroAnimales
      * 
      * @return numeroAnimales
     */
@@ -147,7 +147,7 @@ public class Bioma {
     }
 
     /**  
-     * Método getter para el atributo serviciosVisitantes
+     * Metodo getter para el atributo serviciosVisitantes
      * 
      * @return serviciosVisitantes
     */
@@ -155,7 +155,7 @@ public class Bioma {
         return serviciosVisitantes;
     }
 
-    // Método toString para la clase Bioma
+    // Metodo toString para la clase Bioma
     @Override
     public String toString() {
         return String.format("%d,%s,%d,%d,%d,%d,%s", idBioma,
@@ -163,7 +163,7 @@ public class Bioma {
                 numeroVeterinarios, numeroAnimales, serviciosVisitantes);
     }
 
-    // Método que imprime la clase bioma embellecida para la consola
+    // Metodo que imprime la clase bioma embellecida para la consola
     public String toStringConsola() {
         return String.format("IdBioma: %d \n Tipo-Bioma: %s \n Numero-de-Jalulas: %d \n Numero-de-Cuidadores: %d \n Numero-de-Veterinarios: %d \n Numero-de-Aniamles: %d \n Servicios-Visitantes: %s", idBioma,
                 tipoBioma, numeroJaulas, numeroCuidadores, 
@@ -183,12 +183,12 @@ public class Bioma {
             this.numeroComida = numeroComida;
         }
 
-        // Métodos setters para los atributos de servicios a visitantes
+        // Metodos setters para los atributos de servicios a visitantes
 
         /** 
-         * Método setter para el atributo numeroBanios
+         * Metodo setter para el atributo numeroBanios
          * 
-         * @param numeroBanios el número de baños
+         * @param numeroBanios el numero de banos
          */
         public void setNumeroBanios (int numeroBanios){
             if (numeroBanios > 0) {
@@ -197,9 +197,9 @@ public class Bioma {
         }
 
         /**
-         * Método setter para el atributo numeroTiendas
+         * Metodo setter para el atributo numeroTiendas
          * 
-         * @param numeroTiendas el número de tiendas 
+         * @param numeroTiendas el numero de tiendas 
          */ 
         public void setNumeroTiendas (int numeroTiendas){
             if (numeroTiendas > 0) {
@@ -208,9 +208,9 @@ public class Bioma {
         }
 
         /**
-         * Método setter para el atributo numeroComida
+         * Metodo setter para el atributo numeroComida
          * 
-         * @param numeroComida el número de comida
+         * @param numeroComida el numero de comida
          */
         public void setNumeroComida (int numeroComida){
             if (numeroComida > 0) {
@@ -218,10 +218,10 @@ public class Bioma {
             }
         }
 
-        // Métodos getters para los atributos de servicios a visitantes
+        // Metodos getters para los atributos de servicios a visitantes
 
         /**  
-         * Método getter para el atributo numeroBanios
+         * Metodo getter para el atributo numeroBanios
          * 
          * @return numeroBanios
          */
@@ -230,7 +230,7 @@ public class Bioma {
         }
 
         /**  
-         * Método getter para el atributo numeroTiendas
+         * Metodo getter para el atributo numeroTiendas
          * 
          * @return numeroTiendas
          */
@@ -239,7 +239,7 @@ public class Bioma {
         }
 
         /**  
-         * Método getter para el atributo numeroComida
+         * Metodo getter para el atributo numeroComida
          * 
          * @return numeroComida
          */
@@ -247,10 +247,16 @@ public class Bioma {
             return numeroComida;
         }
 
-        // Método toString para la clase ServiciosVisitantes
+        // Metodo toString para la clase ServiciosVisitantes
         @Override
         public String toString() {
             return String.format("%d,%d,%d",numeroBanios,
+                    numeroTiendas, numeroComida);
+        }
+
+        // Metodo que imprime la clase ServiciosVisitantes embellecida para la consola
+        public String toStringConsola() {
+            return String.format("\n Numero-de-Banios: %d \n Numero-de-Tiendas: %d \n Numero-de-Comida: %d",numeroBanios,
                     numeroTiendas, numeroComida);
         }
 

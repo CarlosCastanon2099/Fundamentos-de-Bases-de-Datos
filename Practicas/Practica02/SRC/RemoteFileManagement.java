@@ -5,7 +5,7 @@ public class RemoteFileManagement implements FileManagementProxy {
 
     /**
      * Metodo constructor de la clase, se crea un puente entre la version
-     * local y la remota usando el patron de diseño Proxy.
+     * local y la remota usando el patron de diseno Proxy.
      */
     public RemoteFileManagement() {
         original = FileManagement.getInstance();

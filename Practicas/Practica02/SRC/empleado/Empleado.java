@@ -284,7 +284,7 @@ public class Empleado {
      * @return la informacion del empleado.
      */
     public String toStringConsola() {
-        return String.format("RFC(Clave única): %s \n Nombre: %s \n Apellido-Paterno: %s \n Apellido-Materno: %s \n Dirección: %s \n Teléfono: %s \n Fecha-Inicio-Contrato: %s \n Fecha-Finalización-Contrato: %s \n Fecha-Nacimiento: %s \n Correo-electrónico: %s \n Género: %s \n"  , rfc, nombre, apellidoPaterno, apellidoMaterno, direccion, telefono,
+        return String.format("\n RFC(Clave unica): %s \n Nombre: %s \n Apellido-Paterno: %s \n Apellido-Materno: %s \n Direccion: %s \n Telefono: %s \n Fecha-Inicio-Contrato: %s \n Fecha-Finalizacion-Contrato: %s \n Fecha-Nacimiento: %s \n Correo-electronico: %s \n Genero: %s \n"  , rfc, nombre, apellidoPaterno, apellidoMaterno, direccion, telefono,
                 fechaInicioContrato, fechaFinContrato, fechaNacimiento, correoElectronico, genero);
     }
 

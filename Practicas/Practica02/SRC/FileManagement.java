@@ -14,7 +14,7 @@ public class FileManagement implements FileManagementProxy {
 
     private static FileManagement instance; // Instancia unica de la clase.
     private String ruta; // Instancia de la ruta
-    private String registro; // registro de la instancia en cuestión
+    private String registro; // registro de la instancia en cuestion
 
     /**
      * Metodo contructor privado para poder usar el patron de disenno de software
@@ -105,7 +105,7 @@ public class FileManagement implements FileManagementProxy {
         }
         if (buscarString(llave)) return (this.registro);
         else {
-            System.out.println("No se encontró la llave");
+            System.out.println("No se encontro la llave");
             return null;
         }
     }

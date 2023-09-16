@@ -25,10 +25,10 @@ public class Animal {
         this.indicacionesMedicas = indicacionesMedicas;
     }
 
-    // Métodos getters y setters para los atributos
+    // Metodos getters y setters para los atributos
 
     /**
-     * Método que devuelve el id del animal
+     * Metodo que devuelve el id del animal
      * @return id del animal
      */
     public int getIdAnimal() {
@@ -36,7 +36,7 @@ public class Animal {
     }
 
     /**
-     * Método que establece el id del animal
+     * Metodo que establece el id del animal
      * @param idAnimal id del animal
      */
     public void setIdAnimal(int idAnimal) {
@@ -45,7 +45,7 @@ public class Animal {
 
 
     /**
-     * Método que devuelve el nombre del animal
+     * Metodo que devuelve el nombre del animal
      * @return nombre del animal
      */
     public String getNombre() {
@@ -53,7 +53,7 @@ public class Animal {
     }
 
     /**
-     * Método que establece el nombre del animal
+     * Metodo que establece el nombre del animal
      * @param nombre nombre del animal
      */
     public void setNombre(String nombre) {
@@ -61,7 +61,7 @@ public class Animal {
     }
 
     /**
-     * Método que devuelve la especie del animal
+     * Metodo que devuelve la especie del animal
      * @return especie del animal
      */
     public String getEspecie() {
@@ -69,7 +69,7 @@ public class Animal {
     }
 
     /**
-     * Método que establece la especie del animal
+     * Metodo que establece la especie del animal
      * @param especie especie del animal
      */
     public void setEspecie(String especie) {
@@ -77,7 +77,7 @@ public class Animal {
     }
 
     /**
-     * Método que devuelve el peso del animal
+     * Metodo que devuelve el peso del animal
      * @return peso del animal
      */
     public double getPeso() {
@@ -85,7 +85,7 @@ public class Animal {
     }
 
     /**
-     * Método que establece el peso del animal
+     * Metodo que establece el peso del animal
      * @param peso peso del animal
      */
     public void setPeso(double peso) {
@@ -93,7 +93,7 @@ public class Animal {
     }
 
     /**
-     * Método que devuelve la altura del animal
+     * Metodo que devuelve la altura del animal
      * @return altura del animal
      */
     public double getAltura() {
@@ -101,7 +101,7 @@ public class Animal {
     }
 
     /**
-     * Método que establece la altura del animal
+     * Metodo que establece la altura del animal
      * @param altura altura del animal
      */
     public void setAltura(double altura) {
@@ -109,7 +109,7 @@ public class Animal {
     }
 
     /**
-     * Método que devuelve el sexo del animal
+     * Metodo que devuelve el sexo del animal
      * @return sexo del animal
      */
     public String getSexo() {
@@ -117,7 +117,7 @@ public class Animal {
     }
 
     /**
-     * Método que establece el sexo del animal
+     * Metodo que establece el sexo del animal
      * @param sexo sexo del animal
      */
     public void setSexo(String sexo) {
@@ -125,55 +125,55 @@ public class Animal {
     }
 
     /**
-     * Método que devuelve el número de jaula del animal
-     * @return número de jaula del animal
+     * Metodo que devuelve el numero de jaula del animal
+     * @return numero de jaula del animal
      */
     public int getNumeroJaula() {
         return numeroJaula;
     }
 
     /**
-     * Método que establece el número de jaula del animal
-     * @param numeroJaula número de jaula del animal
+     * Metodo que establece el numero de jaula del animal
+     * @param numeroJaula numero de jaula del animal
      */
     public void setNumeroJaula(int numeroJaula) {
         this.numeroJaula = numeroJaula;
     }
 
     /**
-     * Método que devuelve la alimentación del animal
-     * @return alimentación del animal
+     * Metodo que devuelve la alimentacion del animal
+     * @return alimentacion del animal
      */
     public String getAlimentacion() {
         return alimentacion;
     }
 
     /**
-     * Método que establece la alimentación del animal
-     * @param alimentacion alimentación del animal
+     * Metodo que establece la alimentacion del animal
+     * @param alimentacion alimentacion del animal
      */
     public void setAlimentacion(String alimentacion) {
         this.alimentacion = alimentacion;
     }
 
     /**
-     * Método que devuelve las indicaciones médicas del animal
-     * @return indicaciones médicas del animal
+     * Metodo que devuelve las indicaciones medicas del animal
+     * @return indicaciones medicas del animal
      */
     public String getIndicacionesMedicas() {
         return indicacionesMedicas;
     }
 
     /**
-     * Método que establece las indicaciones médicas del animal
-     * @param indicacionesMedicas indicaciones médicas del animal
+     * Metodo que establece las indicaciones medicas del animal
+     * @param indicacionesMedicas indicaciones medicas del animal
      */
     public void setIndicacionesMedicas(String indicacionesMedicas) {
         this.indicacionesMedicas = indicacionesMedicas;
     }
 
     /*
-     * Método que devuelve la información del animal
+     * Metodo que devuelve la informacion del animal
      */
     @Override
     public String toString() {
@@ -182,11 +182,11 @@ public class Animal {
     }
 
     /*
-     * Método que devuelve la información del animal pero embellecido para
+     * Metodo que devuelve la informacion del animal pero embellecido para
      * facilidad del usuario, en terminal.
      */
     public String toStringConsola() {
-        return String.format("IdAnimal: %s  \n Nombre: %s  \n Altura: %s  \n Peso: %s  \n Altura: %s \n Sexo: %s  \n Numero-de-Jaula: %s \n Alimentación: %s \n Indicaciones-Médicas: %s",
+        return String.format("\n IdAnimal: %s  \n Nombre: %s  \n Altura: %s  \n Peso: %s  \n Altura: %s \n Sexo: %s  \n Numero-de-Jaula: %s \n Alimentacion: %s \n Indicaciones-Medicas: %s",
                 idAnimal, nombre, especie, peso, altura, sexo, numeroJaula, alimentacion, indicacionesMedicas);
     }
 }
