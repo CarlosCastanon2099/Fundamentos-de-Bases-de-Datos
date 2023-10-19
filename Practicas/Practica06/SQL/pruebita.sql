@@ -827,6 +827,22 @@ primary key (idInsumo);
 -- Referencial --
 alter table medicina add constraint medicina_fkey
 foreign key (idPersona) references proveedor(idPersona);
+-- Comentarios --
+comment on table medicina is 'Tabla que almacena información sobre medicamentos e insumos médicos.';
+comment on column medicina.idInsumo is 'ID único del insumo médico.';
+comment on column medicina.idPersona is 'ID de la persona (proveedor) asociada a la medicina.';
+comment on column medicina.nombre is 'Nombre de la medicina o insumo médico.';
+comment on column medicina.fechCaducidad is 'Fecha de caducidad de la medicina.';
+comment on column medicina.cantidad is 'Cantidad disponible del insumo.';
+comment on column medicina.refrigeracion is 'Indica si la medicina requiere refrigeración (verdadero o falso).';
+comment on column medicina.labProd is 'Nombre del laboratorio productor de la medicina.';
+comment on column medicina.lote is 'Número de lote de la medicina.';
+comment on constraint cantidad on medicina is 'Restricción para que que la cantidad de insumo sea mayor o igual a cero.';
+comment on constraint refrigeracion on medicina is 'Restricción que asegura que el valor de refrigeración sea verdadero o falso.';
+comment on constraint labProd on medicina is 'Restricción que asegura que el nombre del laboratorio productor tenga entre 3 y 50 caracteres y no sea nulo.';
+comment on constraint refrigeracion_default on medicina is 'Establece un valor predeterminado de "false" para la columna de refrigeración.';
+comment on constraint medicina_pkey on medicina is 'Clave primaria que utiliza el ID único del insumo.';
+comment on constraint medicina_fkey on medicina is 'Clave foránea que relaciona el ID de la persona (proveedor) con la tabla proveedor.';
 
 
 -- SUBMINISTRAR  --
@@ -846,7 +862,14 @@ alter table subministrar add constraint idInsumo_fkey
 foreign key (idInsumo) references medicina(idInsumo);
 alter table subministrar add constraint idAnimal_fkey
 foreign key (idAnimal) references animal(idAnimal);
-
+-- Comentarios--
+comment on table subministrar is 'Tabla que registra la relación entre animales e insumos suministrados';
+comment on column subministrar.idAnimal is 'ID del animal al que se suministra el insumo';
+comment on column subministrar.idInsumo is 'ID del insumo suministrado';
+comment on constraint subministrar_d1 on subministrar is 'Restricción para que el ID del animal no sea nulo';
+comment on constraint subministrar_d2 on subministrar is 'Restricción para que el ID del insumo no sea nulo';
+comment on constraint idInsumo_fkey on subministrar is 'Clave foránea que relaciona el ID del insumo con la tabla medicina';
+comment on constraint idAnimal_fkey on subministrar is 'Clave foránea que relaciona el ID del animal con la tabla animal';
 
 -- JAULA  --
 create table jaula(
@@ -868,6 +891,16 @@ alter table jaula add constraint jaula_fkey1
 foreign key(idAnimal) references animal(idAnimal);
 alter table jaula add constraint jaula_fkey2
 foreign key(idBioma) references bioma(idBioma);
+--Comentarios--
+comment on table jaula is 'Tabla que tiene informacón de las jaulas de animales';
+comment on column jaula.idAnimal is 'ID del animal que está en la jaula';
+comment on column jaula.numJaula is 'Número de la jaula';
+comment on column jaula.idBioma is 'ID del bioma al que pertenece la jaula';
+comment on constraint jaula_d1 on jaula is 'Restricción para que el id no sea nulo';
+comment on constraint jaula_d2 on jaula is 'Restricción para que el número de la jaula no se nulo';
+comment on constraint jaula_d3 on jaula is 'Restricción para que el ID del bioma no sea nulo';
+comment on constraint jaula_fkey1 on jaula is 'Clave foránea que relaciona el ID del animal con la tabla animal';
+comment on constraint jaula_fkey2 on jaula is 'Clave foránea que relaciona el ID del bioma con la tabla bioma';
 
 -- LABORAR --
  create table laborar (
@@ -886,7 +919,14 @@ alter table laborar add constraint laborar_fkey1
 foreign key(idPersona) references veterinario(idPersona);
 ALTER TABLE laborar ADD CONSTRAINT laborar_fkey2
 foreign key(idBioma) REFERENCES bioma(idBioma);
-
+-- Comentarios --
+comment on table laborar is 'Tabla que registra la asignación de veterinarios a biomas para trabajar en ellos';
+comment on column laborar.idPersona is 'ID de la persona (veterinario) asignada a trabajar en un bioma';
+comment on column laborar.idBioma is 'ID del bioma al que se asigna un veterinario para trabajar';
+comment on constraint laborar_d1 on laborar is 'Restricción que asegura que el ID de la persona (veterinario) no sea nulo';
+comment on constraint laborar_d2 on laborar is 'Restricción que asegura que el ID del bioma no sea nulo';
+comment on constraint laborar_fkey1 on laborar is 'Clave foránea que relaciona el ID de la persona (veterinario) con la tabla veterinario';
+comment on constraint laborar_fkey2 on laborar is 'Clave foránea que relaciona el ID del bioma con la tabla bioma';
 
 -- ATENDER --
 CREATE TABLE atender (
@@ -910,6 +950,17 @@ foreign key (idPersona) references veterinario(idPersona);
 ALTER TABLE atender ADD CONSTRAINT idAnimal_fkey
 foreign key (idAnimal) references animal(idAnimal);
 
+-- Comentarios --
+comment on table atender is 'Tabla que registra la relación entre veterinarios y animales que atienden';
+
+comment on column atender.idPersona is 'ID de la persona (veterinario) que atiende al animal';
+comment on column atender.idAnimal is 'ID del animal que es atendido por un veterinario';
+comment on column atender.indicacionesMedicas is 'Indicaciones médicas que el veterinario da al animal';
+
+comment on constraint atender_d1 on atender is 'Restricción que asegura que el ID de la persona (veterinario) no sea nulo';
+comment on constraint atender_d2 on atender is 'Restricción que asegura que el ID del animal no sea nulo';
+comment on constraint atender_d3 on atender is 'Restricción que asegura que las indicaciones médicas no sean la cadena vacía';
+
 -- ASISTIR CLIENTE --
 CREATE TABLE asistirCliente (
     IdPersona serial8,
@@ -929,6 +980,15 @@ ALTER TABLE asistirCliente ADD CONSTRAINT idPersona_fkey
 FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
 ALTER TABLE asistirCliente ADD CONSTRAINT idEvento_fkey
 FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
+
+-- Comentarios --   
+COMMENT ON TABLE asistirCliente IS 'Tabla que contiene los datos de los clientes que asistieron a los eventos';
+
+COMMENT ON COLUMN asistirCliente.idPersona IS 'Identificador de el cliente que asistio al evento';
+COMMENT ON COLUMN asistirCliente.idEvento IS 'Identificador del evento al que asistio el cliente';
+
+COMMENT ON CONSTRAINT asistirCliente_d1 ON asistirCliente IS 'Restriccion check que nos asegura que el id de el cliente no sea nulo';
+COMMENT ON CONSTRAINT asistirCliente_d2 ON asistirCliente IS 'Restriccion check que nos asegura que el id del evento no sea nulo';
 
 
 
@@ -952,8 +1012,13 @@ ALTER TABLE asistirVeterinario ADD CONSTRAINT idEvento_fkey
 FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
 
 -- Comentarios -- 
--- COMMENT ON TABLE asistirVeterinario IS 'Tabla que contiene los datos de los veterinarios que asistieron a los eventos';
+COMMENT ON TABLE asistirVeterinario IS 'Tabla que contiene los datos de los veterinarios que asistieron a los eventos';
 
+COMMENT ON COLUMN asistirVeterinario.idPersona IS 'Identificador de el veterinario que asistio al evento';
+COMMENT ON COLUMN asistirVeterinario.idEvento IS 'Identificador del evento al que asistio el veterinario';
+
+COMMENT ON CONSTRAINT asistirVeterinario_d1 ON asistirVeterinario IS 'Restriccion check que nos asegura que el id de el veterinario no sea nulo';
+COMMENT ON CONSTRAINT asistirVeterinario_d2 ON asistirVeterinario IS 'Restriccion check que nos asegura que el id del evento no sea nulo';
 
 
 
@@ -977,6 +1042,15 @@ FOREIGN KEY (idPersona) REFERENCES proveedor(idPersona);
 ALTER TABLE asistirProveedor ADD CONSTRAINT idEvento_fkey
 FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
 
+-- Comentarios --
+COMMENT ON TABLE asistirProveedor IS 'Tabla que contiene los datos de los proveedores que asistieron a los eventos';
+
+COMMENT ON COLUMN asistirProveedor.idPersona IS 'Identificador de el proveedor que asistio al evento';
+COMMENT ON COLUMN asistirProveedor.idEvento IS 'Identificador del evento al que asistio el proveedor';
+
+COMMENT ON CONSTRAINT asistirProveedor_d1 ON asistirProveedor IS 'Restriccion check que nos asegura que el id de el proveedor no sea nulo';
+COMMENT ON CONSTRAINT asistirProveedor_d2 ON asistirProveedor IS 'Restriccion check que nos asegura que el id del evento no sea nulo';
+
 
 -- ASISTIR CUIDADOR --
 CREATE TABLE asistirCuidador (
@@ -998,6 +1072,15 @@ FOREIGN KEY (idPersona) REFERENCES cuidador(idPersona);
 ALTER TABLE asistirCuidador ADD CONSTRAINT idEvento_fkey
 FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
 
+-- Comentarios --
+COMMENT ON TABLE asistirCuidador IS 'Tabla que contiene los datos de los cuidadores que asistieron a los eventos';
+
+COMMENT ON COLUMN asistirCuidador.idPersona IS 'Identificador de el cuidador que asistio al evento';
+COMMENT ON COLUMN asistirCuidador.idEvento IS 'Identificador del evento al que asistio el cuidador';
+
+COMMENT ON CONSTRAINT asistirCuidador_d1 ON asistirCuidador IS 'Restriccion check que nos asegura que el id de el cuidador no sea nulo';
+COMMENT ON CONSTRAINT asistirCuidador_d2 ON asistirCuidador IS 'Restriccion check que nos asegura que el id del evento no sea nulo';
+
 
 -- OFRECER --
 CREATE TABLE ofrecer (
@@ -1018,6 +1101,18 @@ ALTER TABLE ofrecer ADD CONSTRAINT idBioma_fkey
 FOREIGN KEY (idBioma) REFERENCES bioma(idBioma);
 ALTER TABLE ofrecer ADD CONSTRAINT idServicio_fkey
 FOREIGN KEY (idServicio) REFERENCES servicio(idServicio);
+
+-- Comentarios --
+COMMENT ON TABLE ofrecer IS 'Tabla que contiene los datos de los servicios que se ofrecen en los biomas';
+
+COMMENT ON COLUMN ofrecer.idBioma IS 'Identificador del bioma en el que se ofrece el servicio';
+COMMENT ON COLUMN ofrecer.idServicio IS 'Identificador del servicio que se ofrece en el bioma';
+
+COMMENT ON CONSTRAINT ofrecer_d1 ON ofrecer IS 'Restriccion check que nos asegura que el id del bioma no sea nulo';
+COMMENT ON CONSTRAINT ofrecer_d2 ON ofrecer IS 'Restriccion check que nos asegura que el id del servicio no sea nulo';
+
+
+
 
 
 
@@ -1049,7 +1144,8 @@ FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
 -- NOTIFICAR --
 CREATE TABLE notificar (
     IdPersona serial8,
-    idNotificacion serial8
+    idNotificacion serial8,
+    idEvento serial4
 );
 -- Restricciones --
 -- Dominio --
@@ -1057,6 +1153,8 @@ ALTER TABLE notificar ADD CONSTRAINT notificar_d1
 CHECK(idPersona IS NOT NULL);
 ALTER TABLE notificar ADD CONSTRAINT notificar_d2
 CHECK(idNotificacion IS NOT NULL);
+ALTER TABLE notificar ADD CONSTRAINT notificar_d3
+CHECK(idEvento IS NOT NULL);
 
 -- Entidad --
 
@@ -1065,7 +1163,20 @@ ALTER TABLE notificar ADD CONSTRAINT idPersona_fkey
 FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
 ALTER TABLE notificar ADD CONSTRAINT idNotificacion_fkey
 FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion);
+ALTER TABLE notificar ADD CONSTRAINT idEvento_fkey
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
 
+
+-- Comentarios --
+COMMENT ON TABLE notificar IS 'Tabla que contiene los datos de las notificaciones que se le envian a los clientes';
+
+COMMENT ON COLUMN notificar.idPersona IS 'Identificador de el cliente al que se le envia la notificacion';
+COMMENT ON COLUMN notificar.idNotificacion IS 'Identificador de la notificacion que se le envia al cliente';
+COMMENT ON COLUMN notificar.idEvento IS 'Identificador del evento al que se le envia la notificacion';
+
+COMMENT ON CONSTRAINT notificar_d1 ON notificar IS 'Restriccion check que nos asegura que el id de el cliente no sea nulo';
+COMMENT ON CONSTRAINT notificar_d2 ON notificar IS 'Restriccion check que nos asegura que el id de la notificacion no sea nulo';
+COMMENT ON CONSTRAINT notificar_d3 ON notificar IS 'Restriccion check que nos asegura que el id del evento no sea nulo';
 
 -- ALIMENTAR --
 CREATE TABLE alimentar (
@@ -1078,7 +1189,6 @@ ALTER TABLE alimentar ADD CONSTRAINT alimentar_d1
 CHECK(idAnimal IS NOT NULL);
 ALTER TABLE alimentar ADD CONSTRAINT alimentar_d2
 CHECK(idInsumo IS NOT NULL);
-
 -- Entidad --
 
 -- Referencial --
@@ -1086,6 +1196,14 @@ ALTER TABLE alimentar ADD CONSTRAINT idAnimal_fkey
 FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal);
 ALTER TABLE alimentar ADD CONSTRAINT idInsumo_fkey
 FOREIGN KEY (idInsumo) REFERENCES alimento(idInsumo);
+--Comentarios--
+comment on table alimentar is 'Tabla que registra la relación entre animales e insumos de alimentación suministrados';
+comment on column alimentar.idAnimal is 'ID del animal al que se suministra el insumo de alimentación';
+comment on column alimentar.idInsumo is 'ID del insumo de alimentación suministrado';
+comment on constraint alimentar_d1 on alimentar is 'Restricción que asegura que el ID del animal no sea nulo';
+comment on constraint alimentar_d2 on alimentar is 'Restricción que asegura que el ID del insumo de alimentación no sea nulo';
+comment on constraint idAnimal_fkey on alimentar is 'Clave foránea que relaciona el ID del animal con la tabla animal';
+comment on constraint idInsumo_fkey on alimentar is 'Clave foránea que relaciona el ID del insumo de alimentación con la tabla alimento';
 
 
 -- TICKET --
@@ -1120,3 +1238,20 @@ ALTER TABLE ticket ADD CONSTRAINT idServicio_fkey
 FOREIGN KEY (idServicio) REFERENCES servicio(idServicio);
 ALTER TABLE ticket ADD CONSTRAINT idPersona_fkey
 FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
+
+-- Comentarios --
+COMMENT ON TABLE ticket IS 'Tabla que contiene los datos de los tickets de los clientes';
+
+COMMENT ON COLUMN ticket.idTicket IS 'Identificador del ticket';
+COMMENT ON COLUMN ticket.idServicio IS 'Identificador del servicio que se pago';
+COMMENT ON COLUMN ticket.idPersona IS 'Identificador de la persona que pago el servicio';
+COMMENT ON COLUMN ticket.fecha IS 'Fecha en la que se pago el servicio';
+COMMENT ON COLUMN ticket.porcentajeDesc IS 'Porcentaje de descuento que se le aplico al servicio';
+
+COMMENT ON CONSTRAINT ticket_id ON ticket IS 'Restriccion que asegura que el id del ticket sea unico';
+COMMENT ON CONSTRAINT ticket_idServicio ON ticket IS 'Restriccion que asegura que el id del servicio no sea nulo';
+COMMENT ON CONSTRAINT ticket_idPersona ON ticket IS 'Restriccion que asegura que el id de la persona no sea nulo';
+COMMENT ON CONSTRAINT ticket_fecha ON ticket IS 'Restriccion que asegura que la fecha no sea nula';
+COMMENT ON CONSTRAINT ticket_porcentajeDesc ON ticket IS 'Restriccion que asegura que el porcentaje de descuento sea mayor o igual a 0';
+
+-- A --
