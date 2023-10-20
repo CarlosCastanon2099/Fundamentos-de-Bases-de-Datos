@@ -843,7 +843,7 @@ comment on column medicina.lote is 'Número de lote de la medicina.';
 comment on constraint cantidad on medicina is 'Restricción para que que la cantidad de insumo sea mayor o igual a cero.';
 comment on constraint refrigeracion on medicina is 'Restricción que asegura que el valor de refrigeración sea verdadero o falso.';
 comment on constraint labProd on medicina is 'Restricción que asegura que el nombre del laboratorio productor tenga entre 3 y 50 caracteres y no sea nulo.';
-comment on constraint refrigeracion_default on medicina is 'Establece un valor predeterminado de "false" para la columna de refrigeración.';
+comment on constraint refrigeracion on medicina is 'Establece un valor predeterminado de "false" para la columna de refrigeración.';
 comment on constraint medicina_pkey on medicina is 'Clave primaria que utiliza el ID único del insumo.';
 comment on constraint medicina_fkey on medicina is 'Clave foránea que relaciona el ID de la persona (proveedor) con la tabla proveedor.';
 
@@ -1209,7 +1209,8 @@ comment on constraint idAnimal_fkey on alimentar is 'Clave foránea que relacion
 comment on constraint idInsumo_fkey on alimentar is 'Clave foránea que relaciona el ID del insumo de alimentación con la tabla alimento';
 
 
--- TICKET --
+
+
 CREATE TABLE ticket(
     idTicket serial8,
     idServicio serial4,
@@ -1251,10 +1252,10 @@ COMMENT ON COLUMN ticket.idPersona IS 'Identificador de la persona que pago el s
 COMMENT ON COLUMN ticket.fecha IS 'Fecha en la que se pago el servicio';
 COMMENT ON COLUMN ticket.porcentajeDesc IS 'Porcentaje de descuento que se le aplico al servicio';
 
-COMMENT ON CONSTRAINT ticket_id ON ticket IS 'Restriccion que asegura que el id del ticket sea unico';
-COMMENT ON CONSTRAINT ticket_idServicio ON ticket IS 'Restriccion que asegura que el id del servicio no sea nulo';
-COMMENT ON CONSTRAINT ticket_idPersona ON ticket IS 'Restriccion que asegura que el id de la persona no sea nulo';
-COMMENT ON CONSTRAINT ticket_fecha ON ticket IS 'Restriccion que asegura que la fecha no sea nula';
-COMMENT ON CONSTRAINT ticket_porcentajeDesc ON ticket IS 'Restriccion que asegura que el porcentaje de descuento sea mayor o igual a 0';
+COMMENT ON CONSTRAINT ticket_unique ON ticket IS 'Restriccion que asegura que el id del ticket sea unico';
+COMMENT ON CONSTRAINT idServicio_fkey ON ticket IS 'Restriccion que asegura que el id del servicio no sea nulo';
+COMMENT ON constraint idPersona_fkey ON ticket IS 'Restriccion que asegura que el id de la persona no sea nulo';
+COMMENT ON CONSTRAINT porcentaje_Desc ON ticket IS 'Restriccion que asegura que el porcentaje de descuento sea mayor o igual a 0';
+
 
 -- A --
