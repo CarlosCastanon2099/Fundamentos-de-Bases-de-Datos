@@ -361,7 +361,8 @@ PRIMARY KEY(idPersona);
 
 -- Referencial --
 ALTER TABLE cuidador ADD CONSTRAINT cuidador_fkey
-FOREIGN KEY(idBioma) REFERENCES bioma(idBioma);
+FOREIGN KEY(idBioma) REFERENCES bioma(idBioma)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
 COMMENT ON TABLE cuidador IS 'Tabla que contiene los datos de cuidador';
@@ -465,7 +466,8 @@ PRIMARY KEY(idPersona,telefono);
 
 --Referencial
 ALTER TABLE telefonoCliente ADD CONSTRAINT telefonoCliente_fkey
-FOREIGN KEY(idPersona) REFERENCES cliente(idPersona);
+FOREIGN KEY(idPersona) REFERENCES cliente(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
 COMMENT ON TABLE telefonoCliente IS 'Tabla que contiene los datos de telefonos asociados a clientes';
@@ -495,7 +497,8 @@ PRIMARY KEY(idPersona,telefono);
 
 --Referencial
 ALTER TABLE telefonoVeterinario ADD CONSTRAINT telefonoVeterinario_fkey
-FOREIGN KEY(idPersona) REFERENCES veterinario(idPersona);
+FOREIGN KEY(idPersona) REFERENCES veterinario(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 -- Comentarios --
@@ -526,7 +529,8 @@ PRIMARY KEY(idPersona,telefono);
 
 --Referencial
 ALTER TABLE telefonoProveedor ADD CONSTRAINT telefonoProveedor_fkey
-FOREIGN KEY(idPersona) REFERENCES proveedor(idPersona);
+FOREIGN KEY(idPersona) REFERENCES proveedor(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 -- Comentarios --
@@ -557,7 +561,8 @@ PRIMARY KEY(idPersona,telefono);
 
 --Referencial
 ALTER TABLE telefonoCuidador ADD CONSTRAINT telefonoCuidador_fkey
-FOREIGN KEY(idPersona) REFERENCES cuidador(idPersona);
+FOREIGN KEY(idPersona) REFERENCES cuidador(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 -- Comentarios --
