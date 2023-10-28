@@ -30,7 +30,6 @@ PRIMARY KEY(idPersona);
 
 -- Referencial --
 -- no hay
-ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
 COMMENT ON TABLE cliente IS 'Tabla que contiene los datos de los clientes';
@@ -111,7 +110,6 @@ PRIMARY KEY(idPersona);
 
 -- Referencial --
 -- No hay
-ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
 COMMENT ON TABLE veterinario IS 'Tabla que contiene los datos de los veterinarios';
@@ -214,7 +212,6 @@ PRIMARY KEY(idPersona);
 
 -- Referencial --
 -- No hay
-ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
 COMMENT ON TABLE proveedor IS 'Tabla que contiene los datos de proveedor';
@@ -272,7 +269,6 @@ check ( 3 <= char_length(tipoBioma) and char_length(tipoBioma) <= 50 and tipoBio
 alter table bioma add constraint bioma_pkey
 primary key (idBioma);
 
-ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
 comment on table bioma is 'Tabla que contiene los biomas que hay en el zoologico';
@@ -281,51 +277,6 @@ comment on column bioma.tipoBioma is 'Es el tipo de Bioma que hay';
 comment on constraint bioma_d1 on bioma is 'El idBioma no puede ser null';
 comment on constraint bioma_d2 on bioma is 'El tipo de bioma debe tener una longitud entre [3, 50] y no puede ser nulo';
 comment on constraint bioma_pkey on bioma is 'La llave primaria de la tabla bioma';
-
-
-
-
--- ANIMAL --
-create table animal(
-	idAnimal serial4,
-    nombre varchar(50),
-    especie varchar(50),
-    alimentacion text,
-    sexo char(1),
-    peso float4,
-    altura float4,
-    idPersona serial8
-);
--- Restricciones  --
--- Dominio --
-alter table animal
-alter column nombre set not null;
-alter table animal
-add constraint check_peso check (peso >= 0);
-alter table animal
-add constraint check_altura check (altura >= 0);
-alter table animal
-alter column sexo set default 'M';
--- Entidad --
-alter table animal add constraint animal_pkey
-primary key(idAnimal); -- p
--- Referencial --
-
-ON DELETE CASCADE ON UPDATE CASCADE;
-
--- Comentarios --
-comment on table animal is 'Tabla que contiene los datos de los animales';
-comment on column animal.idAnimal is 'Identificador del animal';
-comment on column animal.nombre is 'Nombre del animal';
-comment on column animal.especie is 'Especie del animal';
-comment on column animal.alimentacion is 'Alimentacion del animal';
-
-comment on constraint animal_pkey on animal is 'La llave primaria de la tabla animal';
-comment on constraint check_peso on animal is 'El peso debe ser mayor o igual a 0';
-comment on constraint check_altura on animal is 'La altura debe ser mayor o igual a 0';
-comment on constraint animal_d1 on animal is 'El sexo debe ser H, M o X';
-comment on constraint animal_d2 on animal is 'El idPersona debe ser un cuidador';
-
 
 
 
@@ -444,6 +395,54 @@ COMMENT ON CONSTRAINT cuidador_fkey ON cuidador IS 'Una llave foreanea de la tab
 
 
 
+-- ANIMAL --
+create table animal(
+	idAnimal serial4,
+    nombre varchar(50),
+    especie varchar(50),
+    alimentacion text,
+    sexo char(1),
+    peso float4,
+    altura float4,
+    idPersona serial8
+);
+-- Restricciones  --
+-- Dominio --
+alter table animal
+alter column nombre set not null;
+alter table animal
+add constraint check_peso check (peso >= 0);
+alter table animal
+add constraint check_altura check (altura >= 0);
+alter table animal
+alter column sexo set default 'M';
+alter table animal
+add constraint check_sexo check (sexo <> 'M' or sexo <> 'H' or sexo <> 'X');
+-- Entidad --
+alter table animal add constraint animal_pkey
+primary key(idAnimal); -- p
+-- Referencial --
+
+ALTER TABLE animal ADD CONSTRAINT animal_fkey
+FOREIGN KEY(idPersona) REFERENCES cuidador(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Comentarios --
+comment on table animal is 'Tabla que contiene los datos de los animales';
+comment on column animal.idAnimal is 'Identificador del animal';
+comment on column animal.nombre is 'Nombre del animal';
+comment on column animal.especie is 'Especie del animal';
+comment on column animal.alimentacion is 'Alimentacion del animal';
+
+comment on constraint animal_pkey on animal is 'La llave primaria de la tabla animal';
+comment on constraint check_peso on animal is 'El peso debe ser mayor o igual a 0';
+comment on constraint check_altura on animal is 'La altura debe ser mayor o igual a 0';
+comment on constraint check_sexo on animal is 'El sexo debe ser H, M o X';
+comment on constraint animal_fkey on animal is 'El idPersona debe ser un cuidador';
+
+
+
+
 CREATE TABLE evento (
     idEvento serial4,
     capacidad int4,
@@ -466,7 +465,6 @@ alter table evento add constraint evento_d4 check (3 <= char_length(tipoEvento) 
 -- Entidad
 ALTER TABLE evento ADD CONSTRAINT evento_pkey PRIMARY KEY (idEvento);
 
-ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
 comment on table evento is 'Tabla que contiene todos la información de los eventos realizados en el Zoologico';
@@ -501,7 +499,6 @@ check (3 <= char_length(tipoServicio) and char_length(tipoServicio) <= 50);
 alter table servicio add constraint servicio_pkey
 primary key (idServicio);
 
-ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
 comment on table servicio is 'Tabla que contiene los servicios que hay en el zoologico.';
@@ -665,8 +662,7 @@ primary key (idPersona, correo);
 
 -- Referencial
 alter table correoCliente add constraint correoc_fkey
-foreign key (idPersona) references cliente(idPersona);
-
+foreign key (idPersona) references cliente(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
@@ -700,8 +696,7 @@ primary key (idPersona, correo);
 
 -- Referencial
 alter table correoCuidador add constraint correocu_fkey
-foreign key (idPersona) references cuidador(idPersona);
-
+foreign key (idPersona) references cuidador(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
@@ -735,8 +730,7 @@ primary key (idPersona, correo);
 
 -- Referencial
 alter table correoVeterinario add constraint correov_fkey
-foreign key (idPersona) references veterinario(idPersona);
-
+foreign key (idPersona) references veterinario(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
@@ -770,8 +764,7 @@ primary key (idPersona, correo);
 
 -- Referencial
 alter table correoProveedor add constraint correop_fkey
-foreign key (idPersona) references proveedor(idPersona);
-
+foreign key (idPersona) references proveedor(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
@@ -818,8 +811,7 @@ primary key (idInsumo);
 
 -- Referencial
 alter table alimento add constraint alimento_fkey
-foreign key (idPersona) references proveedor(idPersona);
-
+foreign key (idPersona) references proveedor(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios
@@ -865,8 +857,7 @@ alter table medicina add constraint medicina_pkey
 primary key (idInsumo);
 -- Referencial --
 alter table medicina add constraint medicina_fkey
-foreign key (idPersona) references proveedor(idPersona);
-
+foreign key (idPersona) references proveedor(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -901,10 +892,10 @@ check(idInsumo is not null);
 -- Entidad --
 -- Referencial --
 alter table subministrar add constraint idInsumo_fkey
-foreign key (idInsumo) references medicina(idInsumo);
+foreign key (idInsumo) references medicina(idInsumo)
+ON DELETE CASCADE ON UPDATE CASCADE;
 alter table subministrar add constraint idAnimal_fkey
-foreign key (idAnimal) references animal(idAnimal);
-
+foreign key (idAnimal) references animal(idAnimal)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios--
@@ -933,10 +924,10 @@ check(idBioma is not null);
 -- Entidad --
 -- Referencial --
 alter table jaula add constraint jaula_fkey1
-foreign key(idAnimal) references animal(idAnimal);
+foreign key(idAnimal) references animal(idAnimal)
+ON DELETE CASCADE ON UPDATE CASCADE;
 alter table jaula add constraint jaula_fkey2
-foreign key(idBioma) references bioma(idBioma);
-
+foreign key(idBioma) references bioma(idBioma)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 --Comentarios--
@@ -964,10 +955,10 @@ check(idBioma is not null);
 -- Entidad --
 -- Referencial --
 alter table laborar add constraint laborar_fkey1
-foreign key(idPersona) references veterinario(idPersona);
+foreign key(idPersona) references veterinario(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE laborar ADD CONSTRAINT laborar_fkey2
-foreign key(idBioma) REFERENCES bioma(idBioma);
-
+foreign key(idBioma) REFERENCES bioma(idBioma)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -997,10 +988,10 @@ check(indicacionesMedicas <> '');
 
 -- Referencial --
 ALTER TABLE atender ADD CONSTRAINT idPersona_fkey
-foreign key (idPersona) references veterinario(idPersona);
+foreign key (idPersona) references veterinario(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE atender ADD CONSTRAINT idAnimal_fkey
-foreign key (idAnimal) references animal(idAnimal);
-
+foreign key (idAnimal) references animal(idAnimal)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1030,10 +1021,10 @@ CHECK(idEvento IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE asistirCliente ADD CONSTRAINT idPersona_fkey
-FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
+FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE asistirCliente ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
-
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --   
@@ -1062,10 +1053,10 @@ CHECK(idEvento IS NOT NULL);
 -- Entidad --
 -- Referencial --
 ALTER TABLE asistirVeterinario ADD CONSTRAINT asistirVeterinario_fkey
-FOREIGN KEY (idPersona) REFERENCES veterinario(idPersona);
+FOREIGN KEY (idPersona) REFERENCES veterinario(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE asistirVeterinario ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
-
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios -- 
@@ -1095,10 +1086,10 @@ CHECK(idEvento IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE asistirProveedor ADD CONSTRAINT idPersona_fkey
-FOREIGN KEY (idPersona) REFERENCES proveedor(idPersona);
+FOREIGN KEY (idPersona) REFERENCES proveedor(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE asistirProveedor ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
-
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1127,10 +1118,10 @@ CHECK(idEvento IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE asistirCuidador ADD CONSTRAINT idPersona_fkey
-FOREIGN KEY (idPersona) REFERENCES cuidador(idPersona);
+FOREIGN KEY (idPersona) REFERENCES cuidador(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE asistirCuidador ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
-
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1160,10 +1151,10 @@ CHECK(idServicio IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE ofrecer ADD CONSTRAINT idBioma_fkey
-FOREIGN KEY (idBioma) REFERENCES bioma(idBioma);
+FOREIGN KEY (idBioma) REFERENCES bioma(idBioma)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE ofrecer ADD CONSTRAINT idServicio_fkey
-FOREIGN KEY (idServicio) REFERENCES servicio(idServicio);
-
+FOREIGN KEY (idServicio) REFERENCES servicio(idServicio)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1196,8 +1187,7 @@ ALTER TABLE notificacion ADD CONSTRAINT notificacion_pkey
 PRIMARY KEY (idEvento, idNotificacion);
 -- Referencial --
 ALTER TABLE notificacion ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
-
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1230,12 +1220,13 @@ CHECK(idEvento IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE notificar ADD CONSTRAINT idPersona_fkey
-FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
+FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idNotificacion_fkey
-FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion);
+FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
-
+FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1264,10 +1255,10 @@ CHECK(idInsumo IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE alimentar ADD CONSTRAINT idAnimal_fkey
-FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal);
+FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE alimentar ADD CONSTRAINT idInsumo_fkey
-FOREIGN KEY (idInsumo) REFERENCES alimento(idInsumo);
-
+FOREIGN KEY (idInsumo) REFERENCES alimento(idInsumo)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 --Comentarios--
@@ -1310,10 +1301,10 @@ ALTER TABLE ticket ADD CONSTRAINT ticket_pkey
 PRIMARY KEY (idTicket, idServicio, idPersona);
 -- Referencial --
 ALTER TABLE ticket ADD CONSTRAINT idServicio_fkey
-FOREIGN KEY (idServicio) REFERENCES servicio(idServicio);
+FOREIGN KEY (idServicio) REFERENCES servicio(idServicio)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE ticket ADD CONSTRAINT idPersona_fkey
-FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
-
+FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
