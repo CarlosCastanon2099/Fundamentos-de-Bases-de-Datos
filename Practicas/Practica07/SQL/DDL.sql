@@ -459,7 +459,7 @@ ALTER TABLE evento ADD CONSTRAINT evento_d2 CHECK (capacidad > 0);
 -- Restricción CHECK para la columna "fecha" (formato dd-mm-aaaa hh:mm)
 ALTER TABLE evento ADD CONSTRAINT evento_d3
 CHECK (
-    TO_CHAR(fecha, 'DD-MM-YYYY HH24:MI') ~ '^\d{2}-\d{2}-\d{4} \d{2}:\d{2}$'
+    TO_CHAR(fecha, 'YYYY-MM-DD HH24:MI') ~ '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$'
 );
 alter table evento add constraint evento_d4 check (3 <= char_length(tipoEvento) and char_length(tipoEvento) <= 50);
 
