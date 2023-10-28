@@ -1122,7 +1122,3 @@ INSERT INTO alimento (idInsumo, idPersona, nombre, fechaCaducidad, cantidad, ref
 (110, 10, 'Semillas', '2023-12-10', 450, false, 'semillas'),
 (111, 1, 'Frutas', '2023-10-10', 300, true, 'frutas');
 
-select * from evento;
-
--- select * from alimento
--- where fechaCaducidad between '2023-01-01' and '2023-10-18';
