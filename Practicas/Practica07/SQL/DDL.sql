@@ -922,6 +922,8 @@ check(numJaula is not null);
 alter table jaula add constraint jaula_d3
 check(idBioma is not null);
 -- Entidad --
+alter table jaula add constraint jaula_pkey
+primary key (idAnimal, numJaula);
 -- Referencial --
 alter table jaula add constraint jaula_fkey1
 foreign key(idAnimal) references animal(idAnimal)
@@ -1223,10 +1225,7 @@ ALTER TABLE notificar ADD CONSTRAINT idPersona_fkey
 FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idNotificacion_fkey
-FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion)
-ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE notificar ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento)
+FOREIGN KEY (idNotificacion, idEvento) REFERENCES notificacion(idNotificacion, idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1298,7 +1297,7 @@ CHECK(porcentajeDesc >= 0);
 
 -- Entidad --
 ALTER TABLE ticket ADD CONSTRAINT ticket_pkey
-PRIMARY KEY (idTicket, idServicio, idPersona);
+PRIMARY KEY (idTicket, idServicio);
 -- Referencial --
 ALTER TABLE ticket ADD CONSTRAINT idServicio_fkey
 FOREIGN KEY (idServicio) REFERENCES servicio(idServicio)
