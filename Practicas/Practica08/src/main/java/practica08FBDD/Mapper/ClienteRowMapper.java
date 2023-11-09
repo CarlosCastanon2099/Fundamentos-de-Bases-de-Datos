@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author Mauro E. Chávez
  */
-public class ClienteRowMapper implements RowMapper<Operador>{
+public class ClienteRowMapper implements RowMapper<Cliente>{
 
     @Override
     public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -104,7 +104,7 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
     public void deleteCliente(Cliente cl) {
         final String sql = "DELETE FROM Cliente WHERE idPersona=:idPersona";
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("idPersona",op.getIdPersona());
+        map.put("idPersona",cl.getIdPersona());
             template.execute(sql,map,new PreparedStatementCallback<Object>(){
                 @Override
                 public Object doInPreparedStatement(PreparedStatement ps)

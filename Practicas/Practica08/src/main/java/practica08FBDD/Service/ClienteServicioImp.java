@@ -33,7 +33,7 @@ public class ClienteServicioImp implements ClienteServicio{
 
     @Override
     public void updateCliente(Cliente cl) {
-        clienteRep.updateOperador(op);
+        clienteRep.updateCliente(cl);
     }
 
     @Override

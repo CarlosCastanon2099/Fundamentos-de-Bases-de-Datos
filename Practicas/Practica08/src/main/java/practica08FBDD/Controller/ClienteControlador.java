@@ -4,7 +4,7 @@
  */
 package practica08FBDD.Controller;
 
-import practica08FBDD.Service.OperadorServicio;
+import practica08FBDD.Service.ClienteServicio;
 import practica08FBDD.model.Cliente;
 import jakarta.annotation.Resource;
 import java.util.List;

@@ -17,6 +17,8 @@ public class Cliente {
     private String materno;
     private char genero;
     
+    public Cliente(){}
+    
     /**
      * Constructor por párametros que crea una instancia de la clase Cliente
      * @param idPersona - - El identificador de la persona-cliente
