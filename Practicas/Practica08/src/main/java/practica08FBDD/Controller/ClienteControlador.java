@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/postgressApp")
+@RequestMapping("/postgresApp")
 public class ClienteControlador {
     @Resource
     ClienteServicio clienteSer;

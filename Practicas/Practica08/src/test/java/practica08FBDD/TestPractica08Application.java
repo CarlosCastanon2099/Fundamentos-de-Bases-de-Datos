@@ -16,8 +16,8 @@ public class TestPractica08Application {
 		return new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
 	}
 
-	public static void main(String[] args) {
+	/**public static void main(String[] args) {
 		SpringApplication.from(Practica08Application::main).with(TestPractica08Application.class).run(args);
-	}
+	}*/
 
 }
