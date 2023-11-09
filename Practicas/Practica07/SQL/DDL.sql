@@ -1206,8 +1206,7 @@ COMMENT ON CONSTRAINT idEvento_fkey ON notificacion IS 'Llave foranea que relaci
 -- NOTIFICAR --
 CREATE TABLE notificar (
     IdPersona serial8,
-    idNotificacion serial8,
-    idEvento serial4
+    idNotificacion serial8
 );
 -- Restricciones --
 -- Dominio --
@@ -1215,8 +1214,6 @@ ALTER TABLE notificar ADD CONSTRAINT notificar_d1
 CHECK(idPersona IS NOT NULL);
 ALTER TABLE notificar ADD CONSTRAINT notificar_d2
 CHECK(idNotificacion IS NOT NULL);
-ALTER TABLE notificar ADD CONSTRAINT notificar_d3
-CHECK(idEvento IS NOT NULL);
 
 -- Entidad --
 
@@ -1225,7 +1222,7 @@ ALTER TABLE notificar ADD CONSTRAINT idPersona_fkey
 FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idNotificacion_fkey
-FOREIGN KEY (idNotificacion, idEvento) REFERENCES notificacion(idNotificacion, idEvento)
+FOREIGN KEY (idNotificacion ) REFERENCES notificacion(idNotificacion)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
@@ -1233,11 +1230,9 @@ COMMENT ON TABLE notificar IS 'Tabla que contiene los datos de las notificacione
 
 COMMENT ON COLUMN notificar.idPersona IS 'Identificador de el cliente al que se le envia la notificacion';
 COMMENT ON COLUMN notificar.idNotificacion IS 'Identificador de la notificacion que se le envia al cliente';
-COMMENT ON COLUMN notificar.idEvento IS 'Identificador del evento al que se le envia la notificacion';
-
+    
 COMMENT ON CONSTRAINT notificar_d1 ON notificar IS 'Restriccion check que nos asegura que el id de el cliente no sea nulo';
 COMMENT ON CONSTRAINT notificar_d2 ON notificar IS 'Restriccion check que nos asegura que el id de la notificacion no sea nulo';
-COMMENT ON CONSTRAINT notificar_d3 ON notificar IS 'Restriccion check que nos asegura que el id del evento no sea nulo';
 
 -- ALIMENTAR --
 CREATE TABLE alimentar (
@@ -1321,4 +1316,3 @@ COMMENT ON constraint idPersona_fkey ON ticket IS 'Restriccion que asegura que e
 COMMENT ON CONSTRAINT porcentaje_Desc ON ticket IS 'Restriccion que asegura que el porcentaje de descuento sea mayor o igual a 0';
 
 
--- A --
