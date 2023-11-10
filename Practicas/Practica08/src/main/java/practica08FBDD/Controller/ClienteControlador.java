@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 8 - Noviembre - 2023
  */
 @RestController
-@RequestMapping("/postgressApp")
+@RequestMapping("/postgresApp")
 public class ClienteControlador {
     @Resource
     ClienteServicio clienteSer;
