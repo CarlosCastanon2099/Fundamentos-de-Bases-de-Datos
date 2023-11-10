@@ -23,22 +23,40 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 /**
- *
+ * Implementación concreta de la interfaz que se asegura
+ * que Cliente tenga los métodos necesarios para habilitar
+ * funciones CRUD en la base de datos
  * @author Mauro E. Chávez
+ * @version 8 - Noviembre - 2023
  */
 @Repository
 public class ClienteRepositorioImp implements ClienteRepositorio{
 
     NamedParameterJdbcTemplate template;
     
+    /**
+     * Planilla auxiliar para realizar nuestras peticiones
+     * @param template 
+     */
     public ClienteRepositorioImp(NamedParameterJdbcTemplate template){
         this.template = template;
     }
+    
+    /**
+     * Método que nos regresa una lista con todas las instancias creadas de Cliente
+     * la petición se hace en SQL
+     * @return List<Cliente> - - Una lista con todos los clientes
+     */
     @Override
     public List<Cliente> findAll() {
         return template.query("SELECT * FROM Cliente", new ClienteRowMapper());
     }
-
+    
+    /**
+     * Método que dado un Cliente se encargar de tomar sus párametros y crear
+     * la petición en SQL para su insersición en la base de datos
+     * @param cl - - El cliente que deseamos insertar
+     */
     @Override
     public void insertCliente(Cliente cl) {
         final String sql = "INSERT INTO Cliente(idPersona, nombre, paterno, materno, genero) "
@@ -54,7 +72,13 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
         
     }
     
-
+    
+    /**
+     * Método que dado un Cliente se encarga de actualizar su registro
+     * en la base de datos a traves de su identificador (idPersona),
+     * esto a través de SQL
+     * @param cl - - El cliente que deseamos actualizar
+     */
     @Override
     public void updateCliente(Cliente cl) {
             final String sql = "UPDATE Cliente SET idPersona=:idPersona,"
@@ -72,9 +96,15 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
                 .addValue("genero", cl.getGenero());
         template.update(sql,param,holder);
     }
-
+    
+    /**
+     * Método que dado un Cliente, se encarda de ejecutar la acutalización
+     * en la base de datos creando la petición a través de los datos de 
+     * la instancia Cliente, usando SQL
+     * @param cl - - El cliente a actualizar
+     */
     @Override
-    public void executeUpdateCliente(Cliente op) {
+    public void executeUpdateCliente(Cliente cl) {
         
         final String sql = "UPDATE Cliente SET idPersona=:idPersona,"
                 + "nombre=:nombre,paterno=:paterno,"
@@ -83,11 +113,11 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
                 + "WHERE idPersona=:idPersona";
             
         Map<String,Object> map = new HashMap<String,Object>();
-                map.put("idPersona", op.getIdPersona());
-                map.put("nombre", op.getNombre());
-                map.put("paterno", op.getPaterno());
-                map.put("materno", op.getMaterno());
-                map.put("genero", op.getGenero());
+                map.put("idPersona", cl.getIdPersona());
+                map.put("nombre", cl.getNombre());
+                map.put("paterno", cl.getPaterno());
+                map.put("materno", cl.getMaterno());
+                map.put("genero", cl.getGenero());
                
                 template.execute(sql,map,new PreparedStatementCallback<Object>(){
                     @Override
@@ -100,6 +130,12 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
         
     }
 
+    
+    /**
+     * Método que dado un cliente se encarga de generar la petición en SQL
+     * para borrarlo de la base de datos
+     * @param cl - - El cliente a borrar
+     */
     @Override
     public void deleteCliente(Cliente cl) {
         final String sql = "DELETE FROM Cliente WHERE idPersona=:idPersona";

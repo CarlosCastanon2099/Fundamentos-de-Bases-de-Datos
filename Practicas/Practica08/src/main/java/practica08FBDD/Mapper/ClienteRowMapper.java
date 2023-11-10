@@ -12,11 +12,19 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
- *
+ * Clase auxiliar en el mapeo de los valores de un RowMapper a una instancia de Cliente
  * @author Mauro E. Chávez
+ * @version 8 - Noviembre - 2023
  */
 public class ClienteRowMapper implements RowMapper<Cliente>{
-
+    
+    /**
+     * Metodo que utiliza los valores del row mapper para crear la instancia Cliente
+     * @param rs - - La estructura resultado de ir agregando los campos
+     * @param rowNum - - El numero de filas que posee
+     * @return cl - - El cliente una vez que se ha terminado el mapeo
+     * @throws SQLException 
+     */
     @Override
     public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
         Cliente cl = new Cliente();

@@ -8,8 +8,9 @@ import practica08FBDD.model.Cliente;
 import java.util.List;
 
 /**
- *
+ * Método que sirve para proporcionar el servicio web de la base de datos
  * @author Mauro E. Chávez
+ * @version 9-Nov-2023
  */
 public interface ClienteServicio {
     List<Cliente> findAll();
