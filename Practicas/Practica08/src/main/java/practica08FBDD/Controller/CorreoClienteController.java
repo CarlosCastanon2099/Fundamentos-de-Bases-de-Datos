@@ -15,20 +15,31 @@ import practica08FBDD.Service.CorreoClienteServicio;
 import practica08FBDD.model.CorreoCliente;
 
 /**
- *
- * @author crgal
+ * La clase CorreoClienteController maneja las solicitudes REST relacionadas con la entidad CorreoCliente.
+ * Las solicitudes se mapean a la ruta "/postgresApp".
+ * @author Cristian Gallegos
+ * @version 8 - Noviembre - 2023
  */
 @RestController
 @RequestMapping("/postgresApp")
 public class CorreoClienteController {
-    @Resource
-    CorreoClienteServicio correoClienteS;
     
+    @Resource
+    CorreoClienteServicio correoClienteS; // Servicio para acceder a CorreoCliente.
+    
+    /**
+     * Maneja las solicitudes GET a "/correoClienteList" para obtener la lista de CorreosClientes.
+     * @return Lista de CorreosClientes almacenados en la base de datos.
+     */
     @GetMapping(value="/correoClienteList")
     public List<CorreoCliente> getCorreosClientes () {
         return correoClienteS.findAll();
     }
     
+    /**
+     * Maneja las solicitudes POST a "/createCorreoCliente" para crear un nuevo CorreoCliente.
+     * @param cc Objeto CorreoCliente recibido en el cuerpo de la solicitud.
+     */
     @PostMapping(value="createCorreoCliente")
     public void createCorreoCliente(@RequestBody CorreoCliente cc) {
         correoClienteS.insertCorreoCliente(cc);
