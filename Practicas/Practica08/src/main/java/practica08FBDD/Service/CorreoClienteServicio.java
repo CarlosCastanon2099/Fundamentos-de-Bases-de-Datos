@@ -13,13 +13,33 @@ import practica08FBDD.model.CorreoCliente;
  */
 public interface CorreoClienteServicio {
     
-    List<CorreoCliente> findAll();
+    /**
+     * Recupera todos los registros de CorreoCliente desde la base de datos.
+     * @return Lista de objetos CorreoCliente.
+     */
+    public List<CorreoCliente> findAll();
     
+    /**
+     * Inserta un nuevo registro de CorreoCliente en la base de datos.
+     * @param cc Objeto CorreoCliente a ser insertado.
+     */
     public void insertCorreoCliente(CorreoCliente cc);
     
+    /**
+     * Actualiza un registro existente de CorreoCliente en la base de datos.
+     * @param cc Objeto CorreoCliente con los datos actualizados.
+     */
     public void updateCorreoCliente(CorreoCliente cc);
     
+    /**
+     * Método que actualiza el CorreoCliente en el servicio web
+     * @param cc El CorreoCliente que se actualiza en el servicio web.
+     */
     public void executeUpdateCorreoCliente(CorreoCliente cc);
     
+    /**
+     * Elimina un registro de CorreoCliente de la base de datos.
+     * @param cc Objeto CorreoCliente a ser eliminado.
+     */
     public void deleteCorreoCliente(CorreoCliente cc);
 }
