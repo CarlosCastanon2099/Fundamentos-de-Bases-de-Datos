@@ -8,12 +8,18 @@ package practica08FBDD.model;
  * Una representación de la entidad CorreoCliente en el zoológico
  * @author Cristian Gallegos
  * @version 8 - Noviembre - 2023
+ * @author Pablo - Arizdelcy - Carlos
+ * @version 10 - Noviembre - 2023
  */
 public class CorreoCliente {
     
     private Integer idPersona;
     private String correo;
     
+    public CorreoCliente(){
+        
+    };
+
     /**
      * Constructor de la clase CorreoCliente.
      * @param idPersona Identificador único de la persona.

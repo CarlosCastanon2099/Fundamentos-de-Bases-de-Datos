@@ -27,10 +27,9 @@ public class CorreoClienteRowMapper implements RowMapper<CorreoCliente> {
      */
     @Override
     public CorreoCliente mapRow(ResultSet rs, int rowNum) throws SQLException {
-        CorreoCliente cc = new CorreoCliente(
-                rs.getInt("idPersona"),
-                rs.getString("correo")
-        );
+        CorreoCliente cc = new CorreoCliente();
+        cc.setIdPersona(rs.getInt("idPersona"));
+        cc.setCorreo(rs.getString("correo"));            
         return cc;
     }
 }

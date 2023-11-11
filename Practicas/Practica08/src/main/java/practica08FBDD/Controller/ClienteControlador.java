@@ -38,6 +38,15 @@ public class ClienteControlador {
    public List<Cliente> getClientes(){
        return clienteSer.findAll();
    }
+
+    /**
+     * Metodo getter que nos regresa un cliente en especifico por el idCliente
+     * @param cl - - El cliente que queremos buscar en la base de datos
+     */
+   @GetMapping(value="/getClienteById")
+   public List<Cliente> getClienteById(@RequestBody Cliente cl){
+       return clienteSer.getClienteById(cl);
+   }
    
    /**
     * Metodo que agrega una instancia de la clase Cliente a la base de datos

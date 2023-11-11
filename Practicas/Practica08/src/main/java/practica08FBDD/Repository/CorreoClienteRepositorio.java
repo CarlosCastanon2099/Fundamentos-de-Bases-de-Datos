@@ -23,6 +23,13 @@ public interface CorreoClienteRepositorio {
     public List<CorreoCliente> findAll();
     
     /**
+     * Recupera un registro en particular.
+     * @return Lista de objetos CorreoCliente con el registro en especifico.
+     */
+    public List<CorreoCliente> getCorreoClienteById(CorreoCliente cc);
+    
+
+    /**
      * Inserta un nuevo registro de CorreoCliente en la base de datos.
      * @param cc Objeto CorreoCliente a ser insertado.
      */

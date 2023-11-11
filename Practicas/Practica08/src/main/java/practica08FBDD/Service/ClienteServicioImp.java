@@ -29,7 +29,15 @@ public class ClienteServicioImp implements ClienteServicio{
     public List<Cliente> findAll() {
         return clienteRep.findAll();
     }
-   
+    
+    /**
+     * Metodo para regresar el registro del id que estemos buscano
+     * @param cl - - El cliente que estamos buscando en el servicio web
+     */
+    public List<Cliente> getClienteById(Cliente cl) {
+        return clienteRep.getClienteById(cl);
+    }
+
     /**
      * Método que inserta el cliente en el servicio web
      * @param cl - - El cliente que queremos insertar en el servicio web
@@ -64,4 +72,5 @@ public class ClienteServicioImp implements ClienteServicio{
     public void deleteCliente(Cliente cl) {
         clienteRep.deleteCliente(cl);
     }
+
 }

@@ -9,12 +9,14 @@ import practica08FBDD.model.Cliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -53,6 +55,17 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
     }
     
     /**
+     * Método para regresar un registro en especifico
+     * @return List<Cliente> - - Una lista con el registro en cuestión.
+     */
+    @Override
+    public List<Cliente> getClienteById(Cliente cl) {
+        String sql = "SELECT * FROM correoCliente WHERE idPersona=";
+        sql = sql + cl.getIdPersona();
+        return template.query(sql, new ClienteRowMapper());
+    }
+    
+    /**
      * Método que dado un Cliente se encargar de tomar sus párametros y crear
      * la petición en SQL para su insersición en la base de datos
      * @param cl - - El cliente que deseamos insertar
@@ -84,7 +97,7 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
             final String sql = "UPDATE Cliente SET idPersona=:idPersona,"
                 + "nombre=:nombre,paterno=:paterno,"
                 + "materno=:materno,"
-                + "genero=:genero"
+                + "genero=:genero "
                 + "WHERE idPersona=:idPersona";
             
         KeyHolder holder = new GeneratedKeyHolder();
@@ -125,9 +138,7 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
                             throws SQLException, DataAccessException{
                         return ps.executeUpdate();
                     }
-                    
                 });
-        
     }
 
     
@@ -147,7 +158,6 @@ public class ClienteRepositorioImp implements ClienteRepositorio{
                     throws SQLException, DataAccessException{
                     return ps.executeUpdate();
                 }
-                    
             });
     }
     

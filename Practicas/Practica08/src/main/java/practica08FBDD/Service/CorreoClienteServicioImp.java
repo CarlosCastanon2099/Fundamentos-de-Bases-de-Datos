@@ -8,6 +8,7 @@ import jakarta.annotation.Resource;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import practica08FBDD.Repository.CorreoClienteRepositorio;
+import practica08FBDD.model.Cliente;
 import practica08FBDD.model.CorreoCliente;
 
 /**
@@ -31,6 +32,14 @@ public class CorreoClienteServicioImp implements CorreoClienteServicio {
         return correoClienteRep.findAll();
     }
 
+    /**
+     * Metodo getter que nos regresa un correoCliente en especifico por el idCliente
+     */
+    @Override
+    public List<CorreoCliente> getCorreoClienteById(CorreoCliente cc){
+        return correoClienteRep.getCorreoClienteById(cc);
+    }
+    
     /**
      * Inserta un nuevo registro de CorreoCliente en la base de datos.
      * @param cc Objeto CorreoCliente a ser insertado.

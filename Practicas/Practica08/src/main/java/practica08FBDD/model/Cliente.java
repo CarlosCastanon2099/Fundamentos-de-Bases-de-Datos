@@ -8,6 +8,8 @@ package practica08FBDD.model;
  * Una representación de la entidad cliente en el zoológico
  * @author Mauro E. Chávez
  * @version 8 - Noviembre - 2023
+ * @author Pablo - Arizdelcy - Carlos
+ * @version 10 - Noviembre - 2023
  */
 public class Cliente {
 
