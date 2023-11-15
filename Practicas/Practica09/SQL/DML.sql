@@ -2139,7 +2139,27 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (17, 'Elefante Asiatico', 'Elephas maximus', 'Herbivoro', 'H', 4000, 2.7, 41),
 (18, 'Tortuga Marina', 'Chelonia mydas', 'Omnivoro', 'H', 150, 0.9, 26),
 (19, 'Pinguino Emperador', 'Aptenodytes forsteri', 'Piscivoro', 'M', 40, 1.1, 95),
-(20, 'Rinoceronte Blanco', 'Ceratotherium simum', 'Herbivoro', 'M', 2300, 1.8, 36);
+(20, 'Rinoceronte Blanco', 'Ceratotherium simum', 'Herbivoro', 'M', 2300, 1.8, 36),
+(21, 'Canario', 'Serinus canaria', 'Granívoro', 'M', 0.02, 0.1, 21),
+(22, 'Tucán', 'Ramphastidae', 'Frugívoro', 'H', 0.5, 0.4, 22),
+(23, 'Pavo real', 'Pavo cristatus', 'Omnívoro', 'M', 6, 1.2, 23),
+(24, 'Colibrí de garganta rubí', 'Archilochus colubris', 'Nectarívoro', 'H', 0.004, 0.1, 24),
+(25, 'Búho real', 'Bubo bubo', 'Carnívoro', 'M', 4, 0.6, 25),
+(26, 'Águila calva', 'Haliaeetus leucocephalus', 'Carnívoro', 'H', 6.3, 0.8, 26),
+(27, 'Cigüeña blanca', 'Ciconia ciconia', 'Omnívoro', 'M', 4.5, 1.2, 27),
+(28, 'Flamenco rosa', 'Phoenicopterus roseus', 'Omnívoro', 'H', 3.5, 1.4, 28),
+(29, 'Cuervo común', 'Corvus corax', 'Omnívoro', 'M', 1.2, 0.7, 29),
+(30, 'Albatros errante', 'Diomedea exulans', 'Piscívoro', 'H', 8.5, 2.1, 30),
+(31, 'Loro', 'Psittacoidea', 'Omnívoro', 'M', 0.3, 0.3, 31),
+(32, 'Gavilán', 'Accipiter gentilis', 'Carnívoro', 'H', 1, 0.5, 32),
+(33, 'Perico', 'Melopsittacus undulatus', 'Granívoro', 'M', 0.03, 0.2, 33),
+(34, 'Ave del Paraíso', 'Paradisaeidae', 'Frugívoro', 'H', 0.1, 0.3, 34),
+(35, 'Lechuza común', 'Tyto alba', 'Carnívoro', 'M', 0.5, 0.4, 35),
+(36, 'Cardenal norteño', 'Cardinalis cardinalis', 'Granívoro', 'H', 0.03, 0.2, 36),
+(37, 'Pájaro carpintero', 'Picidae', 'Insectívoro', 'M', 0.1, 0.3, 37),
+(38, 'Gorrión', 'Passeridae', 'Omnívoro', 'H', 0.02, 0.1, 38),
+(39, 'Avestruz', 'Struthio camelus', 'Omnívoro', 'M', 100, 2.5, 39),
+(40, 'Halcón peregrino', 'Falco peregrinus', 'Carnívoro', 'H', 1, 0.4, 40);
 
 
 
@@ -2164,7 +2184,19 @@ INSERT INTO jaula (numJaula, idAnimal, idBioma) VALUES
 (17, 17, 7),
 (18, 18, 7),
 (19, 19, 4),
-(20, 20, 7);
+(20, 20, 7),
+(21, 21, 5),
+(22, 22, 5),
+(23, 23, 5),
+(24, 24, 5),
+(25, 25, 5),
+(26, 26, 5),
+(27, 27, 5),
+(28, 28, 6),
+(29, 29, 4),
+(30, 30, 3),
+(31, 31, 2),
+(32, 32, 1);
 
 
 -- REGISTRO PARA ALIMENTAR
@@ -2188,7 +2220,19 @@ INSERT INTO alimentar (idAnimal, idInsumo) VALUES
 (17, 106), 
 (18, 36),
 (19, 41),
-(20, 52);
+(20, 52),
+(21, 10), 
+(22, 19), 
+(23, 26), 
+(24, 34), 
+(25, 42), 
+(26, 49),
+(27, 54), 
+(28, 62), 
+(29, 72), 
+(30, 80),
+(31, 92), 
+(32, 110);
 
 -- REGISTRO PARA ATENDER
 INSERT INTO atender (idPersona, idAnimal, indicacionesMedicas) VALUES
