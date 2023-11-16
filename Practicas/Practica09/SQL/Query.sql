@@ -22,30 +22,28 @@ SELECT
     refrigeracion,
     tipoalim,
     b.tipobioma
-FROM (
-    SELECT 
+FROM (SELECT 
         s.*,
         j.idbioma
-    FROM (
-        SELECT 
+    FROM (SELECT 
             r.*
-        FROM (
-            SELECT 
-                al.*, 
-                alr.idanimal
-            FROM 
-                (SELECT * FROM alimento WHERE tipoalim = 'semillas') AS al,
+            FROM (SELECT 
+                    al.*, 
+                    alr.idanimal
+                FROM (SELECT * 
+                        FROM alimento 
+                        WHERE tipoalim = 'semillas'
+                ) AS al,
                 alimentar AS alr
-            WHERE (al.idinsumo = alr.idinsumo)
-        ) AS r,
-        animal AS a
-        WHERE (r.idanimal = a.idanimal)
+                WHERE (al.idinsumo = alr.idinsumo)
+            ) AS r,
+            animal AS a
+            WHERE (r.idanimal = a.idanimal)
     ) AS s,
     jaula AS j
     WHERE (s.idanimal = j.idanimal)
 ) AS t,
-(
-    SELECT * 
+(SELECT * 
     FROM bioma 
     WHERE (tipobioma = 'Aviario')
 ) AS b
@@ -65,8 +63,7 @@ SELECT *
 FROM bioma
 WHERE idbioma 
 IN (SELECT idBioma 
-    FROM
-    (SELECT idBioma, count(idAnimal) as num_animales 
-        FROM jaula  
-        GROUP BY idBioma)
-        WHERE num_animales >= 10);
+    FROM (SELECT idBioma, count(idAnimal) as num_animales 
+            FROM jaula  
+            GROUP BY idBioma) as conteo
+    WHERE num_animales >= 10);
