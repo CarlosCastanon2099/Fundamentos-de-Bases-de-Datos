@@ -2124,26 +2124,23 @@ INSERT INTO alimento (idInsumo, idPersona, nombre, fechaCaducidad, cantidad, ref
 -- REGISTRO PARA ANIMALES
 INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura, idPersona) VALUES
 -- Desierto
-(1, 'Leon', 'Africano', 'Carnivoro', 'M', 180, 1.2, 96),
-(2, 'Tigre', 'Siberiano', 'Carnivoro', 'H', 250, 1.3, 86),
+-- Pastizales
+-- (1, 'Leon', 'Africano', 'Carnivoro', 'M', 180, 1.2, 96), ??
 (3, 'Elefante', 'Africano', 'Herbivoro', 'M', 4500, 3.5, 68),
 (4, 'Jirafa', 'Reticulada', 'Herbivoro', 'H', 1200, 6.1, 90),
-(5, 'Mono', 'Capuchino', 'Omnivoro', 'M', 4, 1.2, 50),
 (6, 'Cebra', 'Perisodactilo', 'Herbivoro', 'H', 450, 1.5, 99),
-(7, 'Tigre Siberiano', 'Panthera tigris', 'Carnivoro', 'M', 798, 1.7, 58),
-(8, 'Oso Polar', 'Ursus maritimus', 'Carnivoro', 'H', 450, 2.5, 63),
 (9, 'Hipopotamo', 'Hippopotamus amphibius', 'Herbivoro', 'M', 1500, 1.8, 69),
-(10, 'Gorila', 'Gorilla gorilla', 'Omnivoro', 'M', 200, 1.1, 25),
-(11, 'Leopardo', 'Panthera pardus', 'Carnivoro', 'H', 90, 0.9, 43),
-(12, 'Panda', 'Ailuropoda melanoleuca', 'Herbivoro', 'M', 160, 1.0, 73),
-(13, 'Koala', 'Phascolarctos cinereus', 'Herbivoro', 'H', 8, 0.6, 15),
-(14, 'Lobo Gris', 'Canis lupus', 'Carnivoro', 'M', 35, 0.8, 65),
 (15, 'Canguro', 'Macropus rufus', 'Herbivoro', 'H', 55, 1.5, 17),
-(16, 'Orangutan', 'Pongo pygmaeus', 'Frugivoro', 'M', 80, 1.2, 62),
 (17, 'Elefante Asiatico', 'Elephas maximus', 'Herbivoro', 'H', 4000, 2.7, 41),
-(18, 'Tortuga Marina', 'Chelonia mydas', 'Omnivoro', 'H', 150, 0.9, 26),
-(19, 'Pinguino Emperador', 'Aptenodytes forsteri', 'Piscivoro', 'M', 40, 1.1, 95),
 (20, 'Rinoceronte Blanco', 'Ceratotherium simum', 'Herbivoro', 'M', 2300, 1.8, 36),
+-- Franja costera
+(18, 'Tortuga Marina', 'Chelonia mydas', 'Omnivoro', 'H', 150, 0.9, 26),
+--(19, 'Pinguino Emperador', 'Aptenodytes forsteri', 'Piscivoro', 'M', 40, 1.1, 95),?? quizás podemos hacerlo pinguino del cabo
+-- Tundra
+-- (2, 'Tigre', 'Siberiano', 'Carnivoro', 'H', 250, 1.3, 86), cambiarlo??
+-- (7, 'Tigre Siberiano', 'Panthera tigris', 'Carnivoro', 'M', 798, 1.7, 58),
+--(14, 'Lobo Gris', 'Canis lupus', 'Carnivoro', 'M', 35, 0.8, 65),?? quizas podemos hacerlo de tundra
+-- Aviario
 (21, 'Canario', 'Serinus canaria', 'Granívoro', 'M', 0.02, 0.1, 21),
 (22, 'Tucán', 'Ramphastidae', 'Frugívoro', 'H', 0.5, 0.4, 22),
 (23, 'Pavo real', 'Pavo cristatus', 'Omnívoro', 'M', 6, 1.2, 23),
@@ -2163,7 +2160,17 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (37, 'Pájaro carpintero', 'Picidae', 'Insectívoro', 'M', 0.1, 0.3, 37),
 (38, 'Gorrión', 'Passeridae', 'Omnívoro', 'H', 0.02, 0.1, 38),
 (39, 'Avestruz', 'Struthio camelus', 'Omnívoro', 'M', 100, 2.5, 39),
-(40, 'Halcón peregrino', 'Falco peregrinus', 'Carnívoro', 'H', 1, 0.4, 40);
+(40, 'Halcón peregrino', 'Falco peregrinus', 'Carnívoro', 'H', 1, 0.4, 40),
+-- Bosque templado
+(11, 'Leopardo', 'Panthera pardus', 'Carnivoro', 'H', 90, 0.9, 43),
+(12, 'Panda', 'Ailuropoda melanoleuca', 'Herbivoro', 'M', 160, 1.0, 73),
+(13, 'Koala', 'Phascolarctos cinereus', 'Herbivoro', 'H', 8, 0.6, 15),
+-- (8, 'Oso Polar', 'Ursus maritimus', 'Carnivoro', 'H', 450, 2.5, 63),
+-- Bosque tropical
+(5, 'Mono', 'Capuchino', 'Omnivoro', 'M', 4, 1.2, 50),
+(10, 'Gorila', 'Gorilla gorilla', 'Omnivoro', 'M', 200, 1.1, 25),
+(16, 'Orangutan', 'Pongo pygmaeus', 'Frugivoro', 'M', 80, 1.2, 62);
+
 
 
 

@@ -49,9 +49,6 @@ FROM (SELECT
 ) AS b
 WHERE (t.idbioma = b.idbioma);
 
-
-
-
 -- iv. Consulta para saber que cuidadores y proveedores tienen el mismo estado
 SELECT c.nombre AS cuidador, p.nombre AS proveedor, c.estado
 FROM cuidador c, proveedor p
