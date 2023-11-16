@@ -58,3 +58,15 @@ WHERE (t.idbioma = b.idbioma);
 SELECT c.nombre AS cuidador, p.nombre AS proveedor, c.estado
 FROM cuidador c, proveedor p
 WHERE c.estado = p.estado;
+
+-- v. Consulta de Biomas que poseean al menos 10 animales
+
+SELECT * 
+FROM bioma
+WHERE idbioma 
+IN (SELECT idBioma 
+    FROM
+    (SELECT idBioma, count(idAnimal) as num_animales 
+        FROM jaula  
+        GROUP BY idBioma)
+        WHERE num_animales >= 10);
