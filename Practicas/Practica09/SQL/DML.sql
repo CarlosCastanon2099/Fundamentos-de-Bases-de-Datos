@@ -2124,6 +2124,16 @@ INSERT INTO alimento (idInsumo, idPersona, nombre, fechaCaducidad, cantidad, ref
 -- REGISTRO PARA ANIMALES
 INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura, idPersona) VALUES
 -- 1) Desierto
+(41, 'Coyote', 'Canis latrans', 'Omnívoro', 'M', 20, 0.6, 72),
+(42, 'Camello', 'Camelus', 'Herbivoro', 'H', 900, 2.2, 45),
+(43, 'Serpiente de Cascabel', 'Crotalus', 'Carnivoro', 'H', 5, 0.3, 54),
+(44, 'Jabalí del Desierto', 'Sus scrofa', 'Omnívoro', 'H', 30, 0.7, 60),
+(45, 'Guepardo', 'Acinonyx jubatus', 'Carnivoro', 'M', 65, 0.9, 80),
+(46, 'Ave del Roadrunner', 'Geococcyx californianus', 'Omnívoro', 'M', 1, 0.3, 35),
+(47, 'Iguana del Desierto', 'Dipsosaurus dorsalis', 'Herbivoro', 'H', 2, 0.4, 30),
+(48, 'Fénec', 'Vulpes zerda', 'Omnívoro', 'H', 3, 0.3, 25),
+(49, 'Águila Real', 'Aquila chrysaetos', 'Carnivoro', 'H', 5, 0.7, 70),
+(50, 'Escarabajo del Desierto', 'Eleodes', 'Herbivoro', 'M', 0.1, 0.1, 42),
 
 
 -- 2) Pastizales
@@ -2135,17 +2145,42 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (15, 'Canguro', 'Macropus rufus', 'Herbivoro', 'H', 55, 1.5, 17),
 (17, 'Elefante Asiatico', 'Elephas maximus', 'Herbivoro', 'H', 4000, 2.7, 41),
 (20, 'Rinoceronte Blanco', 'Ceratotherium simum', 'Herbivoro', 'M', 2300, 1.8, 36),
+(80, 'Gacela', 'Gazella', 'Herbívoro', 'H', 60, 1.0, 75), ----------------
+(81, 'Ñandú', 'Rhea', 'Herbívoro', 'M', 40, 1.7, 55),
+
 
 -- 3) Franja costera
 (18, 'Tortuga Marina', 'Chelonia mydas', 'Omnivoro', 'H', 150, 0.9, 26),
+(51, 'León Marino', 'Otariinae', 'Piscívoro', 'M', 300, 1.8, 75),
+(52, 'Tortuga Marina', 'Cheloniidae', 'Herbívoro', 'H', 150, 1.2, 58),
+(53, 'Pelícano', 'Pelecanidae', 'Piscívoro', 'H', 5, 0.5, 72),
+(54, 'Cangrejo Ermitaño', 'Paguroidea', 'Omnívoro', 'M', 0.2, 0.1, 40),
+(55, 'Delfín Nariz de Botella', 'Tursiops truncatus', 'Piscívoro', 'M', 200, 2.0, 65),
+(56, 'Gaviota', 'Laridae', 'Omnívoro', 'H', 1, 0.4, 48),
+(57, 'Pulpo de Anillos Azules', 'Hapalochlaena', 'Carnívoro', 'M', 0.3, 0.2, 30),
+(58, 'Tiburón Martillo', 'Sphyrnidae', 'Piscívoro', 'H', 400, 2.5, 58),
+(59, 'Cangrejo Violinista', 'Uca', 'Omnívoro', 'M', 0.1, 0.1, 25),
+(60, 'Tortuga Carey', 'Eretmochelys imbricata', 'Herbívoro', 'H', 80, 0.8, 55),
 
 
 -- 4) Tundra
-(2, 'Tigre', 'Siberiano', 'Carnivoro', 'H', 250, 1.3, 86), 
+(2, 'Tigre', 'Polar', 'Carnivoro', 'H', 250, 1.3, 86), 
 (7, 'Oso Polar', 'Ursus maritimus', 'Carnivoro', 'H', 450, 2.5, 63),
 (8, 'Zorro Artico', 'Vulpes lagopus', 'Carnivoro', 'M', 10, 0.5, 52),
 (14, 'Lobo Gris', 'Canis lupus', 'Carnivoro', 'M', 35, 0.8, 65),
 (19, 'Pinguino Emperador', 'Aptenodytes forsteri', 'Piscivoro', 'M', 40, 1.1, 95),
+(71, 'Lemming', 'Lemmus', 'Herbívoro', 'M', 0.1, 0.1, 15),
+(72, 'Búho Nival', 'Bubo scandiacus', 'Carnívoro', 'H', 2, 0.3, 40),
+(73, 'Caribú', 'Rangifer tarandus', 'Herbívoro', 'H', 180, 1.2, 55),
+(74, 'Oso Polar', 'Ursus maritimus', 'Carnívoro', 'H', 450, 2.5, 63),
+(75, 'Ánsar Nival', 'Anser indicus', 'Herbívoro', 'M', 8, 0.6, 45),
+(76, 'Renacuajo de Salamandra', 'Ambystoma maculatum', 'Carnívoro', 'H', 0.02, 0.05, 18),
+(77, 'Gaviota Tridáctila', 'Rissa tridactyla', 'Piscívoro', 'H', 0.5, 0.4, 35),
+(78, 'Morsa', 'Odobenus rosmarus', 'Piscívoro', 'H', 1500, 3.0, 70),
+(79, 'Liebre Ártica', 'Lepus arcticus', 'Herbívoro', 'M', 4, 0.3, 35),
+
+
+
 
 
 -- 5) Aviario
@@ -2174,6 +2209,16 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (11, 'Leopardo', 'Panthera pardus', 'Carnivoro', 'H', 90, 0.9, 43),
 (12, 'Panda', 'Ailuropoda melanoleuca', 'Herbivoro', 'M', 160, 1.0, 73),
 (13, 'Koala', 'Phascolarctos cinereus', 'Herbivoro', 'H', 8, 0.6, 15),
+(61, 'Ciervo de Virginia', 'Odocoileus virginianus', 'Herbívoro', 'H', 150, 1.5, 60),
+(62, 'Ardilla Gris', 'Sciurus carolinensis', 'Omnívoro', 'M', 0.5, 0.3, 25),
+(63, 'Lince Rojo', 'Lynx rufus', 'Carnívoro', 'H', 10, 0.6, 40),
+(64, 'Mapache', 'Procyon lotor', 'Omnívoro', 'M', 7, 0.4, 30),
+(65, 'Lechuza Común', 'Tyto alba', 'Carnívoro', 'H', 1, 0.3, 40),
+(66, 'Oso Negro', 'Ursus americanus', 'Omnívoro', 'H', 300, 1.8, 70),
+(67, 'Zorro Rojo', 'Vulpes vulpes', 'Omnívoro', 'M', 8, 0.5, 35),
+(68, 'Ave Carpintera', 'Picidae', 'Omnívoro', 'H', 0.2, 0.2, 25),
+(69, 'Castor Americano', 'Castor canadensis', 'Herbívoro', 'M', 20, 1.0, 45),
+(70, 'Coyote del Este', 'Canis latrans thamnos', 'Omnívoro', 'M', 25, 0.7, 50),
 -- 
 
 -- 7) Bosque tropical
@@ -2225,7 +2270,50 @@ INSERT INTO jaula (numJaula, idAnimal, idBioma) VALUES
 (37, 37, 5),
 (38, 38, 5),
 (39, 39, 5),
-(40, 40, 5);
+(40, 40, 5),
+(41, 41, 1),
+(42, 42, 1),
+(43, 43, 1),
+(44, 44, 1),
+(45, 45, 1),
+(46, 46, 1),
+(47, 47, 1),
+(48, 48, 1),
+(49, 49, 1),
+(50, 50, 1),
+(51, 51, 3),
+(52, 52, 3),
+(53, 53, 3),
+(54, 54, 3),
+(55, 55, 3),
+(56, 56, 3),
+(57, 57, 3),
+(58, 58, 3),
+(59, 59, 3),
+(60, 60, 3),
+(61, 61, 6),
+(62, 62, 6),
+(63, 63, 6),
+(64, 64, 6),
+(65, 65, 6),
+(66, 66, 6),
+(67, 67, 6),
+(68, 68, 6),
+(69, 69, 6),
+(70, 70, 6),
+(71, 71, 4),
+(72, 72, 4),
+(73, 73, 4),
+(74, 74, 4),
+(75, 75, 4),
+(76, 76, 4),
+(77, 77, 4),
+(78, 78, 4),
+(79, 79, 4),
+(80, 80, 2),
+(81, 81, 2);
+
+
 
 
 -- REGISTRO PARA ALIMENTAR
