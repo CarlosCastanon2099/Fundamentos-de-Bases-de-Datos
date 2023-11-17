@@ -10,6 +10,17 @@ FROM veterinario v, cuidador c
 WHERE v.paterno = c.paterno OR v.materno = c.materno
 
 
+-- II. Consulta para saber que animales herbivoros se encuentran en el bosque templado
+SELECT 
+    a.nombre AS animal,
+    b.tipobioma AS bioma
+FROM 
+    animal a, jaula j, bioma b
+WHERE 
+    a.idanimal = j.idanimal AND 
+    j.idbioma = b.idbioma AND 
+    a.alimentacion = 'Herbivoro' AND 
+    b.tipobioma = 'Bosque templado';
 
 
   
