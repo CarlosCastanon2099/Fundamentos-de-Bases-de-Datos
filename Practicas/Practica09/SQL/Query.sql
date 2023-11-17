@@ -1,4 +1,4 @@
--- i. Consulta para saber que veterinarios y cuidadores comparten el apellido
+-- I. Consulta para saber que veterinarios y cuidadores comparten el apellido
 SELECT 
     v.nombre AS veterinario, 
     c.nombre AS cuidador, 
@@ -8,6 +8,7 @@ SELECT
     c.materno AS CuiMat
 FROM veterinario v, cuidador c
 WHERE v.paterno = c.paterno OR v.materno = c.materno
+
 
 
 
@@ -49,13 +50,13 @@ FROM (SELECT
 ) AS b
 WHERE (t.idbioma = b.idbioma);
 
--- iv. Consulta para saber que cuidadores y proveedores tienen el mismo estado
+-- IV. Consulta para saber que cuidadores y proveedores tienen el mismo estado
 SELECT c.nombre AS cuidador, p.nombre AS proveedor, c.estado
 FROM cuidador c, proveedor p
 WHERE c.estado = p.estado;
 
--- v. Consulta de Biomas que poseean al menos 10 animales
 
+-- V. Consulta de Biomas que poseean al menos 10 animales
 SELECT * 
 FROM bioma
 WHERE idbioma 
@@ -64,3 +65,4 @@ IN (SELECT idBioma
             FROM jaula  
             GROUP BY idBioma) as conteo
     WHERE num_animales >= 10);
+

@@ -2123,9 +2123,11 @@ INSERT INTO alimento (idInsumo, idPersona, nombre, fechaCaducidad, cantidad, ref
 
 -- REGISTRO PARA ANIMALES
 INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura, idPersona) VALUES
--- Desierto
--- Pastizales
--- (1, 'Leon', 'Africano', 'Carnivoro', 'M', 180, 1.2, 96), ??
+-- 1) Desierto
+
+
+-- 2) Pastizales
+(1, 'Leon', 'Africano', 'Carnivoro', 'M', 180, 1.2, 96), 
 (3, 'Elefante', 'Africano', 'Herbivoro', 'M', 4500, 3.5, 68),
 (4, 'Jirafa', 'Reticulada', 'Herbivoro', 'H', 1200, 6.1, 90),
 (6, 'Cebra', 'Perisodactilo', 'Herbivoro', 'H', 450, 1.5, 99),
@@ -2133,14 +2135,20 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (15, 'Canguro', 'Macropus rufus', 'Herbivoro', 'H', 55, 1.5, 17),
 (17, 'Elefante Asiatico', 'Elephas maximus', 'Herbivoro', 'H', 4000, 2.7, 41),
 (20, 'Rinoceronte Blanco', 'Ceratotherium simum', 'Herbivoro', 'M', 2300, 1.8, 36),
--- Franja costera
+
+-- 3) Franja costera
 (18, 'Tortuga Marina', 'Chelonia mydas', 'Omnivoro', 'H', 150, 0.9, 26),
---(19, 'Pinguino Emperador', 'Aptenodytes forsteri', 'Piscivoro', 'M', 40, 1.1, 95),?? quizás podemos hacerlo pinguino del cabo
--- Tundra
--- (2, 'Tigre', 'Siberiano', 'Carnivoro', 'H', 250, 1.3, 86), cambiarlo??
--- (7, 'Tigre Siberiano', 'Panthera tigris', 'Carnivoro', 'M', 798, 1.7, 58),
---(14, 'Lobo Gris', 'Canis lupus', 'Carnivoro', 'M', 35, 0.8, 65),?? quizas podemos hacerlo de tundra
--- Aviario
+
+
+-- 4) Tundra
+(2, 'Tigre', 'Siberiano', 'Carnivoro', 'H', 250, 1.3, 86), 
+(7, 'Oso Polar', 'Ursus maritimus', 'Carnivoro', 'H', 450, 2.5, 63),
+(8, 'Zorro Artico', 'Vulpes lagopus', 'Carnivoro', 'M', 10, 0.5, 52),
+(14, 'Lobo Gris', 'Canis lupus', 'Carnivoro', 'M', 35, 0.8, 65),
+(19, 'Pinguino Emperador', 'Aptenodytes forsteri', 'Piscivoro', 'M', 40, 1.1, 95),
+
+
+-- 5) Aviario
 (21, 'Canario', 'Serinus canaria', 'Granívoro', 'M', 0.02, 0.1, 21),
 (22, 'Tucán', 'Ramphastidae', 'Frugívoro', 'H', 0.5, 0.4, 22),
 (23, 'Pavo real', 'Pavo cristatus', 'Omnívoro', 'M', 6, 1.2, 23),
@@ -2161,12 +2169,14 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (38, 'Gorrión', 'Passeridae', 'Omnívoro', 'H', 0.02, 0.1, 38),
 (39, 'Avestruz', 'Struthio camelus', 'Omnívoro', 'M', 100, 2.5, 39),
 (40, 'Halcón peregrino', 'Falco peregrinus', 'Carnívoro', 'H', 1, 0.4, 40),
--- Bosque templado
+
+-- 6) Bosque templado
 (11, 'Leopardo', 'Panthera pardus', 'Carnivoro', 'H', 90, 0.9, 43),
 (12, 'Panda', 'Ailuropoda melanoleuca', 'Herbivoro', 'M', 160, 1.0, 73),
 (13, 'Koala', 'Phascolarctos cinereus', 'Herbivoro', 'H', 8, 0.6, 15),
--- (8, 'Oso Polar', 'Ursus maritimus', 'Carnivoro', 'H', 450, 2.5, 63),
--- Bosque tropical
+-- 
+
+-- 7) Bosque tropical
 (5, 'Mono', 'Capuchino', 'Omnivoro', 'M', 4, 1.2, 50),
 (10, 'Gorila', 'Gorilla gorilla', 'Omnivoro', 'M', 200, 1.1, 25),
 (16, 'Orangutan', 'Pongo pygmaeus', 'Frugivoro', 'M', 80, 1.2, 62);
@@ -2176,26 +2186,26 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 
 -- REGISTRO PARA JAULA
 INSERT INTO jaula (numJaula, idAnimal, idBioma) VALUES
-(1, 1, 1),
-(2, 2, 1),
+(1, 1, 2),
+(2, 2, 4),
 (3, 3, 2),
 (4, 4, 2),
-(5, 5, 3),
-(6, 6, 3),
+(5, 5, 7),
+(6, 6, 2),
 (7, 7, 4),
 (8, 8, 4),
 (9, 9, 2),
-(10, 10, 5),
+(10, 10, 7),
 (11, 11, 6),
 (12, 12, 6),
-(13, 13, 7),
-(14, 14, 7),
-(15, 15, 7),
+(13, 13, 6),
+(14, 14, 4),
+(15, 15, 2),
 (16, 16, 7),
-(17, 17, 7),
-(18, 18, 7),
+(17, 17, 2),
+(18, 18, 3),
 (19, 19, 4),
-(20, 20, 7),
+(20, 20, 2),
 (21, 21, 5),
 (22, 22, 5),
 (23, 23, 5),
@@ -2203,11 +2213,19 @@ INSERT INTO jaula (numJaula, idAnimal, idBioma) VALUES
 (25, 25, 5),
 (26, 26, 5),
 (27, 27, 5),
-(28, 28, 6),
-(29, 29, 4),
-(30, 30, 3),
-(31, 31, 2),
-(32, 32, 1);
+(28, 28, 5),
+(29, 29, 5),
+(30, 30, 5),
+(31, 31, 5),
+(32, 32, 5),
+(33, 33, 5), 
+(34, 34, 5),
+(35, 35, 5),
+(36, 36, 5),
+(37, 37, 5),
+(38, 38, 5),
+(39, 39, 5),
+(40, 40, 5);
 
 
 -- REGISTRO PARA ALIMENTAR
