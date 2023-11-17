@@ -19,9 +19,9 @@ CHECK(paterno <> '');
 ALTER TABLE cliente ADD CONSTRAINT cliente_d3
 CHECK(materno <> '');
 ALTER TABLE cliente ADD CONSTRAINT cliente_d4
---- NOTA: En la sección género se acató la disposición del INE
--- de respetar la identidad de género marcando 'X' si así 
--- está en la documentación oficial de la persona.
+--- NOTA: En la seccion genero se acato la disposicion del INE
+-- de respetar la identidad de genero marcando 'X' si asi 
+-- esta en la documentacion oficial de la persona.
 CHECK(genero = 'H' OR genero = 'M' OR genero = 'X');
 
 -- Entidad --
@@ -455,7 +455,7 @@ CREATE TABLE evento (
 ALTER TABLE evento ADD CONSTRAINT evento_d1 CHECK (idEvento IS NOT null);
 ALTER TABLE evento ADD CONSTRAINT evento_d2 CHECK (capacidad > 0);
 
--- Restricción CHECK para la columna "fecha" (formato dd-mm-aaaa hh:mm)
+-- Restriccion CHECK para la columna "fecha" (formato dd-mm-aaaa hh:mm)
 ALTER TABLE evento ADD CONSTRAINT evento_d3
 CHECK (
     TO_CHAR(fecha, 'YYYY-MM-DD HH24:MI') ~ '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$'
@@ -467,15 +467,15 @@ ALTER TABLE evento ADD CONSTRAINT evento_pkey PRIMARY KEY (idEvento);
 
 
 -- Comentarios
-comment on table evento is 'Tabla que contiene todos la información de los eventos realizados en el Zoologico';
+comment on table evento is 'Tabla que contiene todos la informacion de los eventos realizados en el Zoologico';
 comment on column evento.idEvento is 'Identificador del evento';
-comment on column evento.capacidad is 'Es el número de capacidad de personas del evento';
+comment on column evento.capacidad is 'Es el numero de capacidad de personas del evento';
 comment on column evento.fecha is 'Es la fecha en la que se va a llevar dicho evento, incluye hora.';
 comment on column evento.tipoEvento is 'Es el tipo de evento que se va a llevar a cabo';
 COMMENT ON CONSTRAINT evento_d1 ON evento IS 'Restriccion que asegura que idEvento no sea nulo';
 COMMENT ON CONSTRAINT evento_d2 ON evento IS 'Restriccion que asegura que capacidad sea mayor que 0';
 COMMENT ON CONSTRAINT evento_d3 ON evento IS 'Restriccion que asegura que la fecha este en el formato correcto (dd-mm-aaaa hh:mm)';
-COMMENT ON CONSTRAINT evento_d4 ON evento IS 'Restriccion que asegura que la longitud de tipoEvento esté entre 3 y 50 caracteres';
+COMMENT ON CONSTRAINT evento_d4 ON evento IS 'Restriccion que asegura que la longitud de tipoEvento este entre 3 y 50 caracteres';
 comment on constraint evento_pkey on evento is 'La llave primaria de la tabla evento';
 
 
@@ -505,9 +505,9 @@ comment on table servicio is 'Tabla que contiene los servicios que hay en el zoo
 comment on column servicio.idServicio is 'Identificador del servicio.';
 comment on column servicio.costoUnitario is 'Precio que cuesta el servicio.';
 comment on column servicio.tipoServicio is 'Tipo der servicio que se hay.';
-comment on constraint servicio_d11 on servicio is 'Restricción que asegura que idServicio no sea nulo';
+comment on constraint servicio_d11 on servicio is 'Restriccion que asegura que idServicio no sea nulo';
 comment on constraint servicio_d1 on servicio is 'El costo unitario mayor a 0';
-comment on constraint servicio_d2 on servicio is 'Restricción que asegura que la longitud de tipoServicio este entre [3, 50] caracteres';
+comment on constraint servicio_d2 on servicio is 'Restriccion que asegura que la longitud de tipoServicio este entre [3, 50] caracteres';
 comment on constraint servicio_pkey on servicio is 'La llave primaria de la tabla servicio';
 
 
@@ -669,7 +669,7 @@ ON DELETE CASCADE ON UPDATE CASCADE;
 comment on table correoCliente is 'Tabla que contiene los correos electronicos de los clientes';
 comment on column correoCliente.idPersona is 'Es el id del cliente';
 comment on column correoCliente.correo is 'Es el correo del cliente';
-comment on constraint correo_d1 on correoCliente is 'Restricción que asegura que el correo tiene un @';
+comment on constraint correo_d1 on correoCliente is 'Restriccion que asegura que el correo tiene un @';
 comment on constraint correoc_pkey on correoCliente is 'LLave compuesta primaria por el id del Cliente y el correo';
 comment on constraint correoc_fkey on correoCliente is 'LLave foranea del id del Cliente';
 
@@ -703,7 +703,7 @@ ON DELETE CASCADE ON UPDATE CASCADE;
 comment on table correoCuidador is 'Tabla que contiene los correos electronicos de los cuidadores';
 comment on column correoCuidador.idPersona is 'Es el id del cuidador';
 comment on column correoCuidador.correo is 'Es el correo del cuidador';
-comment on constraint correo_d1 on correoCuidador is 'Restricción que asegura que el correo tiene un @';
+comment on constraint correo_d1 on correoCuidador is 'Restriccion que asegura que el correo tiene un @';
 comment on constraint correocu_pkey on correoCuidador is 'LLave compuesta primaria por el id del Cuidador y el correo';
 comment on constraint correocu_fkey on correoCuidador is 'LLave foranea del id del Cuidador';
 
@@ -737,7 +737,7 @@ ON DELETE CASCADE ON UPDATE CASCADE;
 comment on table correoVeterinario is 'Tabla que contiene los correos electronicos de los veterinarios';
 comment on column correoVeterinario.idPersona is 'Es el id del veterinario';
 comment on column correoVeterinario.correo is 'Es el correo del cuidador';
-comment on constraint correo_d1 on correoVeterinario is 'Restricción que asegura que el correo tiene un @';
+comment on constraint correo_d1 on correoVeterinario is 'Restriccion que asegura que el correo tiene un @';
 comment on constraint correov_pkey on correoVeterinario is 'LLave compuesta primaria por el id del Veterinario y el correo';
 comment on constraint correov_fkey on correoVeterinario is 'LLave foranea del id del Veterinario';
 
@@ -771,7 +771,7 @@ ON DELETE CASCADE ON UPDATE CASCADE;
 comment on table correoProveedor is 'Tabla que contiene los correos electronicos de los proveedores';
 comment on column correoProveedor.idPersona is 'Es el id del proveedor';
 comment on column correoProveedor.correo is 'Es el correo del proveedor';
-comment on constraint correo_d1 on correoProveedor is 'Restricción que asegura que el correo tiene un @';
+comment on constraint correo_d1 on correoProveedor is 'Restriccion que asegura que el correo tiene un @';
 comment on constraint correop_pkey on correoProveedor is 'LLave compuesta primaria por el id del Proveedor y el correo';
 comment on constraint correop_fkey on correoProveedor is 'LLave foranea del id del Proveedor';
 
@@ -826,10 +826,10 @@ comment on column alimento.tipoAlim is 'Es el tipo de ese alimento';
 comment on constraint id_insumo on alimento is 'El idInsumo asegura que no sea nulo.';
 comment on constraint id_persona on alimento is 'El idPersona asegura que no sea nulo';
 comment on constraint alimento_d1 on alimento is 'Restriccion que asegura que el nombre no sea nulo ni tampoco la cadena vacia';
-comment on constraint alimento_d2 on alimento is 'Restricción que asegura que la fecha de caducidad no puede ser nula';
+comment on constraint alimento_d2 on alimento is 'Restriccion que asegura que la fecha de caducidad no puede ser nula';
 comment on constraint alimento_d3 on alimento is 'Restriccion que asegura que la cantidad del alimento debe ser mayor a 0';
-comment on constraint alimento_d4 on alimento is 'Restriccion que asegura que la refrigeración debe ser true or false';
-comment on constraint alimento_d5 on alimento is 'Restricción que asegura que la cadena del tipo de alimento debe tener una longitud de entre [3, 5] caracteres';
+comment on constraint alimento_d4 on alimento is 'Restriccion que asegura que la refrigeracion debe ser true or false';
+comment on constraint alimento_d5 on alimento is 'Restriccion que asegura que la cadena del tipo de alimento debe tener una longitud de entre [3, 5] caracteres';
 comment on constraint alimento_pkey on alimento is 'LLave primaria de la tabla alimento';
 comment on constraint alimento_fkey on alimento is 'LLave foranea del proveedor que entrego dicho alimento';
 
@@ -861,21 +861,21 @@ foreign key (idPersona) references proveedor(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
-comment on table medicina is 'Tabla que almacena información sobre medicamentos e insumos médicos.';
-comment on column medicina.idInsumo is 'ID único del insumo médico.';
+comment on table medicina is 'Tabla que almacena informacion sobre medicamentos e insumos medicos.';
+comment on column medicina.idInsumo is 'ID unico del insumo medico.';
 comment on column medicina.idPersona is 'ID de la persona (proveedor) asociada a la medicina.';
-comment on column medicina.nombre is 'Nombre de la medicina o insumo médico.';
+comment on column medicina.nombre is 'Nombre de la medicina o insumo medico.';
 comment on column medicina.fechCaducidad is 'Fecha de caducidad de la medicina.';
 comment on column medicina.cantidad is 'Cantidad disponible del insumo.';
-comment on column medicina.refrigeracion is 'Indica si la medicina requiere refrigeración (verdadero o falso).';
+comment on column medicina.refrigeracion is 'Indica si la medicina requiere refrigeracion (verdadero o falso).';
 comment on column medicina.labProd is 'Nombre del laboratorio productor de la medicina.';
-comment on column medicina.lote is 'Número de lote de la medicina.';
-comment on constraint cantidad on medicina is 'Restricción para que que la cantidad de insumo sea mayor o igual a cero.';
-comment on constraint refrigeracion on medicina is 'Restricción que asegura que el valor de refrigeración sea verdadero o falso.';
-comment on constraint labProd on medicina is 'Restricción que asegura que el nombre del laboratorio productor tenga entre 3 y 50 caracteres y no sea nulo.';
-comment on constraint refrigeracion on medicina is 'Establece un valor predeterminado de "false" para la columna de refrigeración.';
-comment on constraint medicina_pkey on medicina is 'Clave primaria que utiliza el ID único del insumo.';
-comment on constraint medicina_fkey on medicina is 'Clave foránea que relaciona el ID de la persona (proveedor) con la tabla proveedor.';
+comment on column medicina.lote is 'Numero de lote de la medicina.';
+comment on constraint cantidad on medicina is 'Restriccion para que que la cantidad de insumo sea mayor o igual a cero.';
+comment on constraint refrigeracion on medicina is 'Restriccion que asegura que el valor de refrigeracion sea verdadero o falso.';
+comment on constraint labProd on medicina is 'Restriccion que asegura que el nombre del laboratorio productor tenga entre 3 y 50 caracteres y no sea nulo.';
+comment on constraint refrigeracion on medicina is 'Establece un valor predeterminado de "false" para la columna de refrigeracion.';
+comment on constraint medicina_pkey on medicina is 'Clave primaria que utiliza el ID unico del insumo.';
+comment on constraint medicina_fkey on medicina is 'Clave foranea que relaciona el ID de la persona (proveedor) con la tabla proveedor.';
 
 
 -- SUBMINISTRAR  --
@@ -899,13 +899,13 @@ foreign key (idAnimal) references animal(idAnimal)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios--
-comment on table subministrar is 'Tabla que registra la relación entre animales e insumos suministrados';
+comment on table subministrar is 'Tabla que registra la relacion entre animales e insumos suministrados';
 comment on column subministrar.idAnimal is 'ID del animal al que se suministra el insumo';
 comment on column subministrar.idInsumo is 'ID del insumo suministrado';
-comment on constraint subministrar_d1 on subministrar is 'Restricción para que el ID del animal no sea nulo';
-comment on constraint subministrar_d2 on subministrar is 'Restricción para que el ID del insumo no sea nulo';
-comment on constraint idInsumo_fkey on subministrar is 'Clave foránea que relaciona el ID del insumo con la tabla medicina';
-comment on constraint idAnimal_fkey on subministrar is 'Clave foránea que relaciona el ID del animal con la tabla animal';
+comment on constraint subministrar_d1 on subministrar is 'Restriccion para que el ID del animal no sea nulo';
+comment on constraint subministrar_d2 on subministrar is 'Restriccion para que el ID del insumo no sea nulo';
+comment on constraint idInsumo_fkey on subministrar is 'Clave foranea que relaciona el ID del insumo con la tabla medicina';
+comment on constraint idAnimal_fkey on subministrar is 'Clave foranea que relaciona el ID del animal con la tabla animal';
 
 -- JAULA  --
 create table jaula(
@@ -933,15 +933,15 @@ foreign key(idBioma) references bioma(idBioma)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 --Comentarios--
-comment on table jaula is 'Tabla que tiene informacón de las jaulas de animales';
-comment on column jaula.idAnimal is 'ID del animal que está en la jaula';
-comment on column jaula.numJaula is 'Número de la jaula';
+comment on table jaula is 'Tabla que tiene informacon de las jaulas de animales';
+comment on column jaula.idAnimal is 'ID del animal que esta en la jaula';
+comment on column jaula.numJaula is 'Numero de la jaula';
 comment on column jaula.idBioma is 'ID del bioma al que pertenece la jaula';
-comment on constraint jaula_d1 on jaula is 'Restricción para que el id no sea nulo';
-comment on constraint jaula_d2 on jaula is 'Restricción para que el número de la jaula no se nulo';
-comment on constraint jaula_d3 on jaula is 'Restricción para que el ID del bioma no sea nulo';
-comment on constraint jaula_fkey1 on jaula is 'Clave foránea que relaciona el ID del animal con la tabla animal';
-comment on constraint jaula_fkey2 on jaula is 'Clave foránea que relaciona el ID del bioma con la tabla bioma';
+comment on constraint jaula_d1 on jaula is 'Restriccion para que el id no sea nulo';
+comment on constraint jaula_d2 on jaula is 'Restriccion para que el numero de la jaula no se nulo';
+comment on constraint jaula_d3 on jaula is 'Restriccion para que el ID del bioma no sea nulo';
+comment on constraint jaula_fkey1 on jaula is 'Clave foranea que relaciona el ID del animal con la tabla animal';
+comment on constraint jaula_fkey2 on jaula is 'Clave foranea que relaciona el ID del bioma con la tabla bioma';
 
 -- LABORAR --
  create table laborar (
@@ -964,13 +964,13 @@ foreign key(idBioma) REFERENCES bioma(idBioma)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
-comment on table laborar is 'Tabla que registra la asignación de veterinarios a biomas para trabajar en ellos';
+comment on table laborar is 'Tabla que registra la asignacion de veterinarios a biomas para trabajar en ellos';
 comment on column laborar.idPersona is 'ID de la persona (veterinario) asignada a trabajar en un bioma';
 comment on column laborar.idBioma is 'ID del bioma al que se asigna un veterinario para trabajar';
-comment on constraint laborar_d1 on laborar is 'Restricción que asegura que el ID de la persona (veterinario) no sea nulo';
-comment on constraint laborar_d2 on laborar is 'Restricción que asegura que el ID del bioma no sea nulo';
-comment on constraint laborar_fkey1 on laborar is 'Clave foránea que relaciona el ID de la persona (veterinario) con la tabla veterinario';
-comment on constraint laborar_fkey2 on laborar is 'Clave foránea que relaciona el ID del bioma con la tabla bioma';
+comment on constraint laborar_d1 on laborar is 'Restriccion que asegura que el ID de la persona (veterinario) no sea nulo';
+comment on constraint laborar_d2 on laborar is 'Restriccion que asegura que el ID del bioma no sea nulo';
+comment on constraint laborar_fkey1 on laborar is 'Clave foranea que relaciona el ID de la persona (veterinario) con la tabla veterinario';
+comment on constraint laborar_fkey2 on laborar is 'Clave foranea que relaciona el ID del bioma con la tabla bioma';
 
 -- ATENDER --
 CREATE TABLE atender (
@@ -997,15 +997,15 @@ foreign key (idAnimal) references animal(idAnimal)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Comentarios --
-comment on table atender is 'Tabla que registra la relación entre veterinarios y animales que atienden';
+comment on table atender is 'Tabla que registra la relacion entre veterinarios y animales que atienden';
 
 comment on column atender.idPersona is 'ID de la persona (veterinario) que atiende al animal';
 comment on column atender.idAnimal is 'ID del animal que es atendido por un veterinario';
-comment on column atender.indicacionesMedicas is 'Indicaciones médicas que el veterinario da al animal';
+comment on column atender.indicacionesMedicas is 'Indicaciones medicas que el veterinario da al animal';
 
-comment on constraint atender_d1 on atender is 'Restricción que asegura que el ID de la persona (veterinario) no sea nulo';
-comment on constraint atender_d2 on atender is 'Restricción que asegura que el ID del animal no sea nulo';
-comment on constraint atender_d3 on atender is 'Restricción que asegura que las indicaciones médicas no sean la cadena vacía';
+comment on constraint atender_d1 on atender is 'Restriccion que asegura que el ID de la persona (veterinario) no sea nulo';
+comment on constraint atender_d2 on atender is 'Restriccion que asegura que el ID del animal no sea nulo';
+comment on constraint atender_d3 on atender is 'Restriccion que asegura que las indicaciones medicas no sean la cadena vacia';
 
 -- ASISTIR CLIENTE --
 CREATE TABLE asistirCliente (
@@ -1171,7 +1171,7 @@ COMMENT ON CONSTRAINT ofrecer_d2 ON ofrecer IS 'Restriccion check que nos asegur
 
 
 
--- NOTIFICACIÓN --
+-- NOTIFICACIoN --
 CREATE TABLE notificacion(
     idEvento serial4,
     idNotificacion serial8
@@ -1256,13 +1256,13 @@ FOREIGN KEY (idInsumo) REFERENCES alimento(idInsumo)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 --Comentarios--
-comment on table alimentar is 'Tabla que registra la relación entre animales e insumos de alimentación suministrados';
-comment on column alimentar.idAnimal is 'ID del animal al que se suministra el insumo de alimentación';
-comment on column alimentar.idInsumo is 'ID del insumo de alimentación suministrado';
-comment on constraint alimentar_d1 on alimentar is 'Restricción que asegura que el ID del animal no sea nulo';
-comment on constraint alimentar_d2 on alimentar is 'Restricción que asegura que el ID del insumo de alimentación no sea nulo';
-comment on constraint idAnimal_fkey on alimentar is 'Clave foránea que relaciona el ID del animal con la tabla animal';
-comment on constraint idInsumo_fkey on alimentar is 'Clave foránea que relaciona el ID del insumo de alimentación con la tabla alimento';
+comment on table alimentar is 'Tabla que registra la relacion entre animales e insumos de alimentacion suministrados';
+comment on column alimentar.idAnimal is 'ID del animal al que se suministra el insumo de alimentacion';
+comment on column alimentar.idInsumo is 'ID del insumo de alimentacion suministrado';
+comment on constraint alimentar_d1 on alimentar is 'Restriccion que asegura que el ID del animal no sea nulo';
+comment on constraint alimentar_d2 on alimentar is 'Restriccion que asegura que el ID del insumo de alimentacion no sea nulo';
+comment on constraint idAnimal_fkey on alimentar is 'Clave foranea que relaciona el ID del animal con la tabla animal';
+comment on constraint idInsumo_fkey on alimentar is 'Clave foranea que relaciona el ID del insumo de alimentacion con la tabla alimento';
 
 
 
