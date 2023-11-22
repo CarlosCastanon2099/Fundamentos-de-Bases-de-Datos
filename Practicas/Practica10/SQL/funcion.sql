@@ -33,3 +33,26 @@ LANGUAGE plpgsql;
 
 -- Ejemplo de uso con el bioma 1, el cual es el de Desierto
 SELECT get_numero_animales_en_Bioma(1);
+
+
+
+
+-- Funcion Auxiliar del SP 1)
+-- Funcion que regresa la informacion de un cliente en base a su id
+CREATE OR REPLACE FUNCTION obtener_cliente(p_idPersona BIGINT)
+RETURNS TABLE(
+    idPersona BIGINT,
+    nombre VARCHAR(50),
+    paterno VARCHAR(50),
+    materno VARCHAR(50),
+    genero CHAR(1)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT cliente.idPersona, cliente.nombre, cliente.paterno, cliente.materno, cliente.genero
+    FROM cliente
+    WHERE cliente.idPersona = p_idPersona;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Ejemplo de uso: SELECT * FROM obtener_cliente(105);
