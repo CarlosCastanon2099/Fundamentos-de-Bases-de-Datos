@@ -25,3 +25,57 @@ create TRIGGER cambia_apellidos
 AFTER INSERT ON proveedor
 FOR EACH ROW
 EXECUTE PROCEDURE intercambia_apellidos();
+
+
+
+
+-- B) trigger que se encargue de contar las personas que asisten a un evento, y agregarlo como atributo en
+--evento. Cada vez que se inserte, se debera actualizar el campo.
+
+-- Funcion auxiliar que se encarga de actualizar el numero de asistencias qa un evento.
+create or replace function actualizarNoAsistentes()
+returns trigger as $$
+begin
+	-- Verificamos si la columns noASistentes ya existe
+	perform column_name 
+	from information_schema.columns
+	where table_name = 'evento' and column_name = 'noasistentes';
+	
+	-- Sino existe, entonces agregamos la columna noAsistentes 
+	if not found then
+		alter table evento add column noasistentes INTEGER default 0;
+	end if;
+
+	if TG_OP = 'INSERT' then
+		update evento
+		set noasistentes = (noasistentes + 1)
+		where idevento = new.idevento;
+	elsif TG_OP = 'DELETE' then
+		update evento
+		set noasistentes = (noasistentes - 1)
+		where idevento = old.idevento;
+	end if;
+	return null;	
+end;
+$$ language plpgsql;
+
+-- TRIGGERS PARA LA ASISTENCIA DE EVENTOS
+create trigger actualizarAsistentesCliente
+after insert or delete on asistirCliente
+for each row 
+execute function actualizarNoAsistentes();
+
+create trigger actualizarAsistentesCuidador
+after insert or delete on asistirCuidador
+for each row 
+execute function actualizarNoAsistentes();
+
+create trigger actualizarAsistentesProveedor
+after insert or delete on asistirProveedor
+for each row 
+execute function actualizarNoAsistentes();
+
+create trigger actualizarAsistentesVeterinario
+after insert or delete on asistirVeterinario
+for each row 
+execute function actualizarNoAsistentes();
