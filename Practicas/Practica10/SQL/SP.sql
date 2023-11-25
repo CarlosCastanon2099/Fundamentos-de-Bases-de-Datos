@@ -25,3 +25,19 @@ $$ LANGUAGE plpgsql;
 
 -- Con la siguiente funcion auxiliar, podemos verificar que el cliente se haya registrado correctamente
 -- SELECT * FROM obtener_cliente(2099);
+
+-- 2)Un SP que se encargue de eliminar un proveedor a traves de su id, en este SP, se debera eliminar todas
+-- las referencias del proveedor de las demas tablas.
+CREATE OR REPLACE FUNCTION eliminar_proveedor(
+    p_idPersona BIGINT
+) RETURNS VOID AS $$
+BEGIN 
+    --Verificar si el id dado, existe en la tabla proveedor
+    if (SELECT NOT EXISTS (select p_idPersona from proveedor where idPersona = p_idPersona)) THEN 
+        RAISE EXCEPTION 'No existe el id persona en la tabla proveedor';
+    END IF;
+
+    -- Eliminar los datos del proveedor
+    DELETE FROM proveedor where idPersona = p_idPersona;
+    end;
+    $$ language plpgsql;
