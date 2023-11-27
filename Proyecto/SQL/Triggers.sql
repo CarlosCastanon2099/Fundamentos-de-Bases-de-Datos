@@ -6,7 +6,11 @@ declare
 begin
 	select count(*) into contador from laborar where (idpersona = new.idpersona);
 	if contador >= 2 then
-		raise exception 'El veterinario/a no puede trabajar en mas de 2 biomas. Ha alcanzado el limite de biomas trabajados.';
+		if TG_OP = 'INSERT' then
+			raise exception 'El veterinario/a a INSERTAR no puede trabajar en mas de 2 biomas. Ha alcanzado el limite de biomas trabajados.';
+		elsif TG_OP = 'UPDATE' then
+			raise exception 'El veterinario/a a ACTUALIZAR ya tiene asignado dos biomas. No se pueden actualizar los valores.';
+		end if;
 		return null;
 	end if;
 	return new;
@@ -15,7 +19,7 @@ $$ language plpgsql;
 
 -- Trigger para verificar que un veterinario a lo más puede trabajar en dos biomas.
 create trigger verificarVeterinarios 
-before insert on laborar
+before insert or update on laborar
 for each row
 execute function noBiomasTrabajados();
 
