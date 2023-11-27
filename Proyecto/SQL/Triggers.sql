@@ -36,7 +36,11 @@ declare
 begin 
 	select count(*) into contador from jaula where (idanimal = new.idanimal);
 	if contador >= 1 then
-		raise exception 'El animal solo esta permitado para que su estancia esta en 1 jaula y pertenecer a 1 solo bioma.';
+		if TG_OP = 'INSERT' then
+			raise exception 'El animal en la jaula a INSERTAR ya esta en una jaula, solo esta permitado que un animal este en una jaula y en un Bioma.';
+		elsif TG_OP = 'UPDATE' then
+			raise exception 'El animal de la jaula a ACTUALIZAR ya cuenta con una jaula, no esta permitido que un animal este es mas de una Jaula';
+		end if;
 		return null;
 	end if;
 	return new;
@@ -45,6 +49,6 @@ $$ language plpgsql;
 
 -- Trigger para verificar que un animal solo puede estar en una jaula y un bioma.
 create trigger verificarAnimal
-before insert on jaula
+before insert or update on jaula
 for each row 
 execute function checarAnimalEnJaula();
