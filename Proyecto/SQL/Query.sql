@@ -44,3 +44,31 @@ from veterinario
 group by especialidad) as aux
 on v.especialidad = aux.especialidad
 
+-- Consulta que nos regresa el nombre completo de los cuidadores
+-- y el animal que tiene asignado cada persona.
+
+select c.nombre,
+c.paterno,
+c.materno,
+a.nombre as animal_asignado
+from animal as a
+join cuidador as c
+on c.idPersona = a.idPersona;
+
+-- Consulta que nos regresa un tipo de evento y el nombre de las personas
+-- que asistieron a ese tipo de evento.
+select tipoevento,
+nombre,
+paterno,
+materno
+from
+    (select * 
+    from cliente as c
+    join
+        (select ae.*,
+        e.tipoEvento
+        from asistirCliente as ae
+        join evento as e
+        on ae.idEvento = e.idEvento) as r
+    on c.idPersona = r.idPersona)
+order by tipoevento
