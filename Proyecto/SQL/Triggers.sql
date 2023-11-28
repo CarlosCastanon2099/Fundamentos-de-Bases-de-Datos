@@ -51,7 +51,7 @@ execute function checarTrabajadorAnimal();
 
 
 -- Funcion para verificar que un animal solo puede estar en una jaula. Ya se cumple con que pertenezca a un solo bioma.
--- Ademas se cumple con que tanto el cuidador debe de ser debe laborar en el mismo bioma que el animal.
+-- Ademas se cumple con que tanto el cuidador debe de ser de laborar en el mismo bioma que el animal.
 create or replace function checarAnimalEnJaula()
 returns trigger as $$
 declare 
@@ -78,7 +78,7 @@ begin
 		return null;
 	end if;
 	if idCuidadorBioma <> idAnimalBioma then
-		raise exception 'No se tiene permitido que un cuidador que es de otro bioma, este a cargo de este animal. El bioma al que pertenece el cuidador es distinto al bioma del animal, por lo cual el animal debe de ser del mismo bioma que el cuidador.';
+		raise exception 'No se tiene permitido que un cuidador que es de otro bioma, este a cargo de este animal.';
 		return null;
 	end if;
 	return new;
@@ -90,3 +90,27 @@ create trigger verificarAnimal
 before insert or update on jaula
 for each row 
 execute function checarAnimalEnJaula();
+
+-- Funcion para verificar que un animal solo puede ser atendido por veterinarios del mismo bioma.
+-- Ademas se cumple con que tanto el veterinario pertenecer al mismo bioma del animal.
+create or replace function checarVeterinarioAtender()
+returns trigger as $$
+declare 
+	idAnimalBioma INTEGER;
+begin
+	select jaula.idbioma into idAnimalBioma from jaula where (idanimal = new.idanimal);
+    if (SELECT NOT EXISTS (select l.idbioma 
+							from laborar as 1
+							where new.idpersona = l.idpersona AND idAnimalBioma = l.idbioma)) THEN 
+		raise exception 'No se tiene permitido que un veterinario atienda a un animal de otro bioma al asignado.';
+		return null;
+	end if;
+	return new;
+end;
+$$ language plpgsql;
+
+-- Trigger para verificar que un veterinario solo puede atender a animales del mismo bioma.
+create trigger verificarAtender
+before insert or update on atender
+for each row 
+execute function checarVeterinarioAtender();
