@@ -27,13 +27,23 @@ execute function noBiomasTrabajados();
 
 
 -- Funcion para verificar que un animal solo puede estar en una jaula. Ya se cumple con que pertenezca a un solo bioma.
--- WARNING: PUEDE QUE UN CUIDADOR PERTENEZCA A OTRO BIOMA DISTINTO DE DEL ANIMAL, CON LO CUAL EN TEORIA
--- NO SE PUEDE, NO VIENE COMO TAL EN LOS REQUISITOS, PERO EN TEORIA ESO NO ESTA PERMITIDO. CHEQUEN LOS REQUERIMIENTOS.
+-- Ademas se cumple con que tanto el cuidador debe de ser debe laborar en el mismo bioma que el animal.
 create or replace function checarAnimalEnJaula()
 returns trigger as $$
 declare 
 	contador INTEGER;
-begin 
+	idCuidadorBioma INTEGER;
+	idAnimalBioma INTEGER;
+begin
+	select c.idbioma into idCuidadorBioma
+	from
+		animal as a,
+		cuidador as c
+	where (
+		new.idanimal = a.idanimal and
+		a.idpersona = c.idpersona
+	);
+	idAnimalBioma := new.idbioma;
 	select count(*) into contador from jaula where (idanimal = new.idanimal);
 	if contador >= 1 then
 		if TG_OP = 'INSERT' then
@@ -41,6 +51,10 @@ begin
 		elsif TG_OP = 'UPDATE' then
 			raise exception 'El animal de la jaula a ACTUALIZAR ya cuenta con una jaula, no esta permitido que un animal este es mas de una Jaula';
 		end if;
+		return null;
+	end if;
+	if idCuidadorBioma <> idAnimalBioma then
+		raise exception 'No se tiene permitido que un cuidador que es de otro bioma, este a cargo de este animal. El bioma al que pertenece el cuidador es distinto al bioma del animal, por lo cual el animal debe de ser del mismo bioma que el cuidador.';
 		return null;
 	end if;
 	return new;
