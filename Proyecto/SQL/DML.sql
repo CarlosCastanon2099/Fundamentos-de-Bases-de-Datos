@@ -111,27 +111,27 @@ INSERT INTO cliente(idPersona,nombre,paterno,materno,genero) VALUES
 
 -- REGISTROS PARA PROVEEDOR
 INSERT INTO proveedor(idPersona,nombre,paterno,materno,genero,rfc,fechNacimiento,calle,numInterior,numExterior,colonia,estado,fechInicioC,fechFinC,producto,frecuencia,costo) VALUES
-(1,'Manuel','Rivera','Castillo','M','ORPU407724F1C','02/04/1961','Tacuba',17,52,'Centro Historico','Mexico','11/24/1982','08/28/1997',10059.63,14,893.96),
+(1,'Manuel','Rivera','Castillo','M','ORPU407724F1C','02/04/1961','Tacuba',17,52,'Centro Historico','Mexico','11/24/1982','08/28/2027',10059.63,14,893.96),
 (2,'Teresa','Flores','Suarez','X','EXNB15435427S','03/23/1987','Av. Chapultepec',21,36,'Juarez','Durango','08/07/1988','09/21/2023',11281.98,8,2538.97),
-(3,'Sergio','Sanchez','Torres','H','WBCR34647559Q','02/25/1966','Reforma',16,45,'Napoles','Durango','11/07/1968','04/08/2002',11804.18,8,1784.67),
-(4,'Eduardo','Flores','Sanchez','H','PSOK2494614K0','11/06/1963','Av. Chapultepec',65,08,'Santa Fe','Chiapas','03/23/2000','11/28/2021',6200.63,14,3287.46),
-(5,'Manuel','Moreno','Flores','M','BHBE524501Z51','08/02/1988','Balderas',41,58,'Mixcoac','Chiapas','12/03/2000','02/20/2020',6302.54,3,3692.5),
-(6,'Luis','Santos','Lopez','X','SHXX3442595TB','11/28/1974','Tacuba',01,38,'Polanco','Mexico','03/29/1989','12/03/2010',11259.69,2,2537.75),
-(7,'Jorge','Gomez','Morales','X','PLEG3301991YV','08/03/1967','Tacuba',59,51,'Lomas de Chapultepec','Hidalgo','11/29/1967','09/07/2023',7631.73,8,2472.6),
+(3,'Sergio','Sanchez','Torres','H','WBCR34647559Q','02/25/1966','Reforma',16,45,'Napoles','Durango','11/07/1968','04/08/2032',11804.18,8,1784.67),
+(4,'Eduardo','Flores','Sanchez','H','PSOK2494614K0','11/06/1963','Av. Chapultepec',65,08,'Santa Fe','Chiapas','03/23/2000','11/28/2031',6200.63,14,3287.46),
+(5,'Manuel','Moreno','Flores','M','BHBE524501Z51','08/02/1988','Balderas',41,58,'Mixcoac','Chiapas','12/03/2000','02/20/2030',6302.54,3,3692.5),
+(6,'Luis','Santos','Lopez','X','SHXX3442595TB','11/28/1974','Tacuba',01,38,'Polanco','Mexico','03/29/1989','12/03/2030',11259.69,2,2537.75),
+(7,'Jorge','Gomez','Morales','X','PLEG3301991YV','08/03/1967','Tacuba',59,51,'Lomas de Chapultepec','Hidalgo','11/29/1997','09/07/2023',7631.73,8,2472.6),
 (8,'Pedro','Morales','Garcia','M','IQFE091638722','01/05/2000','Madero',78,72,'Centro Historico','Guanajuato','08/22/2000','01/27/2023',7808.73,1,2720.49),
-(9,'Aaron','Flores','Acosta','X','AQLH03744654G','08/01/1968','Tacuba',59,74,'Lomas de Chapultepec','Baja California','12/23/2000','08/06/2004',7939.35,8,4501.08),
-(10,'Gerardo','Vargas','Morales','M','UBRL96262154Q','12/21/2000','Hidalgo',56,65,'Coyoacan','Coahuila','11/27/2005','11/02/2012',11033.28,3,3622.67),
-(11,'Francisco','Rodriguez','Alvarez','H','LKVZ1468877ZV','12/03/1978','Juarez',29,78,'Napoles','Hidalgo','07/03/1994','06/07/2002',8149.82,12,4237.53),
-(12,'Adrian','Reyes','Mendoza','M','DWMH205335IML','12/03/1970','Av. Chapultepec',42,17,'Lomas de Chapultepec','Baja California Sur','08/06/2000','02/08/2011',6798.1,3,4594.52),
-(13,'Maria','Perez','Gonzalez','H','RYTO082191EG9','12/21/1960','Hidalgo',07,19,'San angel','Chihuahua','11/06/1969','06/06/2002',11790.52,4,4184.7),
-(14,'Antonio','Perez','Cabrera','H','TRSJ508680O80','06/20/1963','Tacuba',64,01,'Santa Fe','Guanajuato','01/27/2005','06/20/2021',9267.73,12,3688.19),
-(15,'Gloria','Reyes','Torres','X','AGMO24098655V','03/06/1967','Juarez',76,84,'Polanco','Mexico','12/29/1991','08/27/1996',9330.54,14,4181.28),
-(16,'Rafael','Sanchez','Perez','X','CJHG470446OZ9','04/04/1961','Paseo de la Reforma',34,56,'Napoles','Colima','01/25/1984','02/05/1994',6788.73,11,3206.87),
+(9,'Aaron','Flores','Acosta','X','AQLH03744654G','08/01/1968','Tacuba',59,74,'Lomas de Chapultepec','Baja California','12/23/2000','08/06/2024',7939.35,8,4501.08),
+(10,'Gerardo','Vargas','Morales','M','UBRL96262154Q','12/21/2000','Hidalgo',56,65,'Coyoacan','Coahuila','11/27/2005','11/02/2032',11033.28,3,3622.67),
+(11,'Francisco','Rodriguez','Alvarez','H','LKVZ1468877ZV','12/03/1978','Juarez',29,78,'Napoles','Hidalgo','07/03/1994','06/07/2032',8149.82,12,4237.53),
+(12,'Adrian','Reyes','Mendoza','M','DWMH205335IML','12/03/1970','Av. Chapultepec',42,17,'Lomas de Chapultepec','Baja California Sur','08/06/2000','02/08/2031',6798.1,3,4594.52),
+(13,'Maria','Perez','Gonzalez','H','RYTO082191EG9','12/21/1960','Hidalgo',07,19,'San angel','Chihuahua','11/06/1969','06/06/2032',11790.52,4,4184.7),
+(14,'Antonio','Perez','Cabrera','H','TRSJ508680O80','06/20/1963','Tacuba',64,01,'Santa Fe','Guanajuato','01/27/2005','06/20/2031',9267.73,12,3688.19),
+(15,'Gloria','Reyes','Torres','X','AGMO24098655V','03/06/1967','Juarez',76,84,'Polanco','Mexico','12/29/1991','08/27/2026',9330.54,14,4181.28),
+(16,'Rafael','Sanchez','Perez','X','CJHG470446OZ9','04/04/1961','Paseo de la Reforma',34,56,'Napoles','Colima','01/25/1984','02/05/2024',6788.73,11,3206.87),
 (17,'Raul','Cruz','Cabrera','M','LVXM289959746','12/26/1964','Madero',64,75,'San Jeronimo','Chiapas','04/22/1982','11/27/2023',11213.74,9,2877.16),
-(18,'Antonio','Vargas','Gutierrez','M','WDQB669057P9P','11/09/1973','Tacuba',62,64,'Lomas de Chapultepec','Hidalgo','12/21/1993','12/09/2012',9329.55,1,3924.33),
-(19,'Ana','Mendoza','Martinez','M','KQDD591336SSO','06/09/1969','Paseo de la Reforma',33,71,'Polanco','Michoacan','05/25/1969','12/28/1988',11591.77,4,1434.97),
-(20,'Alma','Moreno','Rivera','H','EBDF446543I5L','02/24/1967','Av. Chapultepec',22,11,'Anzures','Michoacan','12/08/1977','11/25/1992',8554.8,6,2342.56),
-(21,'Manuel','Vargas','Torres','M','VKVT386173ZT3','02/23/1969','Paseo de la Reforma',62,85,'Del Valle','Campeche','11/24/1977','03/26/1999',9139.96,2,4708.07),
+(18,'Antonio','Vargas','Gutierrez','M','WDQB669057P9P','11/09/1973','Tacuba',62,64,'Lomas de Chapultepec','Hidalgo','12/21/1993','12/09/2032',9329.55,1,3924.33),
+(19,'Ana','Mendoza','Martinez','M','KQDD591336SSO','06/09/1969','Paseo de la Reforma',33,71,'Polanco','Michoacan','05/25/1969','12/28/2028',11591.77,4,1434.97),
+(20,'Alma','Moreno','Rivera','H','EBDF446543I5L','02/24/1967','Av. Chapultepec',22,11,'Anzures','Michoacan','12/08/1977','11/25/2032',8554.8,6,2342.56),
+(21,'Manuel','Vargas','Torres','M','VKVT386173ZT3','02/23/1969','Paseo de la Reforma',62,85,'Del Valle','Campeche','11/24/1977','03/26/2029',9139.96,2,4708.07),
 (22,'Leticia','Rodriguez','Lopez','H','ZTMZ3185846F4','11/27/1960','Paseo de la Reforma',68,15,'San angel','Mexico','12/03/1997','12/02/2012',6302.99,7,1375.67),
 (23,'Javier','Ramirez','Cabrera','X','INHD550937O85','03/24/1989','Balderas',25,73,'Polanco','Jalisco','04/29/2002','02/05/2020',9448.17,10,3687.28),
 (24,'Pedro','Gomez','Aguilar','M','QWBP773505S02','12/02/1985','Hidalgo',09,56,'Condesa','Chihuahua','12/07/2000','11/04/2013',5850.08,14,4106.36),
@@ -327,7 +327,6 @@ INSERT INTO veterinario(idPersona,nombre,paterno,materno,genero,rfc,fechNacimien
 (103,'Mario','Gonzalez','Castro','X','APVO239741D80','09/09/1969','Paseo de la Reforma',82,37,'Portales','Mexico','01/29/2001','11/24/2021',7291.18,'Neurologia veterinaria'),
 (104,'Rosa','Rodriguez','Perez','H','GAXZ218901488','12/04/1977','Madero',17,51,'Rinconada','Durango','12/07/2003','09/07/2013',10543.34,'Dermatologia veterinaria'),
 (105,'Miguel','Gomez','Chavez','M','ECEZ5365172I4','07/09/1986','Juarez',04,48,'Cuauhtemoc','Baja California Sur','05/23/2000','12/25/2011',7765.15,'Cirugia veterinaria');
-
 
 
 
@@ -797,7 +796,20 @@ INSERT INTO correocliente (idPersona, correo) VALUES
 (102, 'cliente102@hotmail.com'),
 (103, 'cliente103@yahoo.com'),
 (104, 'cliente104@outlook.com'),
-(105, 'cliente105@gmail.com');
+(105, 'cliente105@gmail.com'),
+(1, 'cliente11@gmail.com'),
+(2, 'cliente22@hotmail.com'),
+(3, 'cliente33@yahoo.com'),
+(3, 'cliente333@yahoo.com'),
+(4, 'cliente44@outlook.com'),
+(4, 'cliente444@outlook.com'),
+(4, 'cliente4444@outlook.com'),
+(5, 'cliente55@gmail.com'),
+(6, 'cliente66@hotmail.com'),
+(7, 'cliente77@live.com'),
+(8, 'cliente88@gmail.com'),
+(9, 'cliente99@yahoo.com'),
+(10, 'cliente1010@outlook.com');
 
 
 
@@ -2374,7 +2386,20 @@ INSERT INTO atender (idPersona, idAnimal, indicacionesMedicas) VALUES
 (92, 12, 'Servicio dental'),
 (49, 5, 'Ojo inflamado'),
 (28, 7, 'Vacuna'),
-(50, 19, 'Fracuta');
+(50, 19, 'Fractura'),
+(89, 30, 'Herida'),
+(45, 39, 'Servicio dental'),
+(84, 12, 'Revision anual'),
+(100, 82, 'Revision anual'),
+(75, 62, 'Fractura'),
+(83, 41, 'Ojo inflamado'),
+(65, 25, 'Fractura'),
+(103, 24, 'Herida'),
+(10, 3, 'Revision anual'),
+(48, 15, 'Control de peso'),
+(26, 47, 'desparacitacion'),
+(87, 64, 'Bano'),
+(39, 59, 'Bano');
 
 -- REGISTRO DE NOTIFICACION
 INSERT INTO notificacion (idEvento, idNotificacion) VALUES

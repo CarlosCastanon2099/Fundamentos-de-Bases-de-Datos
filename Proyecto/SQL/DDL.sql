@@ -1222,11 +1222,14 @@ CHECK(idEvento IS NOT NULL);
 
 -- Referencial --
 ALTER TABLE notificar ADD CONSTRAINT idPersona_fkey
-FOREIGN KEY (idPersona) REFERENCES cliente(idPersona);
+FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idNotificacion_fkey
-FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion);
+FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion)
+ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES evento(idEvento);
+FOREIGN KEY (idEvento) REFERENCES notificacion(idEvento)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 -- Comentarios --
