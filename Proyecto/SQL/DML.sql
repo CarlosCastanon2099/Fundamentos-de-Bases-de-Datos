@@ -1,3 +1,6 @@
+-- Para que las fechas funcionen en pgAdmin.
+SET datestyle = "ISO, MDY";
+
 -- REGISTROS PARA CLIENTES
 INSERT INTO cliente(idPersona,nombre,paterno,materno,genero) VALUES 
 (1,'Pedro','Castillo','Flores','H'),
