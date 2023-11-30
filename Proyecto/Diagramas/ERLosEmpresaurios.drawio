@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2023-11-11T05:40:38.983Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="2TmFkmqCl59QI_KoSthA" version="22.1.0" type="device">
-  <diagram name="E-R-P8" id="EcHTbq8WHRjyfnnpshdF">
+<mxfile host="app.diagrams.net" modified="2023-11-30T06:53:31.410Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="2nn8MMoV61X6msgYy0l6" version="22.1.5" type="device">
+  <diagram name="E-R-Proyecto" id="EcHTbq8WHRjyfnnpshdF">
     <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="Y_rYXRR75IuJC_nQLZdz-0" />
@@ -669,7 +669,7 @@
         <mxCell id="Y_rYXRR75IuJC_nQLZdz-231" value="Correo" style="ellipse;shape=doubleEllipse;margin=3;whiteSpace=wrap;html=1;align=center;" parent="Y_rYXRR75IuJC_nQLZdz-1" vertex="1">
           <mxGeometry x="581.5" y="33.75" width="69.25" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="Y_rYXRR75IuJC_nQLZdz-232" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="Y_rYXRR75IuJC_nQLZdz-1" source="Y_rYXRR75IuJC_nQLZdz-233" target="Y_rYXRR75IuJC_nQLZdz-215" edge="1">
+        <mxCell id="Y_rYXRR75IuJC_nQLZdz-232" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="Y_rYXRR75IuJC_nQLZdz-1" source="Y_rYXRR75IuJC_nQLZdz-233" target="Y_rYXRR75IuJC_nQLZdz-215" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Y_rYXRR75IuJC_nQLZdz-233" value="Notificacion" style="shape=ext;margin=3;double=1;whiteSpace=wrap;html=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" parent="Y_rYXRR75IuJC_nQLZdz-1" vertex="1">
