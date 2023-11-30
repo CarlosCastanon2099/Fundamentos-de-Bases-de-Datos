@@ -2235,6 +2235,13 @@ INSERT INTO animal (idAnimal, nombre, especie, alimentacion, sexo, peso, altura,
 (69, 'Castor Americano', 'Castor canadensis', 'Herbivoro', 'M', 20, 1.0, 45),
 (70, 'Coyote del Este', 'Canis latrans thamnos', 'Omnivoro', 'M', 25, 0.7, 50),
 (82, 'Quokka', 'Setonix brachyurus', 'Herbivoro', 'H', 5, 0.3, 40),
+
+(83, 'Gamo', 'Dama dama', 'Herbivoro', 'H', 20, 1.6, 10), ----------
+(84, 'Tejón', 'Meles meles', 'Herbivoro', 'H', 12, 0.4, 11),
+(85, 'Conejo', 'Oryctolagus cuniculus', 'Herbivoro', 'M', 2, 0.3, 12),
+(86, 'Zorrillo', 'Mephitis mephitis', 'Herbivoro', 'M', 4, 0.2, 13),
+(87, 'Cuervo', 'Corvus corax', 'Herbivoro', 'H', 0.5, 0.4, 14),
+(88, 'Búho Cornudo', 'Bubo virginianus', 'Herbivoro', 'H', 3, 0.4, 16),
 -- 
 
 -- 7) Bosque tropical
@@ -2328,7 +2335,13 @@ INSERT INTO jaula (numJaula, idAnimal, idBioma) VALUES
 (79, 79, 4),
 (80, 80, 2),
 (81, 81, 2),
-(82, 82, 6);
+(82, 82, 6),
+(83, 83, 6),
+(84, 84, 6),
+(85, 85, 6),
+(86, 86, 6),
+(87, 87, 6),
+(88, 88, 6);
 
 
 

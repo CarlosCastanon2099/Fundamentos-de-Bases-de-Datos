@@ -21,9 +21,28 @@ END;
 $$ LANGUAGE plpgsql;
 
 
--- Ejemplo de uso: SELECT registrar_cliente(2099, 'Maximo', 'Decimo', 'Meridio', 'H');
+-- Ejemplo de uso: 
+-- SELECT registrar_cliente(2099, 'Maximo', 'Decimo', 'Meridio', 'H');
 
 -- Con la siguiente funcion auxiliar, podemos verificar que el cliente se haya registrado correctamente
+-- Funcion Auxiliar del SP 1)
+-- Funcion que regresa la informacion de un cliente en base a su id
+CREATE OR REPLACE FUNCTION obtener_cliente(p_idPersona BIGINT)
+RETURNS TABLE(
+    idPersona BIGINT,
+    nombre VARCHAR(50),
+    paterno VARCHAR(50),
+    materno VARCHAR(50),
+    genero CHAR(1)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT cliente.idPersona, cliente.nombre, cliente.paterno, cliente.materno, cliente.genero
+    FROM cliente
+    WHERE cliente.idPersona = p_idPersona;
+END;
+$$ LANGUAGE plpgsql;
+
 -- SELECT * FROM obtener_cliente(2099);
 
 
