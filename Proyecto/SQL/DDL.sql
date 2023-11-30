@@ -1225,10 +1225,7 @@ ALTER TABLE notificar ADD CONSTRAINT idPersona_fkey
 FOREIGN KEY (idPersona) REFERENCES cliente(idPersona)
 ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE notificar ADD CONSTRAINT idNotificacion_fkey
-FOREIGN KEY (idNotificacion) REFERENCES notificacion(idNotificacion)
-ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE notificar ADD CONSTRAINT idEvento_fkey
-FOREIGN KEY (idEvento) REFERENCES notificacion(idEvento)
+FOREIGN KEY (idNotificacion, idEvento) REFERENCES notificacion(idNotificacion, idEvento)
 ON DELETE CASCADE ON UPDATE CASCADE;
 
 
