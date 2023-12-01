@@ -23,32 +23,6 @@ before insert or update on laborar
 for each row
 execute function noBiomasTrabajados();
 
--- Funcion para verificar que un animal solo puede tener un cuidador.
-create or replace function checarTrabajadorAnimal()
-returns trigger as $$
-declare 
-	contador INTEGER;
-begin 
-	select count(*) into contador from animal where (idpersona = new.idpersona);
-	if contador >= 1 then
-		if TG_OP = 'INSERT' then
-			raise exception 'El cuidador elegido a cuidar el animal que se quiere INSERTAR, ya esta cuidando otro animal.';
-		elsif TG_OP = 'UPDATE' then
-			raise exception 'El cuidador elegido a cuidar el animal que se quiere ACTUALIZAR, ya esta cuidando otro animal.';
-		end if;
-		return null;
-	end if;
-	return new;
-end;
-$$ language plpgsql;
-
-
--- Trigger para verificar que un Cuidador solo pueda cuidar a un animal.
-create trigger verificarCuidador 
-before insert or update on animal
-for each row
-execute function checarTrabajadorAnimal();
-
 
 -- Funcion para verificar que un animal solo puede estar en una jaula. Ya se cumple con que pertenezca a un solo bioma.
 -- Ademas se cumple con que tanto el cuidador debe de ser de laborar en el mismo bioma que el animal.
