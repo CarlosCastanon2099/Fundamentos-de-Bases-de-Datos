@@ -1,41 +1,61 @@
 -- PETICIONES NO TRVIALES SOBRE LA BASE DE DATOS
 
--- I. Consulta para saber que veterinarios y cuidadores comparten el apellido
+-- I. Consulta para obtener la informacion suficiente de todos los veterinarios y cuidadores que
+-- laboren en los biomas 1, 3, 5 y 7, y que el nombre de los veterinarios empiece con la letra R
+-- y que su apellido paterno contenga la letra e. 
+
 SELECT 
-    v.nombre AS veterinario, 
-    c.nombre AS cuidador, 
-    v.paterno AS VetPat, 
-    c.paterno AS CuiPat,
-    v.materno AS VetMat, 
-    c.materno AS CuiMat
-FROM veterinario v, cuidador c
-WHERE v.paterno = c.paterno OR v.materno = c.materno;
-
-
-
--- II. Consulta para saber que animales herbivoros se encuentran en el bosque templado
-SELECT 
-    a.nombre AS animal,
-    b.tipobioma AS bioma
+	v.idpersona, nombre, paterno, materno, genero, rfc 
 FROM 
-    animal a, jaula j, bioma b
-WHERE 
-    a.idanimal = j.idanimal AND 
-    j.idbioma = b.idbioma AND 
-    a.alimentacion = 'Herbivoro' AND 
-    b.tipobioma = 'Bosque templado';
-
-
-
--- III. Alimentos de tipo semilla, que son distribuidos en el aviario.
+	(SELECT * FROM veterinario WHERE(nombre LIKE 'R%' AND LOWER(paterno) LIKE '%e%')) AS v,
+	(SELECT * FROM laborar WHERE (idbioma IN (1, 3, 5, 7))) AS l
+WHERE (
+	(v.idpersona = l.idpersona)
+)
+UNION
 SELECT 
+	idpersona, nombre, paterno, materno, genero, rfc
+FROM cuidador
+WHERE (nombre LIKE 'R%' AND LOWER(paterno) LIKE '%e%' AND idbioma IN (1, 3, 5, 7));
+
+-- II. Consulta que regresa los nombres completos de todos los trabajadores asociados 
+-- a los biomas (veterinarios y cuidadores) ordenados por el tipo de Bioma.
+select * from
+	(select
+	c.nombre,
+	c.paterno,
+	c.materno,
+	b.tipoBioma
+	from cuidador as c
+	join bioma as b
+	on c.idBioma = b.idBioma) as a
+union 
+select * from 
+	(select 
+	v.nombre,
+	v.paterno,
+	v.materno,
+	lb.tipoBioma
+	from veterinario as v
+	join
+		(select *
+		from bioma
+		join laborar
+		on bioma.idbioma = laborar.idbioma) as lb
+		on lb.idPersona = v.idPersona) as b
+order by tipoBioma;
+
+
+
+-- III. Alimentos de tipo vegetales y carnes, que son distribuidos en todos los biomas y ordenados por el tipo de alim e idinsumo.
+SELECT 
+    tipoalim,
     idinsumo,
     idpersona,
     nombre,
     fechacaducidad,
     cantidad,
     refrigeracion,
-    tipoalim,
     b.tipobioma
 FROM (SELECT 
         s.*,
@@ -47,7 +67,7 @@ FROM (SELECT
                     alr.idanimal
                 FROM (SELECT * 
                         FROM alimento 
-                        WHERE tipoalim = 'semillas'
+                        WHERE tipoalim IN ('vegetales', 'carnes')
                 ) AS al,
                 alimentar AS alr
                 WHERE (al.idinsumo = alr.idinsumo)
@@ -60,14 +80,14 @@ FROM (SELECT
 ) AS t,
 (SELECT * 
     FROM bioma 
-    WHERE (tipobioma = 'Aviario')
 ) AS b
-WHERE (t.idbioma = b.idbioma);
+WHERE (t.idbioma = b.idbioma)
+ORDER BY tipoalim, idinsumo;
 
 
 
 -- IV. Consulta para saber cuales son los cuidadores y veterinarios que tienen el mismo estado
--- y que atienden a un animal carnivoro macho en los biomas 1 ó 3 y que la informacion salga ordenada.
+-- y que el cuidador, cuide a un animal carnivoro macho en los biomas 1 ó 3 y que la informacion salga ordenada.
 SELECT 
     c.nombre AS cuidador, 
     v.nombre AS veterinario, 
@@ -76,34 +96,53 @@ SELECT
     a.nombre AS animal, 
     a.sexo AS sexo, 
     b.tipobioma AS bioma
-FROM
-    cuidador c, veterinario v, animal a, jaula j, bioma b
+FROM 
+    cuidador AS c
+      INNER JOIN veterinario AS v ON c.estado = v.estado 
+      INNER JOIN animal AS a ON c.idpersona = a.idpersona 
+      INNER JOIN jaula AS j ON a.idanimal = j.idanimal
+      INNER JOIN bioma AS b ON j.idbioma = b.idbioma
 WHERE 
-    c.idpersona = v.idpersona AND 
-    c.estado = v.estado AND 
-    c.idpersona = a.idpersona AND 
     a.sexo = 'M' AND 
     a.alimentacion = 'Carnivoro' AND 
-    a.idanimal = j.idanimal AND 
-    j.idbioma = b.idbioma AND 
     b.idbioma IN (1,3)
-ORDER BY c.nombre, v.nombre, a.nombre
+ORDER BY cuidador, veterinario;
 
 
 
-
-
--- V. Consulta de Biomas que poseean al menos 10 animales
-SELECT * 
-FROM bioma
-WHERE idbioma 
-IN (SELECT idBioma 
-    FROM (SELECT idBioma, count(idAnimal) as num_animales 
-            FROM jaula  
-            GROUP BY idBioma) as conteo
-    WHERE num_animales >= 10);
-
-
+-- V. Consuta que nos regresa el nombre completo del veterinario,
+-- las indicaciones medicas propuestas para el animal, junto con el nombre de la
+-- medicina que se le administra, la fecha de caducidad, laboratorio y el nombre de dicho
+-- animal.
+select
+avs.nombre,
+avs.paterno,
+avs.materno,
+avs.indicacionesmedicas,
+m.nombre as nombre_medicina,
+m.fechCaducidad,
+m.labProd as laboratorio,
+avs.nombre_animal
+from medicina as m
+join
+	(select *
+	from subministrar as s
+	join
+		(select
+		a.idAnimal,
+		atenv.nombre,
+		atenv.paterno,
+		atenv.materno,
+		atenv.indicacionesmedicas,
+		a.nombre as nombre_animal
+		from animal as a
+		join (select *
+			from atender as ate
+			join veterinario as v
+			on v.idpersona = ate.idpersona) as atenv
+		on a.idAnimal = atenv.idAnimal) as avet
+	on s.idAnimal = avet.idAnimal) as avs
+on avs.idInsumo = m.idInsumo;
 
 -- VI. Consulta que regresa una tabla con la información de los biomas,
 -- los ids de los trabajadores que trabajan en ellos y sus telefonos
@@ -132,9 +171,9 @@ order by idBioma, idPersona;
 (select estado, count(idPersona)
 from
 (select * from proveedor
-where fechnacimiento <= '01-01-2000')
+where fechnacimiento <= '01-01-2000') as a
 group by estado
-order by estado)
+order by estado);
 
 
 
@@ -150,7 +189,7 @@ max(salario) as salario_maximo,
 min(salario) as salario_minimo
 from veterinario
 group by especialidad) as aux
-on v.especialidad = aux.especialidad
+on v.especialidad = aux.especialidad;
 
 
 
@@ -181,7 +220,7 @@ from
         from asistirCliente as ae
         join evento as e
         on ae.idEvento = e.idEvento) as r
-    on c.idPersona = r.idPersona)
+    on c.idPersona = r.idPersona) as b
 order by tipoevento;
 
 
@@ -267,37 +306,3 @@ from
 	fechacaducidad <= '2023-12-30'
 	) as a
 where pp.idpersona = a.idpersona;
-
--- XVI. Consuta que nos regresa el nombre completo del veterinario,
--- las indicaciones medicas propuestas para el animal, junto con el nombre de la
--- medicina que se le administra, la fecha de caducidad, laboratorio y el nombre de dicho
--- animal.
-select
-avs.nombre,
-avs.paterno,
-avs.materno,
-avs.indicacionesmedicas,
-m.nombre as nombre_medicina,
-m.fechCaducidad,
-m.labProd as laboratorio,
-avs.nombre_animal
-from medicina as m
-join
-	(select *
-	from subministrar as s
-	join
-		(select
-		a.idAnimal,
-		atenv.nombre,
-		atenv.paterno,
-		atenv.materno,
-		atenv.indicacionesmedicas,
-		a.nombre as nombre_animal
-		from animal as a
-		join (select *
-			from atender as ate
-			join veterinario as v
-			on v.idpersona = ate.idpersona) as atenv
-		on a.idAnimal = atenv.idAnimal) as avet
-	on s.idAnimal = avet.idAnimal) as avs
-on avs.idInsumo = m.idInsumo
