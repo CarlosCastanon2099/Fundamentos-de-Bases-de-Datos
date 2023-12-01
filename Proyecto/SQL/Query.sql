@@ -301,3 +301,30 @@ join
 		on a.idAnimal = atenv.idAnimal) as avet
 	on s.idAnimal = avet.idAnimal) as avs
 on avs.idInsumo = m.idInsumo
+
+-- XVII. Consulta que regresa los nombres completos de todos los trabajadores asociados 
+-- a los biomas (veterinarios y cuidadores) ordenados por el tipo de Bioma.
+select * from
+	(select
+	c.nombre,
+	c.paterno,
+	c.materno,
+	b.tipoBioma
+	from cuidador as c
+	join bioma as b
+	on c.idBioma = b.idBioma)
+union 
+select * from 
+	(select 
+	v.nombre,
+	v.paterno,
+	v.materno,
+	lb.tipoBioma
+	from veterinario as v
+	join
+		(select *
+		from bioma
+		join laborar
+		on bioma.idbioma = laborar.idbioma) as lb
+		on lb.idPersona = v.idPersona)
+order by tipoBioma
