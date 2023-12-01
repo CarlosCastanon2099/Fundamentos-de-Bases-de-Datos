@@ -395,7 +395,6 @@ INSERT INTO laborar (idPersona, idBioma) VALUES
 (46, 3),
 (47, 5),
 (48, 5),
-(49, 7),
 (50, 3),
 (51, 1),
 (52, 6),
@@ -451,7 +450,34 @@ INSERT INTO laborar (idPersona, idBioma) VALUES
 (102, 2),
 (103, 6),
 (104, 7),
-(105, 1);
+(105, 1),
+(2, 2),
+(4, 3),
+(10, 2),
+(13, 2),
+(14, 7),
+(22, 6),
+(23, 4),
+(25, 4),
+(26, 1),
+(28, 4),
+(39, 3),
+(45, 5),
+(48, 2),
+(49, 7),
+(50, 4),
+(53, 2),
+(55, 2),
+(59, 7),
+(61, 2),
+(65, 5),
+(75, 6),
+(81, 7),
+(83, 1),
+(87, 6),
+(89, 5),
+(100, 2),
+(103, 5);
 
 
 -- REGISTROS PARA LOS SERVICIOS
@@ -2384,39 +2410,37 @@ INSERT INTO alimentar (idAnimal, idInsumo) VALUES
 
 -- REGISTRO PARA ATENDER
 INSERT INTO atender (idPersona, idAnimal, indicacionesMedicas) VALUES
-(25, 19, 'Servicio dental'),
-(61, 9, 'Desparacitacion'),
-(4,	18, 'Bano'),
-(55, 17, 'Bano'),
+(2,	17, 'Revision anual'), -- 2
+(4,	18, 'Bano'), -- 3
+(10, 3, 'Revision anual'), -- 2
+(13, 3, 'Servicio dental'), -- 2
+(14, 16, 'Examen medico'), -- 7
+(22, 11, 'Control de peso'), -- 6
+(23, 2, 'Servicio dental'), -- 4
+(25, 19, 'Servicio dental'), -- 4
+(26, 47, 'desparacitacion'), -- 1
+(28, 7, 'Vacuna'), -- 4
+(39, 59, 'Bano'), -- 3
+(45, 39, 'Servicio dental'), -- 5 
+(48, 15, 'Control de peso'), -- 2
+(49, 5, 'Ojo inflamado'), -- 7
+(50, 19, 'Fractura'), -- 4
+(53, 6, 'Bano'), -- 2
+(55, 17, 'Bano'), -- 2
+(59, 16, 'Herida '), --7 
+(61, 9, 'Desparacitacion'), -- 2 
+(65, 25, 'Fractura'), -- 5
+(75, 62, 'Fractura'), -- 6
+(81, 5, 'Examen medico'), -- 7
+(83, 41, 'Ojo inflamado'), -- 1
+(84, 12, 'Revision anual'), -- 6
+(84, 13, 'Vacunas'), -- 6
+(87, 64, 'Bano'), -- 6
+(88, 10, 'Vacuna'), -- 7
+(89, 30, 'Herida'), -- 5
+(92, 12, 'Servicio dental'), -- 6 
 (100, 9, 'Revision anual'),
-(23, 2, 'Servicio dental'),
-(84, 13, 'Vacunas'),
-(22, 11, 'Control de peso'),
-(53, 6, 'Bano'),
-(14, 16, 'Examen medico'),
-(2,	17, 'Revision anual'),
-(100, 2, 'Vacuna'),
-(81, 5, 'Examen medico'),
-(88, 10, 'Vacuna'),
-(59, 16, 'Herida '),
-(13, 3, 'Servicio dental'),
-(92, 12, 'Servicio dental'),
-(49, 5, 'Ojo inflamado'),
-(28, 7, 'Vacuna'),
-(50, 19, 'Fractura'),
-(89, 30, 'Herida'),
-(45, 39, 'Servicio dental'),
-(84, 12, 'Revision anual'),
-(100, 82, 'Revision anual'),
-(75, 62, 'Fractura'),
-(83, 41, 'Ojo inflamado'),
-(65, 25, 'Fractura'),
-(103, 24, 'Herida'),
-(10, 3, 'Revision anual'),
-(48, 15, 'Control de peso'),
-(26, 47, 'desparacitacion'),
-(87, 64, 'Bano'),
-(39, 59, 'Bano');
+(103, 24, 'Herida'); -- 5
 
 -- REGISTRO DE NOTIFICACION
 INSERT INTO notificacion (idEvento, idNotificacion) VALUES
