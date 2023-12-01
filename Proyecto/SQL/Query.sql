@@ -66,10 +66,30 @@ WHERE (t.idbioma = b.idbioma);
 
 
 
--- IV. Consulta para saber que cuidadores y proveedores tienen el mismo estado
-SELECT c.nombre AS cuidador, p.nombre AS proveedor, c.estado
-FROM cuidador c, proveedor p
-WHERE c.estado = p.estado;
+-- IV. Consulta para saber cuales son los cuidadores y veterinarios que tienen el mismo estado
+-- y que atienden a un animal carnivoro macho en los biomas 1 ó 3 y que la informacion salga ordenada.
+SELECT 
+    c.nombre AS cuidador, 
+    v.nombre AS veterinario, 
+    c.estado AS cuidadorEstado, 
+    v.estado AS veterinarioEstado,
+    a.nombre AS animal, 
+    a.sexo AS sexo, 
+    b.tipobioma AS bioma
+FROM
+    cuidador c, veterinario v, animal a, jaula j, bioma b
+WHERE 
+    c.idpersona = v.idpersona AND 
+    c.estado = v.estado AND 
+    c.idpersona = a.idpersona AND 
+    a.sexo = 'M' AND 
+    a.alimentacion = 'Carnivoro' AND 
+    a.idanimal = j.idanimal AND 
+    j.idbioma = b.idbioma AND 
+    b.idbioma IN (1,3)
+ORDER BY c.nombre, v.nombre, a.nombre
+
+
 
 
 
