@@ -87,7 +87,7 @@ ORDER BY tipoalim, idinsumo;
 
 
 -- IV. Consulta para saber cuales son los cuidadores y veterinarios que tienen el mismo estado
--- y que el cuidador, cuide a un animal carnivoro macho en los biomas 1 ó 3 y que la informacion salga ordenada.
+-- y que el cuidador, cuide a un animal carnivoro macho en los biomas 1,3 o 5 y que la informacion salga ordenada.
 SELECT 
     c.nombre AS cuidador, 
     v.nombre AS veterinario, 
@@ -105,7 +105,7 @@ FROM
 WHERE 
     a.sexo = 'M' AND 
     a.alimentacion = 'Carnivoro' AND 
-    b.idbioma IN (1,3)
+    b.idbioma IN (1,3,5)
 ORDER BY cuidador, veterinario;
 
 
@@ -225,13 +225,13 @@ order by tipoevento;
 
 
 
--- XI. Todos los veterinarios que hayan atendido a un animal y sean de la Ciudad de Mexico
+-- XI. Todos los veterinarios que hayan atendido a un animal y sean de la Ciudad de Mexico ó de Baja California Sur.
 select *
 from (SELECT veterinario.idpersona 
                         FROM atender, veterinario
                         where veterinario.idpersona  = atender.idpersona
 ) as a, veterinario as v 
-where v.estado = 'Mexico' and v.idpersona = a.idpersona;
+where v.estado in ('Mexico', 'Baja California Sur') and v.idpersona = a.idpersona;
 
 
 
