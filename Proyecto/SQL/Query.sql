@@ -1,7 +1,7 @@
 -- PETICIONES NO TRVIALES SOBRE LA BASE DE DATOS
 
 -- I. Consulta para obtener la informacion suficiente de todos los veterinarios y cuidadores que
--- laboren en los biomas 1, 3, 5 y 7, y que el nombre de los veterinarios empiece con la letra R
+-- laboren en los biomas 1, 3, 5 ó 7, y que el nombre de los veterinarios empiece con la letra R
 -- y que su apellido paterno contenga la letra e. 
 
 SELECT 
