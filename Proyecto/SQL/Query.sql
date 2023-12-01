@@ -247,3 +247,37 @@ from
 	fechacaducidad <= '2023-12-30'
 	) as a
 where pp.idpersona = a.idpersona;
+
+-- XVI. Consuta que nos regresa el nombre completo del veterinario,
+-- las indicaciones medicas propuestas para el animal, junto con el nombre de la
+-- medicina que se le administra, la fecha de caducidad, laboratorio y el nombre de dicho
+-- animal.
+select
+avs.nombre,
+avs.paterno,
+avs.materno,
+avs.indicacionesmedicas,
+m.nombre as nombre_medicina,
+m.fechCaducidad,
+m.labProd as laboratorio,
+avs.nombre_animal
+from medicina as m
+join
+	(select *
+	from subministrar as s
+	join
+		(select
+		a.idAnimal,
+		atenv.nombre,
+		atenv.paterno,
+		atenv.materno,
+		atenv.indicacionesmedicas,
+		a.nombre as nombre_animal
+		from animal as a
+		join (select *
+			from atender as ate
+			join veterinario as v
+			on v.idpersona = ate.idpersona) as atenv
+		on a.idAnimal = atenv.idAnimal) as avet
+	on s.idAnimal = avet.idAnimal) as avs
+on avs.idInsumo = m.idInsumo
