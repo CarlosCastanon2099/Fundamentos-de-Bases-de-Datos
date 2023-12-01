@@ -100,7 +100,7 @@ declare
 begin
 	select jaula.idbioma into idAnimalBioma from jaula where (idanimal = new.idanimal);
     if (SELECT NOT EXISTS (select l.idbioma 
-							from laborar as 1
+							from laborar as l
 							where new.idpersona = l.idpersona AND idAnimalBioma = l.idbioma)) THEN 
 		raise exception 'No se tiene permitido que un veterinario atienda a un animal de otro bioma al asignado.';
 		return null;
