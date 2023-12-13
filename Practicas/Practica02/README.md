@@ -52,4 +52,6 @@ animales y biomas que actualmente tienen en el zoológico.
 • Es por eso que el presente programa, permite agregar, consultar, editar, y eliminar información de veterinarios, animales y biomas. 
 La información capturada tiene que persistir, por lo que el sistema guarda y lee la información en archivos .CSV .
 
-La informacion sobre el Zoológico de Huitziltepec puede ser consultada [aquí](https://github.com/CarlosCastanon2099/Fundamentos-de-Bases-de-Datos/blob/main/Teoria/00-Caso-De-Uso/El%20Zool%C3%B3gico%20de%20Huitziltepec.pdf).
+La informacion detallada sobre el Zoológico de Huitziltepec puede ser consultada [aquí](https://github.com/CarlosCastanon2099/Fundamentos-de-Bases-de-Datos/blob/main/Teoria/00-Caso-De-Uso/El%20Zool%C3%B3gico%20de%20Huitziltepec.pdf).
+
+La informacion detallada sobre que se realizo en esta practica puede ser consultada [aquí](https://github.com/CarlosCastanon2099/Fundamentos-de-Bases-de-Datos/blob/main/Practicas/Practica02/Docs/Specs-Pr%C3%A1ctica02.pdf).
