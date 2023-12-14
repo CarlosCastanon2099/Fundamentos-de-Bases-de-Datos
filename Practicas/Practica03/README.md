@@ -26,7 +26,7 @@ La informacion detallada sobre que se realizo en esta practica puede ser consult
 # **Modelo Entidad-Relación de esta practica:**
 
 
-![Img Modelo E-R](./Practica03/Diagramas/ERLosEmpresaurios.png)
+![Img Modelo E-R](./Diagramas/ERLosEmpresaurios.png)
 
 </div>
 
@@ -41,7 +41,7 @@ La informacion detallada sobre el Zoológico de Huitziltepec puede ser consultad
 
 
 
-![Logo Zoo](./../Media/logoZoo.png)
+![Logo Zoo](./../../Media/logoZoo.png)
 
 
 </div>
