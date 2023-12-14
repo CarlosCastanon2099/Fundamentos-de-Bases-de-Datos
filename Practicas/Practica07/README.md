@@ -56,5 +56,3 @@ La informacion detallada sobre el Zoológico de Huitziltepec puede ser consultad
 
 </div>
 
-
-
