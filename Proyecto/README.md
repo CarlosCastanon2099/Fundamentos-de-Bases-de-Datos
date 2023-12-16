@@ -31,11 +31,11 @@ Integrantes del equipo:
 ```
 
 
-</div>
 
 
 [![](./../Media/empresaurios.png)](https://www.youtube.com/watch?v=8bbTtPL1jRs)
 
+</div>
 
 El presente es el Proyecto Final de Fundamentos de las Bases de Datos, ademas de ser la culminacion de todas las practicas
 es nuestra version definitiva sobre la base de datos implementada para el caso de uso del [Zoológico de Huitziltepec](./../Teoria/00-Caso-De-Uso/El%20Zoológico%20de%20Huitziltepec.pdf).
@@ -156,8 +156,8 @@ Arte Ascii Recuperado de: https://www.asciiart.eu/computers/computers
 ```
 
 <!---
-Creditos del arte ascii a -Roland Hangg-
-Arte Ascii Recuperado de: https://www.asciiart.eu/computers/computers
+Creditos del arte ascii a -David Palmer-
+Arte Ascii Recuperado de: https://www.asciiart.eu/computers/floppies
 -->
 
 
